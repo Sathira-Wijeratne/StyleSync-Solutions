@@ -36,7 +36,7 @@ export default function Login() {
                   style={{ borderRadius: "1rem" }}
                 >
                   <div className="card-body p-5 text-center">
-                    <div className="mb-md-5 mt-md-4 pb-5">
+                    <div className="mb-md-5 mt-md-4 pb-1">
                       <h2 className="fw-bold mb-2 text-uppercase">
                         Customer Login
                       </h2>
@@ -87,11 +87,17 @@ export default function Login() {
                     <div>
                       <p className="mb-0">
                         Don't have an account?{" "}
-                        <a
-                          href="/buyersignup"
-                          className="text-white-50 fw-bold"
-                        >
+                        <a href="/signup" className="text-white-50 fw-bold">
                           Sign Up
+                        </a>
+                      </p>
+                    </div>
+                    <br />
+                    <div>
+                      <p className="mb-0">
+                        Are you an Administrator?{" "}
+                        <a href="/adminlogin" className="text-white-50 fw-bold">
+                          Login here
                         </a>
                       </p>
                     </div>
