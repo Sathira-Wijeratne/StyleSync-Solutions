@@ -129,6 +129,7 @@ baggingClassifier.fit(x_train, y_train)
 
 # Prediction
 predicted4xTest = baggingClassifier.predict(x_test)
+predicted4userInputs = baggingClassifier.predict(userInputsDataFrame)
 df = pd.DataFrame(predicted4xTest, columns=['Sales'])
 
 # Evaluation
