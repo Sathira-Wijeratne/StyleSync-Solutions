@@ -94,5 +94,11 @@ y = preprocessedData['units_sold']
 
 featureList = list(x.columns)
 
+# Preparing test and train sets
 from sklearn.model_selection import train_test_split
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=41)
+
+# Training
+from sklearn.ensemble import BaggingClassifier
+baggingClassifier = BaggingClassifier(n_estimators=1200)
+baggingClassifier.fit(x_train, y_train)
