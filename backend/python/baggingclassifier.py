@@ -84,3 +84,12 @@ preprocessedData['product_variation_size_id'] = preprocessedData['product_variat
 preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('XXXXL', 9)
 preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('XXXXXL', 10)
 
+# ----------------------------
+# ------ MODEL TRAINING ------
+# ----------------------------
+
+# Preparing X and Y Sets
+x = preprocessedData.drop(['units_sold'], axis=1)
+y = preprocessedData['units_sold']
+
+featureList = list(x.columns)
