@@ -2,6 +2,29 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import BaggingClassifier
 import sklearn.metrics as sm
+import sys
+import json
+
+# ---------------------------
+# --- GETTING USER INPUTS ---
+# ---------------------------
+userInputs = json.loads(sys.argv[1])
+
+# Preparing user inputs
+userInputsDataFrame = [
+    [userInputs["XXXS-P"], 0, userInputs["XXXS-RC"]], 
+    [userInputs["XXS-P"], 1, userInputs["XXS-RC"]], 
+    [userInputs["XS-P"], 2, userInputs["XS-RC"]], 
+    [userInputs["S-P"], 3, userInputs["S-RC"]], 
+    [userInputs["M-P"], 4, userInputs["M-RC"]], 
+    [userInputs["L-P"], 5, userInputs["L-RC"]], 
+    [userInputs["XL-P"], 6, userInputs["XL-RC"]], 
+    [userInputs["XXL-P"], 7, userInputs["XXL-RC"]], 
+    [userInputs["XXXL-P"], 8, userInputs["XXXL-RC"]], 
+    [userInputs["XXXXL-P"], 9, userInputs["XXXXL-RC"]], 
+    [userInputs["XXXXXL-P"], 10, userInputs["XXXXXL-RC"]]
+]
+userInputsDataFrame = pd.DataFrame(userInputsDataFrame, columns=['price', 'product_variation_size_id', 'rating_count'])
 
 # ---------------------------
 # ---- IMPORTING DATASET ----
