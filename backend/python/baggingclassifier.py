@@ -102,3 +102,12 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_
 from sklearn.ensemble import BaggingClassifier
 baggingClassifier = BaggingClassifier(n_estimators=1200)
 baggingClassifier.fit(x_train, y_train)
+
+# Prediction
+predicted4xTest = baggingClassifier.predict(x_test)
+df = pd.DataFrame(predicted4xTest, columns=['Sales'])
+
+# Evaluation
+import sklearn.metrics as sm
+accuracy = sm.accuracy_score(y_test, predicted4xTest)
+print('Accuracy', accuracy)
