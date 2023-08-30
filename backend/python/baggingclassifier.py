@@ -135,3 +135,9 @@ df = pd.DataFrame(predicted4xTest, columns=['Sales'])
 # Evaluation
 accuracy = sm.accuracy_score(y_test, predicted4xTest)
 print('Accuracy', accuracy)
+
+# ----------------------------
+# ------ GETTING OUTPUT ------
+# ----------------------------
+print('Predicted Sales:', predicted4userInputs)
+sys.stdout.flush()
