@@ -59,3 +59,15 @@ preprocessedData['product_variation_size_id'] = preprocessedData['product_variat
 preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('04-3XL', 'XL')
 preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('daughter 24M', 'M')
 
+# Remove unnecessary sizes
+unnecessarySizes = ['choose a size', '32/L', 'EU 35', '4', '1m by 3m', 'Women Size 36', 'US 6.5 (EU 37)',
+                    '26(Waist 72cm 28inch)', '29', '1pc', '100 cm', 'One Size', '1', 'S/M(child)', '2pcs', '30 cm',
+                    '33', '100 x 100cm(39.3 x 39.3inch)', '100pcs', 'Base & Top & Matte Top Coat', '35', '34', '20pcs',
+                    'White', '25', 'Round', 'Pack of 1', '1 pc.', 'AU plug Low quality', '5PAIRS',
+                    '2', 'Baby Float Boat', '10 ml', '60', 'US5.5-EU35', '10pcs', '17', 'Women Size 37',
+                    '3 layered anklet', '4-5 Years', 'first  generation', '80 X 200 CM', 'EU39(US8)', 'Base Coat', '36',
+                    'Floating Chair for Kid', '20PCS-10PAIRS', 'B', '5', 'H01', '40 cm']
+
+for size in unnecessarySizes:
+    preprocessedData.drop(preprocessedData[preprocessedData['product_variation_size_id'] == size].index, inplace=True)
+
