@@ -71,3 +71,16 @@ unnecessarySizes = ['choose a size', '32/L', 'EU 35', '4', '1m by 3m', 'Women Si
 for size in unnecessarySizes:
     preprocessedData.drop(preprocessedData[preprocessedData['product_variation_size_id'] == size].index, inplace=True)
 
+# Scaling sizes
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('XXXS', 0)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('XXS', 1)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('XS', 2)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('S', 3)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('M', 4)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('L', 5)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('XL', 6)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('XXL', 7)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('XXXL', 8)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('XXXXL', 9)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('XXXXXL', 10)
+
