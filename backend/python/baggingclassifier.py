@@ -10,82 +10,129 @@ pd.options.mode.chained_assignment = None
 # ---------------------------
 # --- GETTING USER INPUTS ---
 # ---------------------------
-# userInputs = json.loads(sys.argv[1])
+userInputs = json.loads(sys.argv[1])
 
 # Preparing user inputs
-# userInputsDataFrame = [
-#     [userInputs["XXXS-P"], 0, userInputs["XXXS-RC"]], 
-#     [userInputs["XXS-P"], 1, userInputs["XXS-RC"]], 
-#     [userInputs["XS-P"], 2, userInputs["XS-RC"]], 
-#     [userInputs["S-P"], 3, userInputs["S-RC"]], 
-#     [userInputs["M-P"], 4, userInputs["M-RC"]], 
-#     [userInputs["L-P"], 5, userInputs["L-RC"]], 
-#     [userInputs["XL-P"], 6, userInputs["XL-RC"]], 
-#     [userInputs["XXL-P"], 7, userInputs["XXL-RC"]], 
-#     [userInputs["XXXL-P"], 8, userInputs["XXXL-RC"]], 
-#     [userInputs["XXXXL-P"], 9, userInputs["XXXXL-RC"]], 
-#     [userInputs["XXXXXL-P"], 10, userInputs["XXXXXL-RC"]]
-# ]
-# userInputsDataFrame = pd.DataFrame(userInputsDataFrame, columns=['price', 'product_variation_size_id', 'rating_count'])
+userInputsDataFrame = [
+    [userInputs["XXXS-P"], 0, userInputs["XXXS-RC"]],
+    [userInputs["XXS-P"], 1, userInputs["XXS-RC"]],
+    [userInputs["XS-P"], 2, userInputs["XS-RC"]],
+    [userInputs["S-P"], 3, userInputs["S-RC"]],
+    [userInputs["M-P"], 4, userInputs["M-RC"]],
+    [userInputs["L-P"], 5, userInputs["L-RC"]],
+    [userInputs["XL-P"], 6, userInputs["XL-RC"]],
+    [userInputs["XXL-P"], 7, userInputs["XXL-RC"]],
+    [userInputs["XXXL-P"], 8, userInputs["XXXL-RC"]],
+    [userInputs["XXXXL-P"], 9, userInputs["XXXXL-RC"]],
+    [userInputs["XXXXXL-P"], 10, userInputs["XXXXXL-RC"]]
+]
+userInputsDataFrame = pd.DataFrame(userInputsDataFrame, columns=[
+                                   'price', 'product_variation_size_id', 'rating_count'])
 
 # ---------------------------
 # ---- IMPORTING DATASET ----
 # ---------------------------
-dataset = pd.read_csv('./data/summer-products-with-rating-and-performance_2020-08.csv')
+dataset = pd.read_csv(
+    './data/summer-products-with-rating-and-performance_2020-08.csv')
 
 # ----------------------------
 # ---- DATA PREPROCESSING ----
 # ----------------------------
-preprocessedData = dataset[['price', 'units_sold', 'product_variation_size_id', 'rating_count']]
+preprocessedData = dataset[['price', 'units_sold',
+                            'product_variation_size_id', 'rating_count']]
 
 # If NaN, drop records
 preprocessedData.dropna(inplace=True)
 
 # Define common categories for pre-processing
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('Size-XS', 'XS')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('M.', 'M')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('S.', 'S')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('s', 'S')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('XS.', 'XS')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('Suit-S', 'S')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('Size S.', 'S')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('Size S', 'S')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('SIZE XS', 'XS')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('Size XXS', 'XXS')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('S..', 'S')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('Size M', 'M')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('SizeL', 'L')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('SIZE XXS', 'XXS')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('size S', 'S')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('SIZE-XXS', 'XXS')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('S(bust 88cm)', 'S')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('S (waist58-62cm)', 'S')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('S(Pink & Black)', 'S')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('US-S', 'S')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('Size -XXS', 'XXS')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('X   L', 'XL')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('Size-S', 'S')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('S Diameter 30cm', 'S')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('Size/S', 'S')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('S Pink', 'S')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('Size-L', 'L')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('Size-XXS', 'L')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('L.', 'L')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('pants-S', 'S')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('Size--S', 'S')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('1 PC - XL', 'XL')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('SIZE S', 'S')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('25-S', 'S')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('2XL', 'XL')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('3XL', 'XL')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('4XL', 'XL')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('5XL', 'XL')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('6XL', 'XL')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('SIZE-4XL', 'XL')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('Size4XL', 'XL')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('Size-5XL', 'XL')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('04-3XL', 'XL')
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('daughter 24M', 'M')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'Size-XS', 'XS')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'M.', 'M')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'S.', 'S')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    's', 'S')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'XS.', 'XS')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'Suit-S', 'S')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'Size S.', 'S')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'Size S', 'S')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'SIZE XS', 'XS')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'Size XXS', 'XXS')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'S..', 'S')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'Size M', 'M')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'SizeL', 'L')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'SIZE XXS', 'XXS')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'size S', 'S')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'SIZE-XXS', 'XXS')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'S(bust 88cm)', 'S')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'S (waist58-62cm)', 'S')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'S(Pink & Black)', 'S')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'US-S', 'S')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'Size -XXS', 'XXS')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'X   L', 'XL')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'Size-S', 'S')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'S Diameter 30cm', 'S')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'Size/S', 'S')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'S Pink', 'S')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'Size-L', 'L')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'Size-XXS', 'L')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'L.', 'L')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'pants-S', 'S')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'Size--S', 'S')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    '1 PC - XL', 'XL')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'SIZE S', 'S')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    '25-S', 'S')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    '2XL', 'XL')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    '3XL', 'XL')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    '4XL', 'XL')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    '5XL', 'XL')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    '6XL', 'XL')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'SIZE-4XL', 'XL')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'Size4XL', 'XL')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'Size-5XL', 'XL')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    '04-3XL', 'XL')
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'daughter 24M', 'M')
 
 # Remove unnecessary sizes
 unnecessarySizes = ['choose a size', '32/L', 'EU 35', '4', '1m by 3m', 'Women Size 36', 'US 6.5 (EU 37)',
@@ -97,20 +144,32 @@ unnecessarySizes = ['choose a size', '32/L', 'EU 35', '4', '1m by 3m', 'Women Si
                     'Floating Chair for Kid', '20PCS-10PAIRS', 'B', '5', 'H01', '40 cm']
 
 for size in unnecessarySizes:
-    preprocessedData.drop(preprocessedData[preprocessedData['product_variation_size_id'] == size].index, inplace=True)
+    preprocessedData.drop(
+        preprocessedData[preprocessedData['product_variation_size_id'] == size].index, inplace=True)
 
 # Scaling sizes
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('XXXS', 0)
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('XXS', 1)
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('XS', 2)
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('S', 3)
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('M', 4)
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('L', 5)
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('XL', 6)
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('XXL', 7)
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('XXXL', 8)
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('XXXXL', 9)
-preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace('XXXXXL', 10)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'XXXS', 0)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'XXS', 1)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'XS', 2)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'S', 3)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'M', 4)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'L', 5)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'XL', 6)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'XXL', 7)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'XXXL', 8)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'XXXXL', 9)
+preprocessedData['product_variation_size_id'] = preprocessedData['product_variation_size_id'].replace(
+    'XXXXXL', 10)
 
 # ----------------------------
 # ------ MODEL TRAINING ------
@@ -123,7 +182,8 @@ y = preprocessedData['units_sold']
 featureList = list(x.columns)
 
 # Preparing test and train sets
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=41)
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y, test_size=0.2, random_state=41)
 
 # Training
 baggingClassifier = BaggingClassifier(n_estimators=1200)
@@ -131,15 +191,16 @@ baggingClassifier.fit(x_train, y_train)
 
 # Prediction
 predicted4xTest = baggingClassifier.predict(x_test)
-# predicted4userInputs = baggingClassifier.predict(userInputsDataFrame)
+predicted4userInputs = baggingClassifier.predict(userInputsDataFrame)
 df = pd.DataFrame(predicted4xTest, columns=['Sales'])
 
 # Evaluation
 accuracy = sm.accuracy_score(y_test, predicted4xTest)
-print('Accuracy', accuracy)
+# print('Accuracy', accuracy)
+# print(str(userInputs))
 
 # ----------------------------
 # ------ GETTING OUTPUT ------
 # ----------------------------
-# print('Predicted Sales:', predicted4userInputs)
+print('Predicted Sales:', predicted4userInputs)
 sys.stdout.flush()
