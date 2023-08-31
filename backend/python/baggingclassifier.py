@@ -196,11 +196,24 @@ df = pd.DataFrame(predicted4xTest, columns=['Sales'])
 
 # Evaluation
 accuracy = sm.accuracy_score(y_test, predicted4xTest)
-# print('Accuracy', accuracy)
-# print(str(userInputs))
 
 # ----------------------------
-# ------ GETTING OUTPUT ------
+# ------ PROCESSING OUTPUT ------
 # ----------------------------
-print('Predicted Sales:', predicted4userInputs)
+jsonObj = {
+    "XXXS": predicted4userInputs[0],
+    "XXS": predicted4userInputs[1],
+    "XS": predicted4userInputs[2],
+    "S": predicted4userInputs[3],
+    "M": predicted4userInputs[4],
+    "L": predicted4userInputs[5],
+    "XL": predicted4userInputs[6],
+    "XXL": predicted4userInputs[7],
+    "XXXL": predicted4userInputs[8],
+    "XXXXL": predicted4userInputs[9],
+    "XXXXXL": predicted4userInputs[10],
+    "accuracy": accuracy
+}
+
+print(str(jsonObj))
 sys.stdout.flush()
