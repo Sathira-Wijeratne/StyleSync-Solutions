@@ -192,14 +192,13 @@ baggingClassifier.fit(x_train, y_train)
 # Prediction
 predicted4xTest = baggingClassifier.predict(x_test)
 predicted4userInputs = baggingClassifier.predict(userInputsDataFrame)
-df = pd.DataFrame(predicted4xTest, columns=['Sales'])
 
 # Evaluation
 accuracy = sm.accuracy_score(y_test, predicted4xTest)
 
-# ----------------------------
+# -------------------------------
 # ------ PROCESSING OUTPUT ------
-# ----------------------------
+# -------------------------------
 jsonObj = {
     "XXXS": predicted4userInputs[0],
     "XXS": predicted4userInputs[1],
