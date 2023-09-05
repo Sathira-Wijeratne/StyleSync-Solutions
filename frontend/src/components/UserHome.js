@@ -22,7 +22,7 @@ export default function UserHome() {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container" style={{ background: "#eee", padding: '3em', borderRadius: '20px' }}>
       <div id="product-page-buttons" style={{ float: "right" }}>
         <a
           href="/"
