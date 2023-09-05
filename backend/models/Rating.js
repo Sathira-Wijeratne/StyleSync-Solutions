@@ -11,7 +11,7 @@ const rateSchema = new Schema({
         type : String,
         required : true
     },
-    rate : {
+    noOfRate : {
         type : Number, 
         required : true
     }
