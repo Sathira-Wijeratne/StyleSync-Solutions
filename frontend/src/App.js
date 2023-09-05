@@ -6,6 +6,7 @@ import AdminLogin from "./components/account_management/AdminLogin";
 import UserHome from "./components/UserHome";
 import AdminHome from "./components/AdminHome";
 import Signup from "./components/account_management/Signup";
+import ProductPage from "./components/ProductPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/signup" exact component={Signup} />
       <Route path="/adminlogin" exact component={AdminLogin} />
       <Route path="/home" exact component={UserHome} />
+      <Route path="/viewproduct/:id" exact component={ProductPage} />
       <Route path="/adminhome" exact component={AdminHome} />
     </Router>
   );
