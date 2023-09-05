@@ -35,6 +35,9 @@ app.use("/admin", adminRouter);
 const customerRouter = require("./routes/customer.js");
 app.use("/customer", customerRouter);
 
+const productRouter = require("./routes/product.js");
+app.use("/product", productRouter);
+
 app.listen(PORT, () => {
   console.log(`Server is up and running on PORT : ${PORT}`);
 });
