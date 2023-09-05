@@ -36,7 +36,7 @@ export default function UserHome() {
         </a>
       </div>
       <div id="product-page-heading" style={{ textAlign: "center" }}>
-        <h1>All Products</h1>
+        <h1>All Summer Products ☀️</h1>
       </div>
       <div id="product-page-body" style={{ marginTop: "40px" }}>
         <div
@@ -75,7 +75,7 @@ export default function UserHome() {
                   {product[2]} €
                 </span>
                 <button className="btn btn-secondary" onClick={() => {
-                  // window.location.replace(`http://localhost:3000/buyer/view/item/${product[40]}`);
+                  window.location.replace(`http://localhost:3000/viewproduct/${product[40]}`);
                 }}>View</button>
               </div>
             </div>
