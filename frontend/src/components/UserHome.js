@@ -38,7 +38,7 @@ export default function UserHome() {
       <div id="product-page-heading" style={{ textAlign: "center" }}>
         <h1>All Summer Products ☀️</h1>
       </div>
-      <div id="product-page-body" style={{ marginTop: "40px" }}>
+      <div id="product-page-body" style={{ marginTop: "40px", marginBottom: "40px" }}>
         <div
           style={{
             display: "grid",
@@ -54,12 +54,14 @@ export default function UserHome() {
                 flexDirection: "column",
                 alignItems: "center",
                 padding: "1rem",
-                border: "2px solid #32a852",
+                border: "5px solid #32a852",
                 borderRadius: "20px"
               }}
               key={product[40]}
             >
-              <img src={product[39]} style={{ maxWidth: "100%" }} />
+              <div className="grow">
+                <img src={product[39]} style={{ maxWidth: "100%", borderRadius: "10px" }} />
+              </div>
               <div
                 style={{
                   display: "flex",
@@ -72,7 +74,7 @@ export default function UserHome() {
                   {product[1]}
                 </h3>
                 <span style={{ fontWeight: "bold", marginBottom: "0.5rem" }}>
-                  {product[2]} €
+                  {parseFloat(product[2]).toFixed(2)} €
                 </span>
                 <button className="btn btn-secondary" onClick={() => {
                   window.location.replace(`http://localhost:3000/viewproduct/${product[40]}`);
