@@ -16,7 +16,6 @@ router.route("/").get(async (req, res) => {
         products.push(row);
       })
       .on("end", function () {
-        console.log("Finished");
         res.json(products);
       })
       .on("error", function (error) {
@@ -45,9 +44,7 @@ router.route("/getDetails/:id").get(async (req, res) => {
       })
       .on("end", function () {
         const productDetails = products.find((product) => product[40] == productId);
-        console.log(productDetails);
         res.json(productDetails);
-        console.log("Product fetching finished");
       })
       .on("error", function (error) {
         console.log(error.message);
@@ -59,7 +56,6 @@ router.route("/getDetails/:id").get(async (req, res) => {
   } else {
     const productDetails = products.find((product) => product[40] == productId);
     res.json(productDetails);
-    console.log("Product fetching finished");
   }
 })
 
