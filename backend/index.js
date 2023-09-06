@@ -41,6 +41,9 @@ app.use("/product", productRouter);
 const rateRouter = require("./routes/rating.js");
 app.use("/rating", rateRouter);
 
+const cartRouter = require("./routes/cart.js");
+app.use("/cart", cartRouter);
+
 // --------- EXECUTING PREDICTION MODEL - BEGIN ----------------
 const { execFile } = require("child_process");
 app.post("/prediction", (req, res) => {
