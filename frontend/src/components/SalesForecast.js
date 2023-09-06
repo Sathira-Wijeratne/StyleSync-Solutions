@@ -1,67 +1,112 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
 
 export default function SalesForecast() {
   return (
     <div className="container">
+      <a type="button" href="/adminhome">
+        <Button variant="dark">Back</Button>
+      </a>
       <center>
         <h1>Sales Forecast</h1>
-        <table className="table" style={{ marginLeft: "20%" }}>
+        Enter the product price along with the size of the product that you want
+        to get the sales forecast
+        <br />
+        <br />
+        <table
+          className="table"
+          style={{
+            width: "75%",
+            textAlign: "center",
+          }}
+        >
           <thead>
             <tr>
               <th>Product Size</th>
-              <th className="th-sm">Product Price</th>
+              <th>Product Price</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>XXXS</td>
+              <td className="align-middle">XXXS</td>
               <td>
-                <input type="number" />
+                <input type="number" step="0.01" /> €
               </td>
             </tr>
             <tr>
-              <td>XXS</td>
-              <td></td>
+              <td className="align-middle">XXS</td>
+              <td>
+                <input type="number" step="0.01" /> €
+              </td>
             </tr>
             <tr>
-              <td>XS</td>
-              <td></td>
+              <td className="align-middle">XS</td>
+              <td>
+                <input type="number" step="0.01" /> €
+              </td>
             </tr>
             <tr>
-              <td>S</td>
-              <td></td>
+              <td className="align-middle">S</td>
+              <td>
+                <input type="number" step="0.01" /> €
+              </td>
             </tr>
             <tr>
-              <td>M</td>
-              <td></td>
+              <td className="align-middle">M</td>
+              <td>
+                <input type="number" step="0.01" /> €
+              </td>
             </tr>
             <tr>
-              <td>L</td>
-              <td></td>
+              <td className="align-middle">L</td>
+              <td>
+                <input type="number" step="0.01" /> €
+              </td>
             </tr>
             <tr>
-              <td>XL</td>
-              <td></td>
+              <td className="align-middle">XL</td>
+              <td>
+                <input type="number" step="0.01" /> €
+              </td>
             </tr>
             <tr>
-              <td>XXL</td>
-              <td></td>
+              <td className="align-middle">XXL</td>
+              <td>
+                <input type="number" step="0.01" /> €
+              </td>
             </tr>
             <tr>
-              <td>XXXL</td>
-              <td></td>
+              <td className="align-middle">XXXL</td>
+              <td>
+                <input type="number" step="0.01" /> €
+              </td>
             </tr>
             <tr>
-              <td>XXXXL</td>
-              <td></td>
+              <td className="align-middle">XXXXL</td>
+              <td>
+                <input type="number" step="0.01" /> €
+              </td>
             </tr>
             <tr>
-              <td>XXXXXL</td>
-              <td></td>
+              <td className="align-middle">XXXXXL</td>
+              <td>
+                <input type="number" step="0.01" /> €
+              </td>
             </tr>
+            <br />
           </tbody>
         </table>
       </center>
+      <div>
+        <button style={{ marginLeft: "70%" }} className="btn btn-primary">
+          Get Predictions
+        </button>
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   );
 }
