@@ -73,7 +73,7 @@ export default function ProductPage() {
               </div>
             </div>
             {/* Create a Rater component to allow users to rate the product */}
-            <b>Rate the Product</b> &nbsp;
+            
 
             {/* <div class="details col-md-6">
               <h3 class="product-title">{product[1]}</h3>
@@ -89,6 +89,9 @@ export default function ProductPage() {
 
               </div> */}
             <div class="details col-md-6">
+            <h3 class="product-title">{product[1]}</h3>
+            <div class="rating">
+            <b>Rate the Product</b> &nbsp;
             <Rater
               onRate={(noOfRate) => {
                 rateProduct(noOfRate.rating);
@@ -97,6 +100,7 @@ export default function ProductPage() {
               rating={rate}
               style={{ fontSize: "30px" }}
             />
+            </div>
               {/* <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p> */}
               <h4 class="price">
                 Price: <span>{parseFloat(product[2]).toFixed(2)} €</span>
