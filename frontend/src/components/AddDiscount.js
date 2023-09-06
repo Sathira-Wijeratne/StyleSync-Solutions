@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../styles/CreateDiscount.css";
 import axios from "axios";
 
 export default function AddDiscount() {
@@ -57,8 +58,8 @@ export default function AddDiscount() {
   return (
     <div>
       <h1>Add Discount</h1>
-      <form onSubmit={sendData}>
-        <div className="form-group">
+      <form onSubmit={sendData} class="container">
+        <div className="form-group; form-container">
           <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
             <label for="name">Discount ID</label>
           </div>
