@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Rater from 'react-rater'
+import 'react-rater/lib/react-rater.css'
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 
