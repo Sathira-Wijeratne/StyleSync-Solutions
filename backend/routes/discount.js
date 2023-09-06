@@ -30,6 +30,15 @@ router.route("/add").post((req, res) => {
     });
 });
 
-
+//DISPLAY ROUTE
+router.route("/").get((req, res) => {
+  Discount.find()
+    .then((discounts) => {
+      res.json(discounts);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 module.exports = router;
