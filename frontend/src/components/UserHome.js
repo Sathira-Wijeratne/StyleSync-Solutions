@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 export default function UserHome() {
   const [products, setProducts] = useState([]);
@@ -34,8 +36,10 @@ export default function UserHome() {
             sessionStorage.removeItem("customerEmail");
           }}
         >
-          {/*Buttons*/}
           <Button variant="danger">Signout</Button>
+        </a>
+        <a type="button" href="/cart">
+          <FontAwesomeIcon icon={faCartShopping} shake size="2xl" style={{ marginLeft: '25px' }} />
         </a>
       </div>
       <div id="product-page-heading" style={{ textAlign: "center" }}>
@@ -60,7 +64,7 @@ export default function UserHome() {
                 flexDirection: "column",
                 alignItems: "center",
                 padding: "1rem",
-                border: "5px solid #32a852",
+                border: "5px solid #027ee3",
                 borderRadius: "20px",
               }}
               key={product[40]}
