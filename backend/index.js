@@ -38,6 +38,34 @@ app.use("/customer", customerRouter);
 const productRouter = require("./routes/product.js");
 app.use("/product", productRouter);
 
+// --------- EXECUTING PREDICTION MODEL - BEGIN ----------------
+const { execFile } = require("child_process");
+app.post("/prediction", (req, res) => {
+  try {
+    const inputs = JSON.stringify(req.body);
+    execFile(
+      "python",
+      ["./python/baggingclassifier.py", inputs],
+      (error, stdout, stderr) => {
+        if (error) {
+          console.error("Error executing Python script:", error);
+          res
+            .status(500)
+            .send("An error occurred while processing your request.");
+          return;
+        }
+        stdout = stdout.replaceAll("'", '"');
+        stdout = JSON.parse(stdout);
+        res.send(stdout);
+      }
+    );
+  } catch (error) {
+    console.error("Error in processing:", error);
+    res.status(500).send("An error occurred while processing your request.");
+  }
+});
+// --------- EXECUTING PREDICTION MODEL - END ------------------
+
 app.listen(PORT, () => {
   console.log(`Server is up and running on PORT : ${PORT}`);
 });
