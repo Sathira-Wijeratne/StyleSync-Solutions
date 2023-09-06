@@ -41,4 +41,32 @@ router.route("/").get((req, res) => {
     });
 });
 
+//UPDATE ROUTE
+router.route("/update/:id").put(async (req, res) => {
+  let id = req.params.id;
+  const {
+    discountId,
+    discountType,
+    discountRate,
+    discountProductName,
+    discountDescription,
+    discountStartDate,
+    discountExpirationDate,
+  } = req.body;
+
+  const updateDiscount = {
+    discountId,
+    discountType,
+    discountRate,
+    discountProductName,
+    discountDescription,
+    discountStartDate,
+    discountExpirationDate,
+  };
+
+  const update = await Discount.findByIdAndUpdate(id, updateDiscount);
+
+  res.status(200).send({ status: "Discount Updated", discount: update });
+});
+
 module.exports = router;
