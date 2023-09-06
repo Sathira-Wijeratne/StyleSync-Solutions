@@ -33,4 +33,16 @@ router.route("/add").post((req, res) => {
         });
 });
 
+//Get all cart items of a buyer
+router.route("/get/:buyerEmail").get(async (req, res) => {
+    let buyerEmail = req.params.buyerEmail;
+
+    const retrieve = await Cart.find({ "buyerEmail": buyerEmail }).then((cart) => {
+        res.json(cart);
+    }).catch((err) => {
+        res.status(500).send({ status: "Opps! Error in loading the cart items" });
+    })
+})
+
+
 module.exports = router;
