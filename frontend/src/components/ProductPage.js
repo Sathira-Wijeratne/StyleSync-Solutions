@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import Rater from "react-rater";
 import Button from "react-bootstrap/Button";
 
 export default function ProductPage() {
@@ -28,6 +29,27 @@ export default function ProductPage() {
       });
   });
 
+  // Function to allow users to rate the product
+  function rateProduct(value) {
+    const newRate = {
+      title_orig,
+      customerEmail,
+      noOfRate,
+    };
+    // Check if the product has been rated before or not
+    if (rate === 0) {
+      // If not, add the rating to the server
+      axios.post("http://localhost:8071/rate/add", newRate).catch((err) => {
+        alert("Rating Service is not available.");
+      });
+    } else {
+      // If already rated, update the rating on the server
+      axios.put("http://localhost:8071/rate/update", newRate).catch((err) => {
+        alert("Rating Service is not available.");
+      });
+    }
+  }
+
   return (
     // Referenced from : https://bootsnipp.com/snippets/56bAW
     <div class="container" style={{ marginBottom: "40px" }}>
@@ -46,6 +68,16 @@ export default function ProductPage() {
                 </div>
               </div>
             </div>
+            {/* Create a Rater component to allow users to rate the product */}
+            <b>Rate the Product</b> &nbsp;
+            <Rater
+              onRate={(noOfRate) => {
+                rateProduct(noOfRate.rating);
+              }}
+              total={5}
+              rating={rate}
+              style={{ fontSize: "30px" }}
+            />
             <div class="details col-md-6">
               <h3 class="product-title">{product[1]}</h3>
               <div class="rating">
