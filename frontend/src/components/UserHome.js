@@ -6,6 +6,9 @@ import axios from "axios";
 
 export default function UserHome() {
   const [products, setProducts] = useState([]);
+  const [avgRatings, setAvgRatings] = useState({});
+  const [title_orig,settitle_orig] = useState([]);
+  const customerEmail = sessionStorage.getItem("customerEmail")
 
   useEffect(() => {
     function getProductDetails() {
