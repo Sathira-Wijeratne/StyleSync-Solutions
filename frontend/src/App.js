@@ -7,6 +7,7 @@ import UserHome from "./components/UserHome";
 import AdminHome from "./components/AdminHome";
 import Signup from "./components/account_management/Signup";
 import ProductPage from "./components/ProductPage";
+import SalesForecast from "./components/SalesForecast";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/home" exact component={UserHome} />
       <Route path="/viewproduct/:id" exact component={ProductPage} />
       <Route path="/adminhome" exact component={AdminHome} />
+      <Route path="/adminhome/salesforecast" exact component={SalesForecast} />
     </Router>
   );
 }

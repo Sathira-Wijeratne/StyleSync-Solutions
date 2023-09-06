@@ -17,6 +17,9 @@ export default function AdminHome() {
         </a>
       </div>
       <h1>Welcome Admin</h1>
+      <a href="/adminhome/salesforecast">
+        <button className="btn btn-primary">Sales Forecast</button>
+      </a>
     </div>
   );
 }
