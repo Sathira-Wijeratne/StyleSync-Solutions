@@ -69,4 +69,17 @@ router.route("/update/:id").put(async (req, res) => {
   res.status(200).send({ status: "Discount Updated", discount: update });
 });
 
+//DELETE ROUTE
+router.route("/delete/:id").delete(async(req,res) => {
+  let id = req.params.id;
+
+  await Discount.findByIdAndDelete(id).then(() => {
+      res.status(200).send({status : "Discount deleted"});
+  }).catch((err) =>{
+      console.log(err.message);
+      res.status(500).send({status : "Error In Deleting Discount", error : err.message});
+  })
+  
+})
+
 module.exports = router;
