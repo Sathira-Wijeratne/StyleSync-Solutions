@@ -7,6 +7,7 @@ import UserHome from "./components/UserHome";
 import AdminHome from "./components/AdminHome";
 import Signup from "./components/account_management/Signup";
 import ProductPage from "./components/ProductPage";
+import ShoppingCart from "./components/ShoppingCart";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/adminlogin" exact component={AdminLogin} />
       <Route path="/home" exact component={UserHome} />
       <Route path="/viewproduct/:id" exact component={ProductPage} />
+      <Route path="/cart" exact component={ShoppingCart} />
       <Route path="/adminhome" exact component={AdminHome} />
     </Router>
   );
