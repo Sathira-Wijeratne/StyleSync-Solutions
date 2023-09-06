@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 
 export default function SalesForecast() {
+  const [result, setResult] = useState(<></>);
+
+  function getPredictions(e) {
+    e.preventDefault();
+    processResult();
+  }
+
+  function processResult() {
+    setResult(
+      <>
+        <h2>Result</h2>
+        <center>
+          <span style={{ color: "red" }}>
+            Please note that the predicted values are for the{" "}
+            <b>summer season </b>
+            only.
+          </span>
+        </center>
+      </>
+    );
+  }
+
   return (
     <div className="container">
       <a type="button" href="/adminhome">
@@ -98,9 +120,18 @@ export default function SalesForecast() {
         </table>
       </center>
       <div>
-        <button style={{ marginLeft: "70%" }} className="btn btn-primary">
+        <button
+          onClick={(e) => {
+            getPredictions(e);
+          }}
+          style={{ marginLeft: "70%" }}
+          className="btn btn-primary"
+        >
           Get Predictions
         </button>
+        <br />
+        <br />
+        {result}
       </div>
       <br />
       <br />
