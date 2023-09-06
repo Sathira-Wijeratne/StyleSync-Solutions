@@ -70,16 +70,68 @@ router.route("/update/:id").put(async (req, res) => {
 });
 
 //DELETE ROUTE
-router.route("/delete/:id").delete(async(req,res) => {
+router.route("/delete/:id").delete(async (req, res) => {
   let id = req.params.id;
 
-  await Discount.findByIdAndDelete(id).then(() => {
-      res.status(200).send({status : "Discount deleted"});
-  }).catch((err) =>{
+  await Discount.findByIdAndDelete(id)
+    .then(() => {
+      res.status(200).send({ status: "Discount deleted" });
+    })
+    .catch((err) => {
       console.log(err.message);
-      res.status(500).send({status : "Error In Deleting Discount", error : err.message});
-  })
-  
-})
+      res
+        .status(500)
+        .send({ status: "Error In Deleting Discount", error: err.message });
+    });
+});
+
+//DETAILS OF 1 RECORD (ID)
+router.route("/get/:id").get(async (req, res) => {
+  let id = req.params.id;
+  const discount = await Discount.findById(id)
+    .then((discount) => {
+      res.status(200).send({ status: "Discount Record Fetched", discount });
+    })
+    .catch((err) => {
+      console.log(err.message);
+      res
+        .status(500)
+        .send({ status: "Error InFetching Discount", error: err.message });
+    });
+});
+
+//FETCHING DETAILS BASED ON DISCOUNT ID
+router.route("/getDiscount/:discountId").get(async (req, res) => {
+  let discountId = req.params.discountId;
+
+  await Discount.findOne({ "Discount ID": `${itemCode}` })
+    .then((discount) => {
+      res.status(200).send({ status: "Discount  Details fetched", discount });
+    })
+    .catch((err) => {
+      console.log(err.message);
+
+      res.status(500).send({
+        status: "Error In Fetching Discount Details",
+        error: err.message,
+      });
+    });
+});
+
+//FETCHING DETAILS BASED ON PRODUCT NAME
+router.route("/getDiscount/:productName").get(async (req, res) => {
+  let productName = req.params.productName;
+  await Discount.findOne({ "Product with discount": `${productName}` })
+    .then((discount) => {
+      res.status(200).send({ status: "Discount  Details fetched", discount });
+    })
+    .catch((err) => {
+      console.log(err.message);
+      res.status(500).send({
+        status: "Error In Fetching Discount Details",
+        error: err.message,
+      });
+    });
+});
 
 module.exports = router;
