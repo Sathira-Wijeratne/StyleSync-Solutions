@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import Rater from "react-rater";
+import 'react-rater/lib/react-rater.css';
 import Button from "react-bootstrap/Button";
 
 export default function ProductPage() {
   const [product, setProduct] = useState([]);
   const { id } = useParams();
   const [rate, setRate] = useState(0); // Initial user rating for the product is set to 0
+  const [title_orig,settitle_orig] = useState([]);
+  const customerEmail = sessionStorage.getItem("customerEmail")
 
   useEffect(() => {
     axios
@@ -15,6 +18,7 @@ export default function ProductPage() {
       .then((res) => {
         console.log(res.data);
         setProduct(res.data);
+        settitle_orig(res.data[1]);
       })
       .catch((err) => {
         alert(err.message);
@@ -25,12 +29,12 @@ export default function ProductPage() {
       .get(`http://localhost:8070/rating/get/${customerEmail}/${title_orig}`)
       .then((res) => {
         console.log(res.data);
-        setRate(res.data[0].rate); // If user has already rated the product, set the rating to the user's previous rating
+        setRate(res.data[0].noOfRate); // If user has already rated the product, set the rating to the user's previous rating
       });
-  });
+  },[]);
 
   // Function to allow users to rate the product
-  function rateProduct(value) {
+  function rateProduct(noOfRate) {
     const newRate = {
       title_orig,
       customerEmail,
@@ -39,12 +43,12 @@ export default function ProductPage() {
     // Check if the product has been rated before or not
     if (rate === 0) {
       // If not, add the rating to the server
-      axios.post("http://localhost:8071/rate/add", newRate).catch((err) => {
+      axios.post("http://localhost:8070/rating/add", newRate).catch((err) => {
         alert("Rating Service is not available.");
       });
     } else {
       // If already rated, update the rating on the server
-      axios.put("http://localhost:8071/rate/update", newRate).catch((err) => {
+      axios.put("http://localhost:8070/rating/update", newRate).catch((err) => {
         alert("Rating Service is not available.");
       });
     }
@@ -70,15 +74,8 @@ export default function ProductPage() {
             </div>
             {/* Create a Rater component to allow users to rate the product */}
             <b>Rate the Product</b> &nbsp;
-            <Rater
-              onRate={(noOfRate) => {
-                rateProduct(noOfRate.rating);
-              }}
-              total={5}
-              rating={rate}
-              style={{ fontSize: "30px" }}
-            />
-            <div class="details col-md-6">
+
+            {/* <div class="details col-md-6">
               <h3 class="product-title">{product[1]}</h3>
               <div class="rating">
                 <div class="stars">
@@ -89,7 +86,17 @@ export default function ProductPage() {
                   <span class="fa fa-star"></span>
                 </div>
                 <span class="review-no">{product[8]} reviews</span>
-              </div>
+
+              </div> */}
+            <div class="details col-md-6">
+            <Rater
+              onRate={(noOfRate) => {
+                rateProduct(noOfRate.rating);
+              }}
+              total={5}
+              rating={rate}
+              style={{ fontSize: "30px" }}
+            />
               {/* <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p> */}
               <h4 class="price">
                 Price: <span>{parseFloat(product[2]).toFixed(2)} €</span>
