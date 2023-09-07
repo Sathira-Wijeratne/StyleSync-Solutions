@@ -57,15 +57,15 @@ export default function ShoppingCart() {
         })
     }
 
-    // function handleQuantityChange(productId, newQuantity) {
-    //     const updatedProduct = products.map((product) => {
-    //         if (product.productId === productId) {
-    //             return { ...product, productQuantity: newQuantity };
-    //         }
-    //         return product;
-    //     });
-    //     setProducts(updatedProduct);
-    // }
+    function handleQuantityChange(productId, newQuantity) {
+        const updatedProduct = products.map((product) => {
+            if (product.productId === productId) {
+                return { ...product, productQuantity: newQuantity };
+            }
+            return product;
+        });
+        setProducts(updatedProduct);
+    }
 
     function makePurchase() {
         const newPurchase = {
@@ -141,7 +141,7 @@ export default function ShoppingCart() {
                                                         class="form-control"
                                                         style={{ border: '3px solid #1691ef' }}
                                                         onChange={(e) => {
-                                                            // handleQuantityChange(product.productId, e.target.value);
+                                                            handleQuantityChange(product.productId, e.target.value);
                                                         }} />
                                                     <label class="form-label" for="form1">Quantity</label>
                                                 </div>
