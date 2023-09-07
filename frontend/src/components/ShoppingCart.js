@@ -47,9 +47,38 @@ export default function ShoppingCart() {
         })
     }
 
+    function clearCart() {
+        axios.delete(`http://localhost:8070/cart/removeAll/${buyerEmail}`).then((res) => {
+            // alert("Item removed from the cart");
+            window.location.replace("/home");
+        }).catch((err) => {
+            alert("Opps! Error in removing the items from the cart");
+            console.log(err.message);
+        })
+    }
+
+    // function handleQuantityChange(productId, newQuantity) {
+    //     const updatedProduct = products.map((product) => {
+    //         if (product.productId === productId) {
+    //             return { ...product, productQuantity: newQuantity };
+    //         }
+    //         return product;
+    //     });
+    //     setProducts(updatedProduct);
+    // }
+
     function makePurchase() {
-        axios.post(`http://localhost:8070/purchases/add/`).then((res) => {
+        const newPurchase = {
+            buyerEmail: buyerEmail,
+            purchaseDate: Date.now(),
+            purchaseItems: products,
+            purchaseTotal: total,
+        };
+
+
+        axios.post(`http://localhost:8070/purchases/add/`, newPurchase).then((res) => {
             alert("Purchase successful");
+            clearCart();
         }).catch((err) => {
             alert("Opps! Error in purchasing");
             console.log(err.message);
@@ -102,9 +131,6 @@ export default function ShoppingCart() {
 
                                         <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                                             <div className="d-flex mb-4" style={{ maxWidth: 300 }}>
-                                                <button disabled class="btn btn-primary px-3 me-2" onClick={() => { }}>
-                                                    <i class="fas fa-minus"></i>
-                                                </button>
                                                 <div class="form-outline">
                                                     <input
                                                         id="form1"
@@ -113,12 +139,12 @@ export default function ShoppingCart() {
                                                         value={product.productQuantity}
                                                         type="number"
                                                         class="form-control"
-                                                        disabled />
+                                                        style={{ border: '3px solid #1691ef' }}
+                                                        onChange={(e) => {
+                                                            // handleQuantityChange(product.productId, e.target.value);
+                                                        }} />
                                                     <label class="form-label" for="form1">Quantity</label>
                                                 </div>
-                                                <button disabled class="btn btn-primary px-3 ms-2" onClick={() => { }}>
-                                                    <i class="fas fa-plus"></i>
-                                                </button>
                                             </div>
                                             <p class="text-start text-md-center">
                                                 <strong>{product.productPrice} €</strong>
