@@ -55,5 +55,28 @@ router.route("/remove/:buyerEmail/:productId").delete(async (req, res) => {
     })
 })
 
+//Remove all cart items of a buyer
+router.route("/removeAll/:buyerEmail").delete(async (req, res) => {
+    let buyerEmail = req.params.buyerEmail;
+    await Cart.deleteMany({ "buyerEmail": buyerEmail }).then(() => {
+        res.status(200).send({ status: "Items deleted" });
+    }).catch((err) => {
+        console.log(err.message);
+        res.status(500).send({ status: "Error in deleting items", error: err.message });
+    })
+});
+
+//Update cart item quantity
+router.route("/update/:buyerEmail/:productId").put(async (req, res) => {
+    let buyerEmail = req.params.buyerEmail;
+    let productId = req.params.productId;
+    const productQuantity = req.body.productQuantity;
+    await Cart.findOneAndUpdate({ "buyerEmail": buyerEmail, "productId": productId }, { productQuantity: productQuantity }).then(() => {
+        res.status(200).send({ status: "Item quantity updated" });
+    }).catch((err) => {
+        console.log(err.message);
+        res.status(500).send({ status: "Error in updating item quantity", error: err.message });
+    })
+});
 
 module.exports = router;
