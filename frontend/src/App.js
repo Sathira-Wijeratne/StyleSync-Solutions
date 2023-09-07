@@ -7,6 +7,8 @@ import UserHome from "./components/UserHome";
 import AdminHome from "./components/AdminHome";
 import Signup from "./components/account_management/Signup";
 import AddDiscount from "./components/AddDiscount";
+import AllDiscounts from "./components/AllDiscounts";
+import UpdateDiscount from "./components/UpdateDiscount";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
       <Route path="/home" exact component={UserHome} />
       <Route path="/adminhome" exact component={AdminHome} />
       <Route path="/discount/add" exact component={AddDiscount} />
+      <Route path="/discout" exact componenet={AllDiscounts} />
+      <Route path="/discount/:id" exact componenet={UpdateDiscount} />
     </Router>
   );
 }
