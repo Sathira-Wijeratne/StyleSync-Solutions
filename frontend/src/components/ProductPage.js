@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faClockRotateLeft } from '@fortawesome/free-solid-svg-icons';
 
 export default function ProductPage() {
     const [product, setProduct] = useState([]);
@@ -52,11 +52,16 @@ export default function ProductPage() {
                 <a type="button" href="/home">
                     <Button variant="dark">Back</Button>
                 </a>
-                <a type="button" href="/cart">
-                    <FontAwesomeIcon icon={faCartShopping} shake size="2xl" />
-                </a>
+                <div>
+                    <a type="button" href="/cart">
+                        <FontAwesomeIcon icon={faCartShopping} shake size="2xl" />
+                    </a>
+                    <a type="button" href="/purchaseHistory">
+                        <FontAwesomeIcon icon={faClockRotateLeft} size="2xl" style={{ marginLeft: '25px' }} />
+                    </a>
+                </div>
             </div>
-            <div class="product-page-card" style={{ marginTop: "20px" }}>
+            <div class="product-page-card" style={{ marginTop: "20px", borderRadius: '10px' }}>
                 <div class="container-fliud">
                     <div class="wrapper row">
                         <div class="preview col-md-6">
@@ -114,9 +119,6 @@ export default function ProductPage() {
                                     style={{ marginRight: "10px" }}
                                 >
                                     Add to cart
-                                </button>
-                                <button class="like btn btn-default" type="button">
-                                    <span class="fa fa-heart"></span>
                                 </button>
                             </div>
                         </div>
