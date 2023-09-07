@@ -8,6 +8,7 @@ import AdminHome from "./components/AdminHome";
 import Signup from "./components/account_management/Signup";
 import ProductPage from "./components/ProductPage";
 import ShoppingCart from "./components/ShoppingCart";
+import PurchaseHistory from "./components/PurchaseHistory";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/home" exact component={UserHome} />
       <Route path="/viewproduct/:id" exact component={ProductPage} />
       <Route path="/cart" exact component={ShoppingCart} />
+      <Route path="/purchaseHistory" exact component={PurchaseHistory} />
       <Route path="/adminhome" exact component={AdminHome} />
     </Router>
   );
