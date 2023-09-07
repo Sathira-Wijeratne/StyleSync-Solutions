@@ -44,5 +44,16 @@ router.route("/get/:buyerEmail").get(async (req, res) => {
     })
 })
 
+//Remove a cart item
+router.route("/remove/:buyerEmail/:productId").delete(async (req, res) => {
+    let buyerEmail = req.params.buyerEmail;
+    let productId = req.params.productId;
+    await Cart.findOneAndDelete({ "buyerEmail": buyerEmail, "productId": productId }).then(() => {
+        res.status(200).send({ status: "Item removed from the cart" });
+    }).catch((err) => {
+        res.status(500).send({ status: "Opps! Error in removing the item from the cart" });
+    })
+})
+
 
 module.exports = router;
