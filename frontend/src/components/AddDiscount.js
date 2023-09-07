@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "../styles/CreateDiscount.css";
 import axios from "axios";
 
 export default function AddDiscount() {
@@ -10,6 +9,7 @@ export default function AddDiscount() {
   const [discountProductName, setDiscountProductName] = useState();
   const [discountDescription, setDiscountDescription] = useState("");
   const [discountStartDate, setDiscountStartDate] = useState("");
+  const [discounts, setDiscounts] = useState([]);
   //let [upQuantity, setIncrQuantity] = useState();
   const [discountExpirationDate, setDiscountExpirationDate] = useState([]);
   const [isMatched, setIsMatched] = useState(true);
@@ -57,9 +57,9 @@ export default function AddDiscount() {
 
   return (
     <div>
-      <h1>Add Discount</h1>
+      <h1 class="container">Add Discount</h1>
       <form onSubmit={sendData} class="container">
-        <div className="form-group; form-container">
+        <div className="form-group">
           <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
             <label for="name">Discount ID</label>
           </div>
@@ -127,7 +127,7 @@ export default function AddDiscount() {
               id="productName"
               placeholder="Enter Product Name "
               onChange={(e) => {
-                setsetDiscountProductName(e.target.value);
+                setDiscountProductName(e.target.value);
               }}
             />
           </div>
