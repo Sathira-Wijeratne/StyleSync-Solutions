@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faClockRotateLeft } from '@fortawesome/free-solid-svg-icons';
 
 export default function UserHome() {
   const [products, setProducts] = useState([]);
@@ -26,7 +26,7 @@ export default function UserHome() {
   return (
     <div
       className="container"
-      style={{ background: "#eee", padding: "3em", borderRadius: "20px" }}
+      style={{ background: "#eee", padding: "3em", borderRadius: "20px", marginBottom: '20px' }}
     >
       <div id="product-page-buttons" style={{ float: "right" }}>
         <a
@@ -40,6 +40,9 @@ export default function UserHome() {
         </a>
         <a type="button" href="/cart">
           <FontAwesomeIcon icon={faCartShopping} shake size="2xl" style={{ marginLeft: '25px' }} />
+        </a>
+        <a type="button" href="/purchaseHistory">
+          <FontAwesomeIcon icon={faClockRotateLeft} size="2xl" style={{ marginLeft: '25px' }} />
         </a>
       </div>
       <div id="product-page-heading" style={{ textAlign: "center" }}>
