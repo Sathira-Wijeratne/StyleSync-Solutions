@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClockRotateLeft } from '@fortawesome/free-solid-svg-icons';
 
 export default function ShoppingCart() {
     const [products, setProducts] = useState([]);
@@ -75,7 +77,6 @@ export default function ShoppingCart() {
             purchaseTotal: total,
         };
 
-
         axios.post(`http://localhost:8070/purchases/add/`, newPurchase).then((res) => {
             alert("Purchase successful");
             clearCart();
@@ -85,16 +86,28 @@ export default function ShoppingCart() {
         })
     }
 
+    function updateProductQuantity(productId, quantity) {
+        axios.put(`http://localhost:8070/cart/update/${buyerEmail}/${productId}`, { "productQuantity": quantity }).then((res) => {
+            // alert("Quantity updated");
+        }).catch((err) => {
+            alert("Opps! Error in updating the quantity");
+            console.log(err.message);
+        })
+    }
+
     if (products.length > 0) {
         return (
             // Referenced from : https://mdbootstrap.com/docs/standard/extended/shopping-carts/#!
-            <div class="container py-5">
-                <div style={{ marginTop: '5px', display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <div class="container">
+                <div style={{ marginTop: '5px', display: "flex", alignItems: "center", float: 'right' }}>
                     <a type="button" href="/home">
                         <Button variant="dark">Home</Button>
                     </a>
+                    <a type="button" href="/purchaseHistory">
+                        <FontAwesomeIcon icon={faClockRotateLeft} size="2xl" style={{ marginLeft: '25px' }} />
+                    </a>
                 </div>
-
+                <br /><br />
                 <div class="row d-flex justify-content-center my-4">
                     <div class="col-md-8">
                         <div class="card mb-4">
@@ -142,6 +155,7 @@ export default function ShoppingCart() {
                                                         style={{ border: '3px solid #1691ef' }}
                                                         onChange={(e) => {
                                                             handleQuantityChange(product.productId, e.target.value);
+                                                            updateProductQuantity(product.productId, e.target.value);
                                                         }} />
                                                     <label class="form-label" for="form1">Quantity</label>
                                                 </div>
@@ -198,9 +212,17 @@ export default function ShoppingCart() {
         return (
             // Referenced from : https://bbbootstrap.com/snippets/bootstrap-empty-cart-template-25715727
             <div class="container">
+                <div style={{ marginTop: '5px', marginBottom: '20px', display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                    <a type="button" href="/home">
+                        <Button variant="dark">Home</Button>
+                    </a>
+                    <a type="button" href="/purchaseHistory">
+                        <FontAwesomeIcon icon={faClockRotateLeft} size="2xl" style={{ marginLeft: '25px' }} />
+                    </a>
+                </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card" style={{ height: "150%" }}>
+                        <div class="card" style={{ height: "140%", borderRadius: '10px', background: "#eee" }}>
                             <div class="card-body cart">
                                 <div class="col-sm-12 empty-cart-cls text-center">
                                     <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3" />
