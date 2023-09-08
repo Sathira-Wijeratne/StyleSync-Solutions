@@ -9,17 +9,17 @@ export default function AddDiscount() {
   const [discountProductName, setDiscountProductName] = useState();
   const [discountDescription, setDiscountDescription] = useState("");
   const [discountStartDate, setDiscountStartDate] = useState("");
-  const [discounts, setDiscounts] = useState([]);
+  const [products, setProducts] = useState([]);
   //let [upQuantity, setIncrQuantity] = useState();
   const [discountExpirationDate, setDiscountExpirationDate] = useState("");
   const [isMatched, setIsMatched] = useState(true);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8070/discount/")
+      .get("http://localhost:8070/product/")
       .then((res) => {
         console.log(res.data);
-        setDiscounts(res.data);
+        setProducts(res.data);
       })
       .catch((err) => {
         alert(err.message);
@@ -132,6 +132,14 @@ export default function AddDiscount() {
             />
           </div>
         </div>
+        {/* <b>Select the delivery agent</b> <br />
+        <select
+          id="productName"
+          onChange={(e) => {
+            setDelAgent(e.target.value);
+          }}
+        ></select>{" "}
+        <br /> */}
         <div className="form-group">
           <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
             <label for="supplier">Discount Description</label>
@@ -143,7 +151,7 @@ export default function AddDiscount() {
               className="form-control"
               required
               id="description"
-              placeholder="Enter Discpount Description "
+              placeholder="Enter Discount Description "
               onChange={(e) => {
                 setDiscountDescription(e.target.value);
               }}
