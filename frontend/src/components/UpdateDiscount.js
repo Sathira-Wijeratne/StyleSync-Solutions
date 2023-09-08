@@ -47,7 +47,7 @@ function UpdateDiscount() {
       .then(() => {
         alert("Discount  Updated");
 
-        window.location.replace("http://localhost:3000/discount/");
+        window.location.replace("http://localhost:3000/adminhome/discount/");
       })
       .catch((err) => {
         alert(err);
@@ -188,7 +188,7 @@ function UpdateDiscount() {
           Update
         </button>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a type="button" href="/discount" class="btn btn-secondary">
+        <a type="button" href="/adminhome/discount" class="btn btn-secondary">
           Back
         </a>
       </form>

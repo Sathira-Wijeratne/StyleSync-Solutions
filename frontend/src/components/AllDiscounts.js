@@ -7,6 +7,7 @@ export default function AllDiscounts() {
   let history = useHistory();
 
   useEffect(() => {
+    console.log("Hello");
     function getDiscounts() {
       axios
         .get("http://localhost:8070/discount/")
@@ -33,7 +34,9 @@ export default function AllDiscounts() {
               type="button"
               class="btn btn-outline-dark"
               onClick={() => {
-                window.location.replace(`http://localhost:3000/discount/add/`);
+                window.location.replace(
+                  `http://localhost:3000/adminhome/discount/add/`
+                );
               }}
             >
               Add New Discounts
@@ -66,7 +69,7 @@ export default function AllDiscounts() {
                   className="btn btn-success"
                   onClick={() => {
                     window.location.replace(
-                      `http://localhost:3000/discount/update/${discount._id}`
+                      `http://localhost:3000/adminhome/discount/update/${discount._id}`
                     );
                   }}
                 >
@@ -79,7 +82,7 @@ export default function AllDiscounts() {
                   className="btn btn-danger"
                   onClick={() => {
                     window.location.replace(
-                      `http://localhost:3000/discount/delete/${discount._id}`
+                      `http://localhost:3000/adminhome/discount/delete/${discount._id}`
                     );
                   }}
                 >

@@ -26,10 +26,18 @@ function App() {
       <Route path="/cart" exact component={ShoppingCart} />
       <Route path="/purchaseHistory" exact component={PurchaseHistory} />
       <Route path="/adminhome" exact component={AdminHome} />
-      <Route path="/discount/add" exact component={AddDiscount} />
-      <Route path="/discout" exact componenet={AllDiscounts} />
-      <Route path="/discount/update/:id" exact componenet={UpdateDiscount} />
-      <Route path="/discount/delete/:id" exact componenet={DeleteDiscount} />
+      <Route path="/adminhome/discount/add" exact component={AddDiscount} />
+      <Route path="/adminhome/discount/" exact component={AllDiscounts} />
+      <Route
+        path="/adminhome/discount/update/:id"
+        exact
+        component={UpdateDiscount}
+      />
+      <Route
+        path="/adminhome/discount/delete/:id"
+        exact
+        component={DeleteDiscount}
+      />
     </Router>
   );
 }

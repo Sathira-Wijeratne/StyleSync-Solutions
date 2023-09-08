@@ -11,7 +11,7 @@ export default function AddDiscount() {
   const [discountStartDate, setDiscountStartDate] = useState("");
   const [discounts, setDiscounts] = useState([]);
   //let [upQuantity, setIncrQuantity] = useState();
-  const [discountExpirationDate, setDiscountExpirationDate] = useState([]);
+  const [discountExpirationDate, setDiscountExpirationDate] = useState("");
   const [isMatched, setIsMatched] = useState(true);
 
   useEffect(() => {
@@ -190,7 +190,7 @@ export default function AddDiscount() {
           Submit
         </button>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a type="button" href="/discount" class="btn btn-secondary">
+        <a type="button" href="/adminhome/discount" class="btn btn-secondary">
           Back
         </a>
       </form>
