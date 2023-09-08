@@ -9,6 +9,10 @@ import Signup from "./components/account_management/Signup";
 import ProductPage from "./components/ProductPage";
 import ShoppingCart from "./components/ShoppingCart";
 import PurchaseHistory from "./components/PurchaseHistory";
+import AddDiscount from "./components/AddDiscount";
+import AllDiscounts from "./components/AllDiscounts";
+import UpdateDiscount from "./components/UpdateDiscount";
+import DeleteDiscount from "./components/DeleteDiscount";
 
 function App() {
   return (
@@ -22,6 +26,10 @@ function App() {
       <Route path="/cart" exact component={ShoppingCart} />
       <Route path="/purchaseHistory" exact component={PurchaseHistory} />
       <Route path="/adminhome" exact component={AdminHome} />
+      <Route path="/discount/add" exact component={AddDiscount} />
+      <Route path="/discout" exact componenet={AllDiscounts} />
+      <Route path="/discount/update/:id" exact componenet={UpdateDiscount} />
+      <Route path="/discount/delete/:id" exact componenet={DeleteDiscount} />
     </Router>
   );
 }
