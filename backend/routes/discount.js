@@ -101,10 +101,10 @@ router.route("/get/:id").get(async (req, res) => {
 });
 
 //FETCHING DETAILS BASED ON DISCOUNT ID
-router.route("/getDiscount/:discountId").get(async (req, res) => {
+router.route("/getDiscountId/:discountId").get(async (req, res) => {
   let discountId = req.params.discountId;
 
-  await Discount.findOne({ "Discount ID": `${itemCode}` })
+  await Discount.findOne({ "Discount ID": `${discountId}` })
     .then((discount) => {
       res.status(200).send({ status: "Discount  Details fetched", discount });
     })
@@ -119,9 +119,9 @@ router.route("/getDiscount/:discountId").get(async (req, res) => {
 });
 
 //FETCHING DETAILS BASED ON PRODUCT NAME
-router.route("/getDiscount/:productName").get(async (req, res) => {
+router.route("/getDiscountProductName/:productName").get(async (req, res) => {
   let productName = req.params.productName;
-  await Discount.findOne({ "Product with discount": `${productName}` })
+  await Discount.findOne({ discountProductName: `${productName}` })
     .then((discount) => {
       res.status(200).send({ status: "Discount  Details fetched", discount });
     })
