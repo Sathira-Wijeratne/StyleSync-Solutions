@@ -19,7 +19,11 @@ function App() {
       <Route path="/home" exact component={UserHome} />
       <Route path="/viewproduct/:id" exact component={ProductPage} />
       <Route path="/adminhome" exact component={AdminHome} />
-      <Route path="/ProductRatingReport" exact component={ProductRatingReport}/>
+      <Route
+        path="/adminhome/ProductRatingReport"
+        exact
+        component={ProductRatingReport}
+      />
     </Router>
   );
 }

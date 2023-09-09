@@ -17,6 +17,9 @@ export default function AdminHome() {
         </a>
       </div>
       <h1>Welcome Admin</h1>
+      <a href="/adminhome/ProductRatingReport">
+        <button className="btn btn-primary">Rating Report</button>
+      </a>
     </div>
   );
 }
