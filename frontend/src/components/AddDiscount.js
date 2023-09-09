@@ -253,11 +253,10 @@ export default function AddDiscount() {
             </div>
           </div>
 
-          <div className="form-group">
+          <div className="form-group" style={{ display: 'flex', flexWrap: 'nowrap' }}>
             <button
               type="submit"
               className="btn btn-success col-md-6 mb-3"
-              style={{ marginLeft: "10px" }}
             >
               Submit
             </button>
