@@ -7,7 +7,7 @@ export default function DeleteDiscount() {
   const [discountId, setDiscountId] = useState("");
   const [discountType, setDiscountType] = useState("");
   const [discountRate, setDiscountRate] = useState("");
-  const [discountProductName, setDiscountProductName] = useState();
+  const [discountProductName, setDiscountProductName] = useState("");
   const [discountDescription, setDiscountDescriptiopn] = useState("");
   const [discountStartDate, setDiscountStartDate] = useState("");
   const [discountExpirationDate, setDiscountExpirationDate] = useState("");
@@ -119,7 +119,7 @@ export default function DeleteDiscount() {
                 Discount Product Name
               </label>
               <input
-                type="number"
+                type="text"
                 className="form-control"
                 id="discountProductName"
                 value={discountProductName}
