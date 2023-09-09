@@ -7,6 +7,15 @@ import UserHome from "./components/UserHome";
 import AdminHome from "./components/AdminHome";
 import Signup from "./components/account_management/Signup";
 import ProductPage from "./components/ProductPage";
+import ShoppingCart from "./components/ShoppingCart";
+import PurchaseHistory from "./components/PurchaseHistory";
+import AddDiscount from "./components/AddDiscount";
+import AllDiscounts from "./components/AllDiscounts";
+import UpdateDiscount from "./components/UpdateDiscount";
+import DeleteDiscount from "./components/DeleteDiscount";
+import DiscountsReport from "./components/DiscountsReport";
+import ProductRatingReport from "./components/ProductRatingReport";
+import SalesForecast from "./components/SalesForecast";
 
 function App() {
   return (
@@ -17,7 +26,32 @@ function App() {
       <Route path="/adminlogin" exact component={AdminLogin} />
       <Route path="/home" exact component={UserHome} />
       <Route path="/viewproduct/:id" exact component={ProductPage} />
+      <Route path="/cart" exact component={ShoppingCart} />
+      <Route path="/purchaseHistory" exact component={PurchaseHistory} />
       <Route path="/adminhome" exact component={AdminHome} />
+      <Route path="/adminhome/discount/add" exact component={AddDiscount} />
+      <Route path="/adminhome/discount/" exact component={AllDiscounts} />
+      <Route
+        path="/adminhome/discount/update/:id"
+        exact
+        component={UpdateDiscount}
+      />
+      <Route
+        path="/adminhome/discount/delete/:id"
+        exact
+        component={DeleteDiscount}
+      />
+      <Route
+        path="/adminhome/discount/reports"
+        exact
+        component={DiscountsReport}
+      />
+      <Route
+        path="/adminhome/ProductRatingReport"
+        exact
+        component={ProductRatingReport}
+      />
+      <Route path="/adminhome/salesforecast" exact component={SalesForecast} />
     </Router>
   );
 }

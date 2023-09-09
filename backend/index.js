@@ -35,11 +35,20 @@ app.use("/admin", adminRouter);
 const customerRouter = require("./routes/customer.js");
 app.use("/customer", customerRouter);
 
+const discountRouter = require("./routes/discount.js");
+app.use("/discount", discountRouter);
+
 const productRouter = require("./routes/product.js");
 app.use("/product", productRouter);
 
 const rateRouter = require("./routes/rating.js");
 app.use("/rating", rateRouter);
+
+const cartRouter = require("./routes/cart.js");
+app.use("/cart", cartRouter);
+
+const purchaseRouter = require("./routes/purchase.js");
+app.use("/purchases", purchaseRouter);
 
 // --------- EXECUTING PREDICTION MODEL - BEGIN ----------------
 const { execFile } = require("child_process");

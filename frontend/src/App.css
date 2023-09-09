@@ -117,7 +117,7 @@ img {
     -webkit-animation-duration: .8s;
             animation-duration: .8s; }
 
-.card {
+.product-page-card {
   margin-top: 50px;
   background: #eee;
   padding: 3em;
@@ -176,7 +176,7 @@ img {
     margin-left: 20px; }
 
 .add-to-cart, .like {
-  background: #62a115;
+  background: #1691ef;
   padding: 1.2em 1.5em;
   border: none;
   text-transform: UPPERCASE;
@@ -185,7 +185,7 @@ img {
   -webkit-transition: background .3s ease;
           transition: background .3s ease; }
   .add-to-cart:hover, .like:hover {
-    background: #216d08;
+    background: #0473c8;
     color: #fff; }
 
 .not-available {
@@ -239,3 +239,49 @@ transition: 1s ease;
 transform: scale(1.1);
 transition: .2s ease;
 }
+
+
+
+/* Card styles for different colors */
+/* .card {
+  width: 250px;
+  height: 250px;
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: white;
+}
+ */
+
+
+
+/* Heading style */
+.admin-heading {
+  font-family: 'YourFontName', sans-serif; /* Replace 'YourFontName' with the desired font-family */
+  font-weight: bold;
+  text-align: center;
+  font-size: 36px; /* Adjust the font size as needed */
+  margin-top: 20px; 
+  margin-bottom: -150px;/* Add some top margin to separate it from cards */
+}
+
+.bold-black-outline {
+  border: 2px solid black;
+  font-weight: bold;
+}
+
+.label-bold-black {
+  color: black;
+  font-weight: bold;
+}
+
+th {
+  white-space: nowrap; /* Prevent text from wrapping to the next line */
+  overflow: hidden; /* Hide any overflow */
+  text-overflow: ellipsis; /* Show ellipsis (...) for long text */
+  max-width: 200px; /* Set a maximum width for the columns */
+}
+
