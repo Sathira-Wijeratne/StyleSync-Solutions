@@ -90,10 +90,6 @@ import React from "react"; // Import your background image
 import Card from "react-bootstrap/Card";
 import CardImg from "react-bootstrap/CardImg";
 import Button from "react-bootstrap/Button";
-import card1Image from "../images/card1.jpg";
-import card2Image from "../images/card2.jpg";
-import card3Image from "../images/card3.jpg";
-import card4Image from "../images/card4.jpg";
 import backgroundImage from "../images/backgroundImage.jpg";
 import {
   faPlus,
@@ -246,7 +242,10 @@ export default function AdminHome() {
             }}
           >
             <Card.Title>Update Discounts</Card.Title>
-            <FontAwesomeIcon icon={faEdit} style={{ fontSize: "48px", marginTop: "10px" }} />
+            <FontAwesomeIcon
+              icon={faEdit}
+              style={{ fontSize: "48px", marginTop: "10px" }}
+            />
             {/* <Card.Text>Card content here.</Card.Text> */}
           </Card.Body>
         </Card>
