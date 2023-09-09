@@ -7,6 +7,7 @@ import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import AsyncSelect from "react-select/async";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import backgroundImage from "../images/update.jpg";
 
 function UpdateDiscount() {
   const [discountId, setDiscountId] = useState("");
@@ -37,6 +38,21 @@ function UpdateDiscount() {
         console.log(err);
       });
   }, []);
+
+  const containerStyle = {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
+    backgroundPosition: "center",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "white",
+    position: "relative",
+  };
 
   const handleStartDateClick = (e) => {
     e.stopPropagation();
@@ -73,196 +89,152 @@ function UpdateDiscount() {
   }
 
   return (
-    <div className="container">
+    <div className="container" style={containerStyle}>
       <h1>Update Discounts</h1>
       <form onSubmit={updateData}>
-        <div className="form-group">
-          <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-            <label for="discountId">Discount Id</label>
-          </div>
-
-          <div class="col-sm-10">
-            <input
-              type="text"
-              className="form-control"
-              id="discountId"
-              value={discountId}
-              placeholder="Enter Discount ID"
-              onChange={(e) => {
-                setDiscountId(e.target.value);
-              }}
-            />
-          </div>
-        </div>
-        <div className="form-group">
-          <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-            <label for="discountType">Discount Type</label>
-          </div>
-
-          <div class="col-sm-10">
-            <input
-              type="text"
-              className="form-control"
-              id="discountType"
-              value={discountType}
-              placeholder="Enter Discount Type"
-              onChange={(e) => {
-                setDiscountType(e.target.value);
-              }}
-            />
-          </div>
-        </div>
-        <div className="form-group">
-          <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-            <label for="discountRate">Discount Rate</label>
-          </div>
-
-          <div class="col-sm-10">
-            <input
-              type="text"
-              className="form-control"
-              id="discountRate"
-              value={discountRate}
-              placeholder="Enter Discount Rate"
-              onChange={(e) => {
-                setDiscountRate(e.target.value);
-              }}
-            />
-          </div>
-        </div>
-        <div className="form-group">
-          <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-            <label for="discountProductName">Discount Product Name</label>
-          </div>
-
-          <div class="col-sm-10">
-            <input
-              type="text"
-              className="form-control"
-              id="discountProductName"
-              value={discountProductName}
-              placeholder="Enter quantity"
-              onChange={(e) => {
-                setDiscountProductName(e.target.value);
-              }}
-            />
-          </div>
-        </div>
-        <div className="form-group">
-          <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-            <label for="discountDescription">Discount Description</label>
-          </div>
-
-          <div class="col-sm-10">
-            <input
-              type="text"
-              className="form-control"
-              id="discountDescription"
-              value={discountDescription}
-              placeholder="Enter supplier"
-              onChange={(e) => {
-                setDiscountDescriptiopn(e.target.value);
-              }}
-            />
-          </div>
-        </div>
-        {/* <div className="form-group">
-          <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-            <label for="discountStartDate">Discount Start Date</label>
-          </div>
-
-          <div class="col-sm-10">
-            <input
-              type="text"
-              className="form-control"
-              id="discountStartDate"
-              value={discountStartDate}
-              placeholder="Enter Start Date"
-              onChange={(e) => {
-                setDiscountStartDate(e.target.value);
-              }}
-            />
-          </div>
-        </div> */}
-        <div className="form-group">
-          <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-            <label htmlFor="discountStartDate">Discount Start Date</label>
-          </div>
-          <div className="col-sm-10">
-            <div
-              className="input-group datepicker-container"
-              onClick={handleStartDateClick}
-            >
-              <DatePicker
-                selected={discountStartDate}
-                onChange={(date) => setDiscountStartDate(date)}
-                className="form-control"
-                id="discountStartDate"
-                required
-                placeholderText="Select start date"
+        <div className="row">
+          <div className="col-md-6 mb-3">
+            <div className="form-group">
+              <label htmlFor="discountId">Discount Id</label>
+              <input
+                type="text"
+                className="form-control bold-black-outline"
+                id="discountId"
+                value={discountId}
+                placeholder="Enter Discount ID"
+                onChange={(e) => {
+                  setDiscountId(e.target.value);
+                }}
               />
-              <div className="input-group-append">
-                <span className="input-group-text">
-                  <FontAwesomeIcon icon={faCalendarAlt} />
-                </span>
+            </div>
+          </div>
+          <div className="col-md-6 mb-3">
+            <div className="form-group">
+              <label htmlFor="discountType">Discount Type</label>
+              <input
+                type="text"
+                className="form-control bold-black-outline"
+                id="discountType"
+                value={discountType}
+                placeholder="Enter Discount Type"
+                onChange={(e) => {
+                  setDiscountType(e.target.value);
+                }}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-6 mb-3">
+            <div className="form-group">
+              <label htmlFor="discountRate">Discount Rate</label>
+              <input
+                type="text"
+                className="form-control bold-black-outline"
+                id="discountRate"
+                value={discountRate}
+                placeholder="Enter Discount Rate"
+                onChange={(e) => {
+                  setDiscountRate(e.target.value);
+                }}
+              />
+            </div>
+          </div>
+          <div className="col-md-6 mb-3">
+            <div className="form-group">
+              <label htmlFor="discountProductName">Discount Product Name</label>
+              <input
+                type="text"
+                className="form-control bold-black-outline"
+                id="discountProductName"
+                value={discountProductName}
+                placeholder="Enter Product Name"
+                onChange={(e) => {
+                  setDiscountProductName(e.target.value);
+                }}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="form-group">
+          <label htmlFor="discountDescription">Discount Description</label>
+          <input
+            type="text"
+            className="form-control bold-black-outline"
+            id="discountDescription"
+            value={discountDescription}
+            placeholder="Enter Description"
+            onChange={(e) => {
+              setDiscountDescriptiopn(e.target.value);
+            }}
+          />
+          <div className="row">
+            <div className="col-md-6 mb-3">
+              <div className="form-group">
+                <label htmlFor="discountStartDate">Discount Start Date</label>
+                <div
+                  className="input-group datepicker-container bold-black-outline"
+                  onClick={handleStartDateClick}
+                >
+                  <DatePicker
+                    selected={discountStartDate}
+                    onChange={(date) => setDiscountStartDate(date)}
+                    className="form-control"
+                    id="discountStartDate"
+                    required
+                    placeholderText="Select start date"
+                  />
+                  <div className="input-group-append">
+                    <span className="input-group-text">
+                      <FontAwesomeIcon icon={faCalendarAlt} />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-md-6 mb-3">
+              <div className="form-group">
+                <label htmlFor="discountExpirationDate">
+                  Expiration Date of Discount
+                </label>
+                <div
+                  className="input-group datepicker-container bold-black-outline"
+                  onClick={handleExpirationDateClick}
+                >
+                  <DatePicker
+                    selected={discountExpirationDate}
+                    onChange={(date) => setDiscountExpirationDate(date)}
+                    className="form-control"
+                    id="discountExpirationDate"
+                    required
+                    placeholderText="Select expiration date"
+                  />
+                  <div className="input-group-append">
+                    <span className="input-group-text">
+                      <FontAwesomeIcon icon={faCalendarAlt} />
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        {/* <div className="form-group">
-          <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-            <label for="discountExpirationDate">Discount Expiration Date</label>
-          </div>
-
-          <div class="col-sm-10">
-            <input
-              type="text"
-              className="form-control"
-              id="discountExpirationDate"
-              value={discountExpirationDate}
-              placeholder="Enter Date Of Expiration"
-              onChange={(e) => {
-                setDiscountExpirationDate(e.target.value);
-              }}
-            />
-          </div>
-        </div> */}
-        <div className="form-group">
-          <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-            <label htmlFor="discountExpirationDate">
-              Expiration Date of Discount
-            </label>
-          </div>
-          <div className="col-sm-10">
-            <div
-              className="input-group datepicker-container"
-              onClick={handleExpirationDateClick}
-            >
-              <DatePicker
-                selected={discountExpirationDate}
-                onChange={(date) => setDiscountExpirationDate(date)}
-                className="form-control"
-                id="discountExpirationDate"
-                required
-                placeholderText="Select expiration date"
-              />
-              <div className="input-group-append">
-                <span className="input-group-text">
-                  <FontAwesomeIcon icon={faCalendarAlt} />
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button type="submit" className="btn btn-success">
+        <button type="submit" className="btn btn-success col-md-6 mb-3">
           Update
         </button>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a type="button" href="/adminhome/discount" class="btn btn-secondary">
+        <a
+          type="button"
+          href="/adminhome/discount"
+          className="btn btn-secondary col-md-6 mb-3"
+        >
           Back
         </a>
       </form>
     </div>
+
+   
   );
 }
 
