@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Select from "react-select";
+import AsyncSelect from "react-select/async";
 import axios from "axios";
 
 export default function AddDiscount() {
@@ -14,17 +16,45 @@ export default function AddDiscount() {
   const [discountExpirationDate, setDiscountExpirationDate] = useState("");
   const [isMatched, setIsMatched] = useState(true);
 
+  const [productOptions, setProductOptions] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:8070/product/")
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setProducts(res.data);
+  //     })
+  //     .catch((err) => {
+  //       alert(err.message);
+  //     });
+  // }, []);
+
   useEffect(() => {
     axios
       .get("http://localhost:8070/product/")
       .then((res) => {
-        console.log(res.data);
-        setProducts(res.data);
+        const productNames = res.data.map((product) => ({
+          value: product[1], // Assuming the product name is in the second column
+          label: product[1],
+        }));
+        setProductOptions(productNames);
       })
       .catch((err) => {
         alert(err.message);
       });
   }, []);
+
+  // Function to filter products based on user input
+  const loadOptions = (inputValue, callback) => {
+    setTimeout(() => {
+      const filteredProducts = productOptions.filter((product) =>
+        product.label.toLowerCase().includes(inputValue.toLowerCase())
+      );
+      callback(filteredProducts);
+    }, 1000); // Simulating a delay for better UX; you can adjust this value
+  };
 
   function sendData(e) {
     e.preventDefault();
@@ -114,7 +144,7 @@ export default function AddDiscount() {
             />
           </div>
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
             <label for="productName">Product Name</label>
           </div>
@@ -129,6 +159,27 @@ export default function AddDiscount() {
               onChange={(e) => {
                 setDiscountProductName(e.target.value);
               }}
+            />
+          </div>
+        </div> */}
+        <div className="form-group">
+          <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
+            <label htmlFor="productName">Product Name</label>
+          </div>
+          <div className="col-sm-10">
+            <AsyncSelect
+              cacheOptions
+              defaultOptions
+              loadOptions={loadOptions}
+              onInputChange={(newValue) => {
+                // You can handle the input value as needed
+                console.log("Input value:", newValue);
+              }}
+              onChange={(selectedOption) => {
+                setSelectedProduct(selectedOption);
+              }}
+              value={selectedProduct}
+              placeholder="Select or type product name..."
             />
           </div>
         </div>
