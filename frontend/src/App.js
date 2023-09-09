@@ -15,6 +15,7 @@ import UpdateDiscount from "./components/UpdateDiscount";
 import DeleteDiscount from "./components/DeleteDiscount";
 import DiscountsReport from "./components/DiscountsReport";
 import ProductRatingReport from "./components/ProductRatingReport";
+import SalesForecast from "./components/SalesForecast";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
         exact
         component={ProductRatingReport}
       />
+      <Route path="/adminhome/salesforecast" exact component={SalesForecast} />
     </Router>
   );
 }

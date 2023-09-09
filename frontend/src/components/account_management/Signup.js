@@ -185,10 +185,7 @@ export default function Signup() {
                     <div>
                       <p className="mb-0">
                         Do you have an account?{" "}
-                        <a
-                          href="/buyersignup"
-                          className="text-white-50 fw-bold"
-                        >
+                        <a href="/" className="text-white-50 fw-bold">
                           Login
                         </a>
                       </p>

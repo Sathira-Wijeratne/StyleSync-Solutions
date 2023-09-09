@@ -55,20 +55,29 @@ export default function AdminHome() {
 
   return (
     <div className="container" style={containerStyle}>
-      <h1>Welcome Admin</h1>
-      <a href="/adminhome/ProductRatingReport">
-        <button className="btn btn-primary">Rating Report</button>
+      <div style={{ backgroundColor: '#a6633f', borderRadius: '10px', marginBottom: '10px', padding: '5px' }}>
+        <h1 style={{ color: "black" }}>Welcome Admin</h1>
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
+        <a href="/adminhome/ProductRatingReport">
+          <button className="btn btn-primary" style={{ marginRight: '20px' }}>Rating Report</button>
+        </a>
+        <a href="/adminhome/salesforecast">
+          <button className="btn btn-primary">Sales Forecast</button>
+        </a>
+      </div>
+      <a href="/">
+        <Button
+          variant="danger"
+          style={buttonStyle} // Apply styles to the button
+          onClick={() => {
+            sessionStorage.removeItem("sSyncSolNimda");
+            sessionStorage.removeItem("adminEmail");
+          }}
+        >
+          Signout
+        </Button>
       </a>
-      <Button
-        variant="danger"
-        style={buttonStyle} // Apply styles to the button
-        onClick={() => {
-          sessionStorage.removeItem("sSyncSolNimda");
-          sessionStorage.removeItem("adminEmail");
-        }}
-      >
-        Signout
-      </Button>
       <div style={{ float: "right" }}>
         <a
           href="/"

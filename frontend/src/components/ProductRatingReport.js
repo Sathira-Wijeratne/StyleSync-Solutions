@@ -32,7 +32,7 @@ function ProductRatingReport() {
       )
     );
     // setFilteredItems(filtered);
-  }, [searchTerm, distinctItemNames]);
+  }, []);
 
   //get the average rating
   function getAverageRatings(arr) {
@@ -73,7 +73,7 @@ function ProductRatingReport() {
   };
 
   return (
-    <div>
+    <div className="container">
       <center>
         <h1>Product Rating Report</h1>
       </center>
