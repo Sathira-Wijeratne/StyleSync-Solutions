@@ -76,7 +76,7 @@ export default function AddDiscount() {
       discountId,
       discountType,
       discountRate,
-      discountProductName,
+      discountProductName: selectedProduct.label,
       discountDescription,
       discountStartDate,
       discountExpirationDate,
@@ -160,6 +160,27 @@ export default function AddDiscount() {
         </div>
         <div className="form-group">
           <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
+            <label htmlFor="productName">Product Name</label>
+          </div>
+          <div className="col-sm-10">
+            <AsyncSelect
+              cacheOptions
+              defaultOptions
+              loadOptions={loadOptions}
+              onInputChange={(newValue) => {
+                // You can handle the input value as needed
+                console.log("Input value:", newValue);
+              }}
+              onChange={(selectedOption) => {
+                setSelectedProduct(selectedOption);
+              }}
+              value={selectedProduct}
+              placeholder="Select or type product name..."
+            />
+          </div>
+        </div>
+        <div className="form-group">
+          <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
             <label for="supplier">Discount Description</label>
           </div>
 
@@ -201,24 +222,6 @@ export default function AddDiscount() {
             </div>
           </div>
         </div>
-        {/* <div className="form-group">
-          <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-            <label for="expirationDate">Expiration Date of Discount</label>
-          </div>
-
-          <div class="col-sm-10">
-            <input
-              type="text"
-              className="form-control"
-              id="expirationDate"
-              required
-              placeholder="Enter Date of Expiration "
-              onChange={(e) => {
-                setDiscountExpirationDate(e.target.value);
-              }}
-            />
-          </div>
-        </div> */}
         <div className="form-group">
           <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
             <label htmlFor="discountExpirationDate">
