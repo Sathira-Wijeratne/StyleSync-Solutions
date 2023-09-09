@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import AsyncSelect from "react-select/async";
 import axios from "axios";
 
@@ -10,10 +14,10 @@ export default function AddDiscount() {
   const [discountRate, setDiscountRate] = useState();
   const [discountProductName, setDiscountProductName] = useState();
   const [discountDescription, setDiscountDescription] = useState("");
-  const [discountStartDate, setDiscountStartDate] = useState("");
+  const [discountStartDate, setDiscountStartDate] = useState(null);
   const [products, setProducts] = useState([]);
   //let [upQuantity, setIncrQuantity] = useState();
-  const [discountExpirationDate, setDiscountExpirationDate] = useState("");
+  const [discountExpirationDate, setDiscountExpirationDate] = useState(null);
   const [isMatched, setIsMatched] = useState(true);
 
   const [productOptions, setProductOptions] = useState([]);
@@ -54,6 +58,16 @@ export default function AddDiscount() {
       );
       callback(filteredProducts);
     }, 1000); // Simulating a delay for better UX; you can adjust this value
+  };
+
+  const handleStartDateClick = (e) => {
+    e.stopPropagation();
+    document.getElementById("discountStartDate").click();
+  };
+
+  const handleExpirationDateClick = (e) => {
+    e.stopPropagation();
+    document.getElementById("discountExpirationDate").click();
   };
 
   function sendData(e) {
@@ -144,53 +158,6 @@ export default function AddDiscount() {
             />
           </div>
         </div>
-        {/* <div className="form-group">
-          <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-            <label for="productName">Product Name</label>
-          </div>
-
-          <div class="col-sm-10">
-            <input
-              type="text"
-              className="form-control"
-              required
-              id="productName"
-              placeholder="Enter Product Name "
-              onChange={(e) => {
-                setDiscountProductName(e.target.value);
-              }}
-            />
-          </div>
-        </div> */}
-        <div className="form-group">
-          <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-            <label htmlFor="productName">Product Name</label>
-          </div>
-          <div className="col-sm-10">
-            <AsyncSelect
-              cacheOptions
-              defaultOptions
-              loadOptions={loadOptions}
-              onInputChange={(newValue) => {
-                // You can handle the input value as needed
-                console.log("Input value:", newValue);
-              }}
-              onChange={(selectedOption) => {
-                setSelectedProduct(selectedOption);
-              }}
-              value={selectedProduct}
-              placeholder="Select or type product name..."
-            />
-          </div>
-        </div>
-        {/* <b>Select the delivery agent</b> <br />
-        <select
-          id="productName"
-          onChange={(e) => {
-            setDelAgent(e.target.value);
-          }}
-        ></select>{" "}
-        <br /> */}
         <div className="form-group">
           <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
             <label for="supplier">Discount Description</label>
@@ -211,23 +178,30 @@ export default function AddDiscount() {
         </div>
         <div className="form-group">
           <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-            <label for="order">Starting Date of Discount</label>
+            <label htmlFor="discountStartDate">Start Discount Date</label>
           </div>
-
-          <div class="col-sm-10">
-            <input
-              type="text"
-              className="form-control"
-              id="startingDate"
-              required
-              placeholder="Enter Staring Date of Discount "
-              onChange={(e) => {
-                setDiscountStartDate(e.target.value);
-              }}
-            />
+          <div className="col-sm-10">
+            <div
+              className="input-group datepicker-container"
+              onClick={handleStartDateClick}
+            >
+              <DatePicker
+                selected={discountStartDate}
+                onChange={(date) => setDiscountStartDate(date)}
+                className="form-control"
+                id="discountStartDate"
+                required
+                placeholderText="Select start date"
+              />
+              <div className="input-group-append">
+                <span className="input-group-text">
+                  <FontAwesomeIcon icon={faCalendarAlt} />
+                </span>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
             <label for="expirationDate">Expiration Date of Discount</label>
           </div>
@@ -243,6 +217,33 @@ export default function AddDiscount() {
                 setDiscountExpirationDate(e.target.value);
               }}
             />
+          </div>
+        </div> */}
+        <div className="form-group">
+          <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
+            <label htmlFor="discountExpirationDate">
+              Expiration Date of Discount
+            </label>
+          </div>
+          <div className="col-sm-10">
+            <div
+              className="input-group datepicker-container"
+              onClick={handleExpirationDateClick}
+            >
+              <DatePicker
+                selected={discountExpirationDate}
+                onChange={(date) => setDiscountExpirationDate(date)}
+                className="form-control"
+                id="discountExpirationDate"
+                required
+                placeholderText="Select expiration date"
+              />
+              <div className="input-group-append">
+                <span className="input-group-text">
+                  <FontAwesomeIcon icon={faCalendarAlt} />
+                </span>
+              </div>
+            </div>
           </div>
         </div>
         <button type="submit" class="btn btn-success">
