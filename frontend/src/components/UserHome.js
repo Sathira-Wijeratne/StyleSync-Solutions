@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Rater from "react-rater";
+import "react-rater/lib/react-rater.css";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,6 +8,9 @@ import { faCartShopping, faClockRotateLeft } from '@fortawesome/free-solid-svg-i
 
 export default function UserHome() {
   const [products, setProducts] = useState([]);
+  const [avgRatings, setAvgRatings] = useState({});
+  const [title_orig, settitle_orig] = useState([]);
+  const customerEmail = sessionStorage.getItem("customerEmail");
 
   useEffect(() => {
     function getProductDetails() {
@@ -20,8 +25,56 @@ export default function UserHome() {
         });
     }
 
+    // Fetch ratings data and calculate average ratings using the getAverageRatings function
+    axios.get("http://localhost:8070/rating").then((res) => {
+      setAvgRatings(getAverageRatings(res.data));
+    });
+
     getProductDetails();
   }, []);
+
+  // // Function to calculate average ratings for each item using the ratings data fetched from the API
+  // function getAverageRatings(arr) {
+  //   const itemMap = new Map();
+  //   const result = {};
+
+  //   arr.forEach((obj) => {
+  //     if (!itemMap.has(obj.title_orig)) {
+  //       itemMap.set(obj.title_orig, [obj.rate]);
+  //     } else {
+  //       itemMap.get(obj.title_orig).push(obj.rate);
+  //     }
+  //   });
+
+  //   itemMap.forEach((value, key) => {
+  //     const sum = value.reduce((acc, curr) => acc + curr, 0);
+  //     const avg = sum / value.length;
+  //     result[key] = avg;
+  //   });
+
+  //   return result;
+  // }
+  function getAverageRatings(arr) {
+    console.log(arr);
+    const itemMap = new Map();
+    const result = {};
+
+    arr.forEach((obj) => {
+      if (!itemMap.has(obj.title_orig)) {
+        itemMap.set(obj.title_orig, [obj.noOfRate]);
+      } else {
+        itemMap.get(obj.title_orig).push(obj.noOfRate);
+      }
+    });
+
+    itemMap.forEach((value, key) => {
+      const sum = value.reduce((acc, curr) => acc + curr, 0);
+      const avg = sum / value.length;
+      result[key] = avg;
+    });
+
+    return result;
+  }
 
   return (
     <div
@@ -92,6 +145,12 @@ export default function UserHome() {
                 <span style={{ fontWeight: "bold", marginBottom: "0.5rem" }}>
                   {parseFloat(product[2]).toFixed(2)} €
                 </span>
+                <Rater
+                  total={5}
+                  rating={avgRatings[product[1]]}
+                  interactive={false}
+                  style={{ fontSize: "30px" }}
+                />
                 <button
                   className="btn btn-secondary"
                   onClick={() => {

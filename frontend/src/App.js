@@ -14,6 +14,7 @@ import AllDiscounts from "./components/AllDiscounts";
 import UpdateDiscount from "./components/UpdateDiscount";
 import DeleteDiscount from "./components/DeleteDiscount";
 import DiscountsReport from "./components/DiscountsReport";
+import ProductRatingReport from "./components/ProductRatingReport";
 
 function App() {
   return (
@@ -43,6 +44,11 @@ function App() {
         path="/adminhome/discount/reports"
         exact
         component={DiscountsReport}
+      />
+      <Route
+        path="/adminhome/ProductRatingReport"
+        exact
+        component={ProductRatingReport}
       />
     </Router>
   );

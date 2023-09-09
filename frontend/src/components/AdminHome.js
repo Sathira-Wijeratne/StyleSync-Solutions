@@ -55,7 +55,10 @@ export default function AdminHome() {
 
   return (
     <div className="container" style={containerStyle}>
-      {/* <h1 style={{ fontSize: "36px", fontWeight: "bold" }}>Welcome Admin</h1> */}
+      <h1>Welcome Admin</h1>
+      <a href="/adminhome/ProductRatingReport">
+        <button className="btn btn-primary">Rating Report</button>
+      </a>
       <Button
         variant="danger"
         style={buttonStyle} // Apply styles to the button
