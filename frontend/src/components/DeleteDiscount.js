@@ -173,17 +173,18 @@ export default function DeleteDiscount() {
             </div>
           </div>
         </div>
-        <button type="submit" className="btn btn-danger col-md-6">
-          Delete
-        </button>
-        
-        <a
-          type="button"
-          href="/adminhome/discount"
-          className="btn btn-secondary col-md-6"
-        >
-          Back
-        </a>
+        <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
+          <button type="submit" className="btn btn-danger col-md-6" style={{ marginRight: '10px' }}>
+            Delete
+          </button>
+          <a
+            type="button"
+            href="/adminhome/discount"
+            className="btn btn-secondary col-md-6"
+          >
+            Back
+          </a>
+        </div>
       </form>
     </div>
   );
