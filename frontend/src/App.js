@@ -13,6 +13,7 @@ import AddDiscount from "./components/AddDiscount";
 import AllDiscounts from "./components/AllDiscounts";
 import UpdateDiscount from "./components/UpdateDiscount";
 import DeleteDiscount from "./components/DeleteDiscount";
+import DiscountsReport from "./components/DiscountsReport";
 
 function App() {
   return (
@@ -37,6 +38,11 @@ function App() {
         path="/adminhome/discount/delete/:id"
         exact
         component={DeleteDiscount}
+      />
+      <Route
+        path="/adminhome/discount/reports"
+        exact
+        component={DiscountsReport}
       />
     </Router>
   );
