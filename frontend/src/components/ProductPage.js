@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import Rater from "react-rater";
-import 'react-rater/lib/react-rater.css';
+import "react-rater/lib/react-rater.css";
 import Button from "react-bootstrap/Button";
 
 export default function ProductPage() {
   const [product, setProduct] = useState([]);
   const { id } = useParams();
   const [rate, setRate] = useState(0); // Initial user rating for the product is set to 0
-  const [title_orig,settitle_orig] = useState([]);
-  const customerEmail = sessionStorage.getItem("customerEmail")
+  const [title_orig, settitle_orig] = useState([]);
+  const customerEmail = sessionStorage.getItem("customerEmail");
 
   useEffect(() => {
     axios
@@ -19,19 +19,23 @@ export default function ProductPage() {
         console.log(res.data);
         setProduct(res.data);
         settitle_orig(res.data[1]);
+
+        // Fetching the user rating for the product
+        axios
+          .get(
+            `http://localhost:8070/rating/getbyemailandtitle/${customerEmail}/${res.data[1]}`
+          )
+          .then((res) => {
+            if (res.data.length != 0) {
+              console.log(res.data);
+              setRate(res.data[0].noOfRate); // If user has already rated the product, set the rating to the user's previous rating
+            }
+          });
       })
       .catch((err) => {
         alert(err.message);
       });
-
-    // Fetching the user rating for the product
-    axios
-      .get(`http://localhost:8070/rating/get/${customerEmail}/${title_orig}`)
-      .then((res) => {
-        console.log(res.data);
-        setRate(res.data[0].noOfRate); // If user has already rated the product, set the rating to the user's previous rating
-      });
-  },[]);
+  }, [customerEmail, title_orig]);
 
   // Function to allow users to rate the product
   function rateProduct(noOfRate) {
@@ -73,7 +77,6 @@ export default function ProductPage() {
               </div>
             </div>
             {/* Create a Rater component to allow users to rate the product */}
-            
 
             {/* <div class="details col-md-6">
               <h3 class="product-title">{product[1]}</h3>
@@ -89,18 +92,18 @@ export default function ProductPage() {
 
               </div> */}
             <div class="details col-md-6">
-            <h3 class="product-title">{product[1]}</h3>
-            <div class="rating">
-            <b>Rate the Product</b> &nbsp;
-            <Rater
-              onRate={(noOfRate) => {
-                rateProduct(noOfRate.rating);
-              }}
-              total={5}
-              rating={rate}
-              style={{ fontSize: "30px" }}
-            />
-            </div>
+              <h3 class="product-title">{product[1]}</h3>
+              <div class="rating">
+                <b>Rate the Product</b> &nbsp;
+                <Rater
+                  onRate={(noOfRate) => {
+                    rateProduct(noOfRate.rating);
+                  }}
+                  total={5}
+                  rating={rate}
+                  style={{ fontSize: "30px" }}
+                />
+              </div>
               {/* <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p> */}
               <h4 class="price">
                 Price: <span>{parseFloat(product[2]).toFixed(2)} €</span>
