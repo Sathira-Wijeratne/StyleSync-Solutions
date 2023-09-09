@@ -4,6 +4,9 @@ import React, { useState, useEffect } from "react";
 function ProductRatingReport() {
   const [rating, setRating] = useState([]);
   const [avgRatings, setAvgRatings] = useState({});
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredItems, setFilteredItems] = useState([]);
+  const [distinctItemNames, setDistinctItemNames] = useState([]);
 
   useEffect(() => {
     axios
@@ -12,11 +15,24 @@ function ProductRatingReport() {
         console.log(res.data);
         setRating(res.data);
         setAvgRatings(getAverageRatings(res.data));
+        // Extract distinct item names using Set
+        setDistinctItemNames([
+          ...new Set(res.data.map((item) => item.title_orig)),
+        ]);
+        console.log(distinctItemNames);
       })
       .catch((error) => {
         console.error("Error fetching rating", error);
       });
-  }, []);
+
+    // Filter items based on the search term
+    setDistinctItemNames(
+      distinctItemNames.filter((itemName) =>
+        itemName.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+    // setFilteredItems(filtered);
+  }, [searchTerm, distinctItemNames]);
 
   //get the average rating
   function getAverageRatings(arr) {
@@ -56,15 +72,20 @@ function ProductRatingReport() {
     }
   };
 
-  // Extract distinct item names using Set
-  const distinctItemNames = [...new Set(rating.map((item) => item.title_orig))];
-  console.log(distinctItemNames);
-
   return (
     <div>
       <center>
         <h1>Product Rating Report</h1>
       </center>
+
+      <div>
+        <input
+          type="text"
+          placeholder="Search items"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
 
       <center>
         <table>
