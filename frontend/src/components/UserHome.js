@@ -33,7 +33,27 @@ export default function UserHome() {
     getProductDetails();
   }, []);
 
-  // Function to calculate average ratings for each item using the ratings data fetched from the API
+  // // Function to calculate average ratings for each item using the ratings data fetched from the API
+  // function getAverageRatings(arr) {
+  //   const itemMap = new Map();
+  //   const result = {};
+
+  //   arr.forEach((obj) => {
+  //     if (!itemMap.has(obj.title_orig)) {
+  //       itemMap.set(obj.title_orig, [obj.rate]);
+  //     } else {
+  //       itemMap.get(obj.title_orig).push(obj.rate);
+  //     }
+  //   });
+
+  //   itemMap.forEach((value, key) => {
+  //     const sum = value.reduce((acc, curr) => acc + curr, 0);
+  //     const avg = sum / value.length;
+  //     result[key] = avg;
+  //   });
+
+  //   return result;
+  // }
   function getAverageRatings(arr) {
     const itemMap = new Map();
     const result = {};
@@ -54,6 +74,7 @@ export default function UserHome() {
 
     return result;
   }
+
 
   return (
     <div
