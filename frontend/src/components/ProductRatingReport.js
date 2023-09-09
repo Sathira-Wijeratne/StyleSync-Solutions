@@ -1,34 +1,33 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 function ProductRatingReport() {
-    const [rating,setRating]= useState([]);
+  const [rating, setRating] = useState([]);
 
-    useEffect(()=>{
-        fetch(`http://localhost:8070/rating/`).then((response)=>response.json()).then((response)=>response.json()).then((data)=>{
-            setRating(data);
-        }).catch((error)=>{
-            console.error("Error fetching rating",error);
-        });
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8070/rating/`)
+      .then((res) => {
+        console.log(res.data);
+        setRating(res.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching rating", error);
+      });
+  }, []);
 
-},[]);
-
-return(
+  return (
     <div>
-        <h1>
-            Rating Report 
-        </h1>
-        <ul>
-        {
-            rating.map((rating)=>(
-                <li key={rating._id}>
-                    Item Name: {rating.title_orig}, Rating: {rating.noOfRate}
-                </li>
-            ))
-        }
-        </ul>
-
+      <h1>Rating Report</h1>
+      <ul>
+        {rating.map((rating) => (
+          <li key={rating._id}>
+            Item Name: {rating.title_orig}, Rating: {rating.noOfRate}
+          </li>
+        ))}
+      </ul>
     </div>
-);
+  );
 }
 
 export default ProductRatingReport;
