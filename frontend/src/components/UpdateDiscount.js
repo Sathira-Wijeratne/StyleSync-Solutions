@@ -220,21 +220,22 @@ function UpdateDiscount() {
             </div>
           </div>
         </div>
-        <button type="submit" className="btn btn-success col-md-6 mb-3">
-          Update
-        </button>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a
-          type="button"
-          href="/adminhome/discount"
-          className="btn btn-secondary col-md-6 mb-3"
-        >
-          Back
-        </a>
+        <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
+          <button type="submit" className="btn btn-success col-md-6 mb-3" style={{ marginRight: '10px' }}>
+            Update
+          </button>
+          <a
+            type="button"
+            href="/adminhome/discount"
+            className="btn btn-secondary col-md-6 mb-3"
+          >
+            Back
+          </a>
+        </div>
       </form>
     </div>
 
-   
+
   );
 }
 
