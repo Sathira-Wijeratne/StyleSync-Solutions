@@ -23,8 +23,6 @@ export default function UserHome() {
         });
     }
 
-    
-
     // Fetch ratings data and calculate average ratings using the getAverageRatings function
     axios.get("http://localhost:8070/rating").then((res) => {
       setAvgRatings(getAverageRatings(res.data));
@@ -55,14 +53,15 @@ export default function UserHome() {
   //   return result;
   // }
   function getAverageRatings(arr) {
+    console.log(arr);
     const itemMap = new Map();
     const result = {};
 
     arr.forEach((obj) => {
       if (!itemMap.has(obj.title_orig)) {
-        itemMap.set(obj.title_orig, [obj.rate]);
+        itemMap.set(obj.title_orig, [obj.noOfRate]);
       } else {
-        itemMap.get(obj.title_orig).push(obj.rate);
+        itemMap.get(obj.title_orig).push(obj.noOfRate);
       }
     });
 
@@ -74,7 +73,6 @@ export default function UserHome() {
 
     return result;
   }
-
 
   return (
     <div
@@ -142,7 +140,7 @@ export default function UserHome() {
                 </span>
                 <Rater
                   total={5}
-                  rating={avgRatings[product.ProductId]}
+                  rating={avgRatings[product[1]]}
                   interactive={false}
                   style={{ fontSize: "30px" }}
                 />
