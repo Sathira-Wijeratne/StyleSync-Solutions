@@ -115,6 +115,7 @@ export default function AddDiscount() {
                   className="form-control bold-black-outline"
                   required
                   id="code"
+                  pattern ="[D][0-9]{3}"
                   placeholder="Enter item code"
                   onChange={(e) => {
                     var code = setDiscountId(e.target.value);

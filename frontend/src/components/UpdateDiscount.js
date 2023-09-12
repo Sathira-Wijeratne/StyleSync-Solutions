@@ -101,6 +101,7 @@ function UpdateDiscount() {
                 className="form-control bold-black-outline"
                 id="discountId"
                 value={discountId}
+                pattern="[D][0-9]{3}"
                 placeholder="Enter Discount ID"
                 onChange={(e) => {
                   setDiscountId(e.target.value);
@@ -220,8 +221,12 @@ function UpdateDiscount() {
             </div>
           </div>
         </div>
-        <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
-          <button type="submit" className="btn btn-success col-md-6 mb-3" style={{ marginRight: '10px' }}>
+        <div style={{ display: "flex", flexWrap: "nowrap" }}>
+          <button
+            type="submit"
+            className="btn btn-success col-md-6 mb-3"
+            style={{ marginRight: "10px" }}
+          >
             Update
           </button>
           <a
@@ -234,8 +239,6 @@ function UpdateDiscount() {
         </div>
       </form>
     </div>
-
-
   );
 }
 
