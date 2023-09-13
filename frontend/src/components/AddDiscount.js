@@ -17,9 +17,12 @@ export default function AddDiscount() {
   const [discountStartDate, setDiscountStartDate] = useState(null);
   const [discountExpirationDate, setDiscountExpirationDate] = useState(null);
   const [isMatched, setIsMatched] = useState(true);
-
   const [productOptions, setProductOptions] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [descriptionErrorMessage, setDescriptionErrorMessage] = useState("");
+  const [productNameErrorMessage, setProductNameErrorMessage] = useState("");
+  const [rateErrorMessage, setRateErrorMessage] = useState("");
 
   useEffect(() => {
     axios
@@ -70,6 +73,47 @@ export default function AddDiscount() {
     position: "relative",
   };
 
+  const handleDiscountTypeInput = (e) => {
+    const inputValue = e.target.value;
+    const containsDigits = /\d/.test(inputValue);
+
+    if (containsDigits) {
+      setDiscountType("");
+      setErrorMessage("Only non-numeric characters are allowed.");
+    } else {
+      setDiscountType(inputValue);
+      setErrorMessage("");
+    }
+  };
+
+  const handleDiscountDescriptionInput = (e) => {
+    const inputValue = e.target.value;
+    const containsDigits = /\d/.test(inputValue);
+
+    if (containsDigits) {
+      setDiscountDescription("");
+      setDescriptionErrorMessage("Only non-numeric characters are allowed.");
+    } else {
+      setDiscountDescription(inputValue);
+      setDescriptionErrorMessage("");
+    }
+  };
+
+  const handleDiscountRateInput = (e) => {
+    const inputValue = e.target.value;
+
+    // Check if the input value is not a valid number
+    if (isNaN(inputValue) || inputValue === "") {
+      setDiscountRate("");
+      setRateErrorMessage(
+        "Please enter a valid numeric value for Discount Rate."
+      );
+    } else {
+      setDiscountRate(parseFloat(inputValue)); // Convert to a numeric value
+      setRateErrorMessage("");
+    }
+  };
+
   function sendData(e) {
     e.preventDefault();
     const newDiscount = {
@@ -115,7 +159,7 @@ export default function AddDiscount() {
                   className="form-control bold-black-outline"
                   required
                   id="code"
-                  pattern ="[D][0-9]{3}"
+                  pattern="[D][0-9]{3}"
                   placeholder="Enter item code"
                   onChange={(e) => {
                     var code = setDiscountId(e.target.value);
@@ -136,8 +180,10 @@ export default function AddDiscount() {
                   placeholder="Enter Discount Type"
                   onChange={(e) => {
                     setDiscountType(e.target.value);
+                    handleDiscountTypeInput(e);
                   }}
                 />
+                <p style={{ color: "red" }}>{errorMessage}</p>
               </div>
             </div>
           </div>
@@ -156,8 +202,10 @@ export default function AddDiscount() {
                   placeholder="Enter Rate of Discount"
                   onChange={(e) => {
                     setDiscountRate(e.target.value);
+                    handleDiscountRateInput(e);
                   }}
                 />
+                <p style={{ color: "red" }}>{rateErrorMessage}</p>
               </div>
             </div>
             <div className="col-md-6 mb-3">
@@ -194,8 +242,10 @@ export default function AddDiscount() {
               placeholder="Enter Discount Description"
               onChange={(e) => {
                 setDiscountDescription(e.target.value);
+                handleDiscountDescriptionInput(e);
               }}
             />
+            <p style={{ color: "red" }}>{descriptionErrorMessage}</p>
           </div>
 
           <div className="form-row">
@@ -254,11 +304,11 @@ export default function AddDiscount() {
             </div>
           </div>
 
-          <div className="form-group" style={{ display: 'flex', flexWrap: 'nowrap' }}>
-            <button
-              type="submit"
-              className="btn btn-success col-md-6 mb-3"
-            >
+          <div
+            className="form-group"
+            style={{ display: "flex", flexWrap: "nowrap" }}
+          >
+            <button type="submit" className="btn btn-success col-md-6 mb-3">
               Submit
             </button>
             <a
