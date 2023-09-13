@@ -14,9 +14,12 @@ function UpdateDiscount() {
   const [discountType, setDiscountType] = useState("");
   const [discountRate, setDiscountRate] = useState("");
   const [discountProductName, setDiscountProductName] = useState();
-  const [discountDescription, setDiscountDescriptiopn] = useState("");
+  const [discountDescription, setDiscountDescription] = useState("");
   const [discountStartDate, setDiscountStartDate] = useState(null);
   const [discountExpirationDate, setDiscountExpirationDate] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [descriptionErrorMessage, setDescriptionErrorMessage] = useState("");
+  const [rateErrorMessage, setRateErrorMessage] = useState("");
 
   const { update, id } = useParams();
   useEffect(() => {
@@ -28,7 +31,7 @@ function UpdateDiscount() {
         setDiscountType(res.data.discount.discountType);
         setDiscountRate(res.data.discount.discountRate);
         setDiscountProductName(res.data.discount.discountProductName);
-        setDiscountDescriptiopn(res.data.discount.discountDescription);
+        setDiscountDescription(res.data.discount.discountDescription);
         setDiscountStartDate(new Date(res.data.discount.discountStartDate));
         setDiscountExpirationDate(
           new Date(res.data.discount.discountExpirationDate)
@@ -62,6 +65,47 @@ function UpdateDiscount() {
   const handleExpirationDateClick = (e) => {
     e.stopPropagation();
     document.getElementById("discountExpirationDate").click();
+  };
+
+  const handleDiscountTypeInput = (e) => {
+    const inputValue = e.target.value;
+    const containsDigits = /\d/.test(inputValue);
+
+    if (containsDigits) {
+      setDiscountType("");
+      setErrorMessage("Only non-numeric characters are allowed.");
+    } else {
+      setDiscountType(inputValue);
+      setErrorMessage("");
+    }
+  };
+
+  const handleDiscountDescriptionInput = (e) => {
+    const inputValue = e.target.value;
+    const containsDigits = /\d/.test(inputValue);
+
+    if (containsDigits) {
+      setDiscountDescription("");
+      setDescriptionErrorMessage("Only non-numeric characters are allowed.");
+    } else {
+      setDiscountDescription(inputValue);
+      setDescriptionErrorMessage("");
+    }
+  };
+
+  const handleDiscountRateInput = (e) => {
+    const inputValue = e.target.value;
+
+    // Check if the input value is not a valid number
+    if (isNaN(inputValue) || inputValue === "") {
+      setDiscountRate("");
+      setRateErrorMessage(
+        "Please enter a valid numeric value for Discount Rate."
+      );
+    } else {
+      setDiscountRate(parseFloat(inputValue)); // Convert to a numeric value
+      setRateErrorMessage("");
+    }
   };
 
   function updateData(e) {
@@ -120,8 +164,10 @@ function UpdateDiscount() {
                 placeholder="Enter Discount Type"
                 onChange={(e) => {
                   setDiscountType(e.target.value);
+                  handleDiscountTypeInput(e);
                 }}
               />
+              <p style={{ color: "red" }}>{errorMessage}</p>
             </div>
           </div>
         </div>
@@ -137,8 +183,10 @@ function UpdateDiscount() {
                 placeholder="Enter Discount Rate"
                 onChange={(e) => {
                   setDiscountRate(e.target.value);
+                  handleDiscountRateInput(e);
                 }}
               />
+              <p style={{ color: "red" }}>{rateErrorMessage}</p>
             </div>
           </div>
           <div className="col-md-6 mb-3">
@@ -166,9 +214,11 @@ function UpdateDiscount() {
             value={discountDescription}
             placeholder="Enter Description"
             onChange={(e) => {
-              setDiscountDescriptiopn(e.target.value);
+              setDiscountDescription(e.target.value);
+              handleDiscountDescriptionInput(e);
             }}
           />
+          <p style={{ color: "red" }}>{descriptionErrorMessage}</p>
           <div className="row">
             <div className="col-md-6 mb-3">
               <div className="form-group">
