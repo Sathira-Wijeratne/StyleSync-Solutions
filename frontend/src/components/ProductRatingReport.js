@@ -1,5 +1,7 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import axios from "axios";
 
 function ProductRatingReport() {
   const [rating, setRating] = useState([]);
@@ -16,25 +18,31 @@ function ProductRatingReport() {
         setRating(res.data);
         setAvgRatings(getAverageRatings(res.data));
         // Extract distinct item names using Set
-        setDistinctItemNames([
-          ...new Set(res.data.map((item) => item.title_orig)),
-        ]);
-        console.log(distinctItemNames);
+        const distinctNames = [...new Set(res.data.map((item) => item.title_orig))];
+        console.log(distinctNames);
+        setDistinctItemNames(distinctNames);
       })
       .catch((error) => {
         console.error("Error fetching rating", error);
       });
-
-    // Filter items based on the search term
-    setDistinctItemNames(
-      distinctItemNames.filter((itemName) =>
-        itemName.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    );
-    // setFilteredItems(filtered);
   }, []);
 
-  //get the average rating
+  // Function to filter items based on search term and number of rates
+  useEffect(() => {
+    const filteredItems = distinctItemNames.filter((itemName) => {
+      const lowerItemName = itemName.toLowerCase();
+      const lowerSearchTerm = searchTerm.toLowerCase();
+      
+      // Filter by item name and number of rates (change 'minRate' as needed)
+      const minRate = 3; // Example: Filter items with a minimum rate of 3
+
+      return lowerItemName.includes(lowerSearchTerm) && avgRatings[itemName] >= minRate;
+    });
+
+    setFilteredItems(filteredItems);
+  }, [searchTerm, avgRatings, distinctItemNames]);
+
+  // Function to get the average rating
   function getAverageRatings(arr) {
     console.log(arr);
     const itemMap = new Map();
@@ -57,7 +65,7 @@ function ProductRatingReport() {
     return result;
   }
 
-  //writting a function to change the row colour based on the rates
+  // Function to change the row color based on the rates
   const getRowClass = (noOfRate) => {
     if (noOfRate === 5) {
       return `table-success`;
@@ -73,18 +81,19 @@ function ProductRatingReport() {
   };
 
   return (
-    <div className="container">
+    <div className="container" align="Center">
       <center>
         <h1>Product Rating Report</h1>
       </center>
 
-      <div>
+      <div className="search-container">
         <input
           type="text"
           placeholder="Search items"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+        &nbsp;<FontAwesomeIcon icon={faSearch} className="search-icon" />
       </div>
 
       <center>
@@ -98,7 +107,7 @@ function ProductRatingReport() {
             </tr>
           </thead>
           <tbody>
-            {distinctItemNames.map((itemName) => (
+            {filteredItems.map((itemName) => (
               <tr key={itemName} className={getRowClass(avgRatings[itemName])}>
                 <td>{itemName}</td>
                 <td>
