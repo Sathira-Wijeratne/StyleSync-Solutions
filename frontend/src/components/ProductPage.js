@@ -20,13 +20,16 @@ export default function ProductPage() {
   const [title_orig, settitle_orig] = useState([]);
   const customerEmail = sessionStorage.getItem("customerEmail");
   const [customerComment, setCustomerComment] = useState("");
+  const [size,setSize]=useState("");
+  const [rateObj,setRateObj]=useState({});
 
   useEffect(() => {
     axios.get(`http://localhost:8070/product/getDetails/${id}`).then((res) => {
       console.log(res.data);
       setProduct(res.data);
       settitle_orig(res.data[1]);
-
+      setSize(res.data[20]);
+      
       axios
         .get(
           `http://localhost:8070/rating/getbyemailandtitle/${customerEmail}/${res.data[1]}`
@@ -34,6 +37,8 @@ export default function ProductPage() {
           if (res.data.length != 0) {
             console.log(res.data);
             setRate(res.data[0].noOfRate); // If user has already rated the product, set the rating to the user's previous rating
+            setRateObj(res.data);
+            console.log(res.data[0]);
           }
         });
     }).catch((err) => {
@@ -68,6 +73,8 @@ export default function ProductPage() {
       title_orig,
       customerEmail,
       noOfRate,
+      customerComment,
+      size
     };
     // Check if the product has been rated before or not
     if (rate === 0) {
@@ -107,16 +114,34 @@ export default function ProductPage() {
       return;
     }
 
+    console.log(rateObj)
+
+
     //create an object and send it to the db using the api
     const commentData = {
       title_orig,
       customerEmail,
-      customerComment
+      "noOfRate":rate,
+      "customerComments":customerComment,
+      size
     };
 
-    axios.post("http://localhost:8070/rating/add", commentData).catch((err) => {
-        alert("Error in uploading a comment.");
+    if (rateObj.length!==0) {
+      // If not, add the rating to the server
+      axios.put("http://localhost:8070/rating/update", commentData).then(()=>{
+      alert("Hi");
+      }).catch((err) => {
+        alert(err);
+        alert("Error in uploading a update.");
     });
+    } else {
+      // If already rated, update the rating on the server
+      axios.post("http://localhost:8070/rating/add", commentData).catch((err) => {
+        alert("Error in uploading a comment.");
+      });
+    }
+
+    
 
 
   }
