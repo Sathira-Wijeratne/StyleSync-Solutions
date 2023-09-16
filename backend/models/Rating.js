@@ -18,6 +18,10 @@ const rateSchema = new Schema({
     customerComments:{
         type : String,
         required:false
+    },
+    size : {
+        type : String,
+        required :true
     }
 })
 const Rating = mongoose.model("Rate",rateSchema);
