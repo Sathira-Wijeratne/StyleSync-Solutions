@@ -66,16 +66,18 @@ router
         res.status(500).send({ status: "Opps! Error in loading the rates" });
       });
   });
-
+//Update comments or routes 
 router.route("/update").put(async (req, res) => {
   const title_orig = req.body.title_orig;
   const customerEmail = req.body.customerEmail;
   const noOfRate = Number(req.body.noOfRate);
+  const customerComments = req.body.customerComments;
 
   const updateRate = {
     title_orig,
     customerEmail,
     noOfRate,
+    customerComments
   };
 
   await Rate.findOneAndUpdate(
@@ -83,7 +85,7 @@ router.route("/update").put(async (req, res) => {
     updateRate
   )
     .then(() => {
-      res.status(200).send({ status: "Rate Updated" });
+      res.status(200).send({ status: "Rate or Comment Updated" });
     })
     .catch((err) => {
       console.log(err);
