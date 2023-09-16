@@ -7,12 +7,14 @@ router.route("/add").post((req, res) => {
   const customerEmail = req.body.customerEmail;
   const noOfRate = Number(req.body.noOfRate);
   const customerComments = req.body.customerComments;
+  const size = req.body.size;
 
   const newRate = new Rate({
     title_orig,
     customerEmail,
     noOfRate,
-    customerComments
+    customerComments,
+    size
   });
 
   newRate
@@ -72,12 +74,14 @@ router.route("/update").put(async (req, res) => {
   const customerEmail = req.body.customerEmail;
   const noOfRate = Number(req.body.noOfRate);
   const customerComments = req.body.customerComments;
+  const size = req.body.size;
 
   const updateRate = {
     title_orig,
     customerEmail,
     noOfRate,
-    customerComments
+    customerComments,
+    size
   };
 
   await Rate.findOneAndUpdate(
