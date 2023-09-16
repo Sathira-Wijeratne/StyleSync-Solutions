@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function SalesForecastResult() {
+  useState(() => {
+    var data = JSON.parse(window.localStorage.getItem("data"));
+    console.log(data);
+  });
   return (
     <>
       <center>
