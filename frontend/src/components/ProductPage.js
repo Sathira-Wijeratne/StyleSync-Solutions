@@ -7,7 +7,6 @@ import { faCartShopping, faClockRotateLeft } from '@fortawesome/free-solid-svg-i
 import Rater from "react-rater";
 import "react-rater/lib/react-rater.css";
 import Form from 'react-bootstrap/Form';
-// import { Form } from 'react-bootstrap';
 import { RiSendPlane2Line } from 'react-icons/ri';
 
 export default function ProductPage() {
@@ -72,8 +71,8 @@ export default function ProductPage() {
     const newRate = {
       title_orig,
       customerEmail,
-      noOfRate,
-      customerComment,
+      "noOfRate":noOfRate,
+      "customerComments":customerComment,
       size
     };
     // Check if the product has been rated before or not
