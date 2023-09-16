@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faClockRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import Rater from "react-rater";
 import "react-rater/lib/react-rater.css";
+import Form from 'react-bootstrap/Form';
 
 export default function ProductPage() {
 
@@ -166,9 +167,19 @@ export default function ProductPage() {
             </div>
           </div>
         </div>
+
         <br></br>
         <h2><b>Product Reviews </b></h2>
+        <br></br>
+        <Form>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control type="email" placeholder="name@example.com" />
+        </Form.Group>
+        </Form>
         
+
+
       </div>
     </div>
   );
