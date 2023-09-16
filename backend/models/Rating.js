@@ -17,7 +17,7 @@ const rateSchema = new Schema({
     },
     customerComments:{
         type : String,
-        required:false
+        required:true
     },
     size : {
         type : String,
