@@ -7,6 +7,8 @@ import { faCartShopping, faClockRotateLeft } from '@fortawesome/free-solid-svg-i
 import Rater from "react-rater";
 import "react-rater/lib/react-rater.css";
 import Form from 'react-bootstrap/Form';
+// import { Form } from 'react-bootstrap';
+import { RiSendPlane2Line } from 'react-icons/ri';
 
 export default function ProductPage() {
 
@@ -79,7 +81,14 @@ export default function ProductPage() {
       });
     }
   }
-
+  const buttonStyle = {
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
+    padding: '0',
+    marginLeft: '10px', // Adjust the margin as needed
+    color: '#007bff', // You can change the color as desired
+  };
 
   return (
     // Referenced from : https://bootsnipp.com/snippets/56bAW
@@ -174,10 +183,11 @@ export default function ProductPage() {
         <Form>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Control type="email" placeholder="Add Comments" />
-        <button>Post</button>
-        </Form.Group>
-        </Form>
-        
+        <button type="submit" style={buttonStyle}>
+        <RiSendPlane2Line />
+        </button>
+      </Form.Group>
+    </Form>
 
 
       </div>
