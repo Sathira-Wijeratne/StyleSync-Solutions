@@ -108,6 +108,8 @@ export default function ProductPage() {
             </div>
             <div class="details col-md-6">
               <h3 class="product-title">{product[1]}</h3>
+
+              {/* Rating function related logic begin here  */}
               <div class="rating">
                 <b>Rate the Product</b> &nbsp;
                 <Rater
@@ -120,6 +122,8 @@ export default function ProductPage() {
                 /><br /><br />
                 <span class="review-no">{product[8]} reviews</span>
               </div>
+              {/* Rating function related logic Ends here  */}
+
               {/* <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p> */}
               <h4 class="price">
                 Price: <span>{parseFloat(product[2]).toFixed(2)} €</span>
@@ -162,6 +166,8 @@ export default function ProductPage() {
             </div>
           </div>
         </div>
+        <br></br>
+        <h2><b>Product Reviews </b></h2>
       </div>
     </div>
   );
