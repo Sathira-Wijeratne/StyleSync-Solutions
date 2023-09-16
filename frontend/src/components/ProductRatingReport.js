@@ -32,11 +32,8 @@ function ProductRatingReport() {
     const filteredItems = distinctItemNames.filter((itemName) => {
       const lowerItemName = itemName.toLowerCase();
       const lowerSearchTerm = searchTerm.toLowerCase();
-      
-      // Filter by item name and number of rates (change 'minRate' as needed)
-      const minRate = 3; // Example: Filter items with a minimum rate of 3
 
-      return lowerItemName.includes(lowerSearchTerm) && avgRatings[itemName] >= minRate;
+      return lowerItemName.includes(lowerSearchTerm);
     });
 
     setFilteredItems(filteredItems);
