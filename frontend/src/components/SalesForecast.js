@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 
 export default function SalesForecast() {
-  const [XXXS_P, setXXXS_P] = useState(0);
-  const [XXS_P, setXXS_P] = useState(0);
-  const [XS_P, setXS_P] = useState(0);
-  const [S_P, setS_P] = useState(0);
-  const [M_P, setM_P] = useState(0);
-  const [L_P, setL_P] = useState(0);
-  const [XL_P, setXL_P] = useState(0);
-  const [XXL_P, setXXL_P] = useState(0);
-  const [XXXL_P, setXXXL_P] = useState(0);
-  const [XXXXL_P, setXXXXL_P] = useState(0);
-  const [XXXXXL_P, setXXXXXL_P] = useState(0);
+  const [XXXS_P, setXXXS_P] = useState("0");
+  const [XXS_P, setXXS_P] = useState("0");
+  const [XS_P, setXS_P] = useState("0");
+  const [S_P, setS_P] = useState("0");
+  const [M_P, setM_P] = useState("0");
+  const [L_P, setL_P] = useState("0");
+  const [XL_P, setXL_P] = useState("0");
+  const [XXL_P, setXXL_P] = useState("0");
+  const [XXXL_P, setXXXL_P] = useState("0");
+  const [XXXXL_P, setXXXXL_P] = useState("0");
+  const [XXXXXL_P, setXXXXXL_P] = useState("0");
 
   function getPredictions(e) {
     e.preventDefault();
@@ -41,17 +41,17 @@ export default function SalesForecast() {
 
   function validate() {
     if (
-      XXXS_P == 0 &&
-      XXS_P == 0 &&
-      XS_P == 0 &&
-      S_P == 0 &&
-      M_P == 0 &&
-      L_P == 0 &&
-      XL_P == 0 &&
-      XXL_P == 0 &&
-      XXXL_P == 0 &&
-      XXXXL_P == 0 &&
-      XXXXXL_P == 0
+      XXXS_P === "0" &&
+      XXS_P === "0" &&
+      XS_P === "0" &&
+      S_P === "0" &&
+      M_P === "0" &&
+      L_P === "0" &&
+      XL_P === "0" &&
+      XXL_P === "0" &&
+      XXXL_P === "0" &&
+      XXXXL_P === "0" &&
+      XXXXXL_P === "0"
     ) {
       return false;
     } else {
@@ -94,7 +94,7 @@ export default function SalesForecast() {
                   value={XXXS_P}
                   onChange={(e) => {
                     if (e.target.value === "") {
-                      setXXXS_P(0);
+                      setXXXS_P("0");
                     } else {
                       setXXXS_P(e.target.value);
                     }
@@ -113,7 +113,7 @@ export default function SalesForecast() {
                   value={XXS_P}
                   onChange={(e) => {
                     if (e.target.value === "") {
-                      setXXS_P(0);
+                      setXXS_P("0");
                     } else {
                       setXXS_P(e.target.value);
                     }
@@ -132,7 +132,7 @@ export default function SalesForecast() {
                   value={XS_P}
                   onChange={(e) => {
                     if (e.target.value === "") {
-                      setXS_P(0);
+                      setXS_P("0");
                     } else {
                       setXS_P(e.target.value);
                     }
@@ -151,7 +151,7 @@ export default function SalesForecast() {
                   value={S_P}
                   onChange={(e) => {
                     if (e.target.value === "") {
-                      setS_P(0);
+                      setS_P("0");
                     } else {
                       setS_P(e.target.value);
                     }
@@ -170,7 +170,7 @@ export default function SalesForecast() {
                   value={M_P}
                   onChange={(e) => {
                     if (e.target.value === "") {
-                      setM_P(0);
+                      setM_P("0");
                     } else {
                       setM_P(e.target.value);
                     }
@@ -189,7 +189,7 @@ export default function SalesForecast() {
                   value={L_P}
                   onChange={(e) => {
                     if (e.target.value === "") {
-                      setL_P(0);
+                      setL_P("0");
                     } else {
                       setL_P(e.target.value);
                     }
@@ -208,7 +208,7 @@ export default function SalesForecast() {
                   value={XL_P}
                   onChange={(e) => {
                     if (e.target.value === "") {
-                      setXL_P(0);
+                      setXL_P("0");
                     } else {
                       setXL_P(e.target.value);
                     }
@@ -227,7 +227,7 @@ export default function SalesForecast() {
                   value={XXL_P}
                   onChange={(e) => {
                     if (e.target.value === "") {
-                      setXXL_P(0);
+                      setXXL_P("0");
                     } else {
                       setXXL_P(e.target.value);
                     }
@@ -246,7 +246,7 @@ export default function SalesForecast() {
                   value={XXXL_P}
                   onChange={(e) => {
                     if (e.target.value === "") {
-                      setXXXL_P(0);
+                      setXXXL_P("0");
                     } else {
                       setXXXL_P(e.target.value);
                     }
@@ -265,7 +265,7 @@ export default function SalesForecast() {
                   value={XXXXL_P}
                   onChange={(e) => {
                     if (e.target.value === "") {
-                      setXXXXL_P(0);
+                      setXXXXL_P("0");
                     } else {
                       setXXXXL_P(e.target.value);
                     }
@@ -284,7 +284,7 @@ export default function SalesForecast() {
                   value={XXXXXL_P}
                   onChange={(e) => {
                     if (e.target.value === "") {
-                      setXXXXXL_P(0);
+                      setXXXXXL_P("0");
                     } else {
                       setXXXXXL_P(e.target.value);
                     }
