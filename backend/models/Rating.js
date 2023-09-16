@@ -14,6 +14,10 @@ const rateSchema = new Schema({
     noOfRate : {
         type : Number, 
         required : true
+    },
+    customerComments:{
+        type : String,
+        required:false
     }
 })
 const Rating = mongoose.model("Rate",rateSchema);
