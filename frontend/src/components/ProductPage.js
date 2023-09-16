@@ -173,8 +173,8 @@ export default function ProductPage() {
         <br></br>
         <Form>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="name@example.com" />
+        <Form.Control type="email" placeholder="Add Comments" />
+        <button>Post</button>
         </Form.Group>
         </Form>
         
