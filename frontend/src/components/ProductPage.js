@@ -19,6 +19,7 @@ export default function ProductPage() {
   const [rate, setRate] = useState(0); // Initial user rating for the product is set to 0
   const [title_orig, settitle_orig] = useState([]);
   const customerEmail = sessionStorage.getItem("customerEmail");
+  const customerComment = useState ("null");
 
   useEffect(() => {
     axios.get(`http://localhost:8070/product/getDetails/${id}`).then((res) => {
@@ -67,6 +68,7 @@ export default function ProductPage() {
       title_orig,
       customerEmail,
       noOfRate,
+      customerComment 
     };
     // Check if the product has been rated before or not
     if (rate === 0) {
@@ -81,6 +83,7 @@ export default function ProductPage() {
       });
     }
   }
+  //Styles added to the comments section
   const buttonStyle = {
     background: 'none',
     border: 'none',
@@ -94,6 +97,7 @@ export default function ProductPage() {
     display: 'flex',
     alignItems: 'center', // Vertically center the form control and button
   };
+  
 
   return (
     // Referenced from : https://bootsnipp.com/snippets/56bAW
