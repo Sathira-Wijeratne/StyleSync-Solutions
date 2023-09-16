@@ -86,8 +86,13 @@ export default function ProductPage() {
     border: 'none',
     cursor: 'pointer',
     padding: '0',
-    marginLeft: '10px', // Adjust the margin as needed
-    color: '#007bff', // You can change the color as desired
+    marginLeft: '10px', 
+    color: '#007bff', // 
+  };
+
+  const containerStyle = {
+    display: 'flex',
+    alignItems: 'center', // Vertically center the form control and button
   };
 
   return (
@@ -181,8 +186,8 @@ export default function ProductPage() {
         <h2><b>Product Reviews </b></h2>
         <br></br>
         <Form>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="email" placeholder="Add Comments" />
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1"style={containerStyle}>
+        <Form.Control type="text" placeholder="Add Comments" />
         <button type="submit" style={buttonStyle}>
         <RiSendPlane2Line />
         </button>
