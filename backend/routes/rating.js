@@ -18,13 +18,14 @@ router.route("/add").post((req, res) => {
   newRate
     .save()
     .then(() => {
-      res.json("Rate Added.");
+      res.json("Rate or Comment Added.");
     })
     .catch((err) => {
       console.log(err);
     });
 });
 
+//Get all rates and comments 
 router.route("/").get((req, res) => {
   Rate.find()
     .then((rate) => {
@@ -35,6 +36,7 @@ router.route("/").get((req, res) => {
     });
 });
 
+//Get rates and comments by product 
 router.route("/get/:title_orig").get(async (req, res) => {
   let title_orig = req.params.title_orig;
 
@@ -48,6 +50,7 @@ router.route("/get/:title_orig").get(async (req, res) => {
     });
 });
 
+//Get comments or rates by customeremail and product name
 router
   .route("/getbyemailandtitle/:customerEmail/:title_orig")
   .get(async (req, res) => {
