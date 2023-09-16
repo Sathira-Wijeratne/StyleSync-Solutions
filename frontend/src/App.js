@@ -16,6 +16,7 @@ import DeleteDiscount from "./components/DeleteDiscount";
 import DiscountsReport from "./components/DiscountsReport";
 import ProductRatingReport from "./components/ProductRatingReport";
 import SalesForecast from "./components/SalesForecast";
+import SalesForecastResult from "./components/SalesForecastResult";
 
 function App() {
   return (
@@ -52,6 +53,11 @@ function App() {
         component={ProductRatingReport}
       />
       <Route path="/adminhome/salesforecast" exact component={SalesForecast} />
+      <Route
+        path="/adminhome/salesforecast/result"
+        exact
+        component={SalesForecastResult}
+      />
     </Router>
   );
 }
