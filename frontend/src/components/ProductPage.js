@@ -19,7 +19,7 @@ export default function ProductPage() {
   const [rate, setRate] = useState(0); // Initial user rating for the product is set to 0
   const [title_orig, settitle_orig] = useState([]);
   const customerEmail = sessionStorage.getItem("customerEmail");
-  const customerComment = useState ("null");
+  const [customerComment, setCustomerComment] = useState("");
 
   useEffect(() => {
     axios.get(`http://localhost:8070/product/getDetails/${id}`).then((res) => {
@@ -68,7 +68,6 @@ export default function ProductPage() {
       title_orig,
       customerEmail,
       noOfRate,
-      customerComment 
     };
     // Check if the product has been rated before or not
     if (rate === 0) {
@@ -97,7 +96,32 @@ export default function ProductPage() {
     display: 'flex',
     alignItems: 'center', // Vertically center the form control and button
   };
-  
+
+  //Function to save comments 
+  function submitComment(e){
+    e.preventDefault();
+
+    //Avoid user submitting an empty comment
+    if(customerComment.trim()===""){
+      alert("Comment cannot be empty");
+      return;
+    }
+
+    //create an object and send it to the db using the api
+    const commentData = {
+      title_orig,
+      customerEmail,
+      customerComment
+    };
+
+    axios.post("http://localhost:8070/rating/add", commentData).catch((err) => {
+        alert("Error in uploading a comment.");
+    });
+
+
+  }
+
+
 
   return (
     // Referenced from : https://bootsnipp.com/snippets/56bAW
@@ -189,15 +213,19 @@ export default function ProductPage() {
         <br></br>
         <h2><b>Product Reviews </b></h2>
         <br></br>
-        <Form>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1"style={containerStyle}>
-        <Form.Control type="text" placeholder="Add Comments" />
-        <button type="submit" style={buttonStyle}>
-        <RiSendPlane2Line />
-        </button>
-      </Form.Group>
-    </Form>
-
+        <Form onSubmit={submitComment}>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" style={containerStyle}>
+          <Form.Control
+            type="text"
+            placeholder="Add Comments"
+            value={customerComment}
+            onChange={(e) => setCustomerComment(e.target.value)}
+          />
+          <button type="submit" style={buttonStyle}>
+            <RiSendPlane2Line />
+          </button>
+        </Form.Group>
+      </Form>
 
       </div>
     </div>
