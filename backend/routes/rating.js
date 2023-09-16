@@ -1,15 +1,18 @@
 const router = require("express").Router();
 let Rate = require("../models/Rating");
 
+//Route to add ratings || comments 
 router.route("/add").post((req, res) => {
   const title_orig = req.body.title_orig;
   const customerEmail = req.body.customerEmail;
   const noOfRate = Number(req.body.noOfRate);
+  const customerComments = req.body.customerComments;
 
   const newRate = new Rate({
     title_orig,
     customerEmail,
     noOfRate,
+    customerComments
   });
 
   newRate
