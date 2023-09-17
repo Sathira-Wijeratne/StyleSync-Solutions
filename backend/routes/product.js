@@ -43,7 +43,9 @@ router.route("/getDetails/:id").get(async (req, res) => {
         products.push(row);
       })
       .on("end", function () {
-        const productDetails = products.find((product) => product[40] == productId);
+        const productDetails = products.find(
+          (product) => product[40] == productId
+        );
         res.json(productDetails);
       })
       .on("error", function (error) {
@@ -57,6 +59,36 @@ router.route("/getDetails/:id").get(async (req, res) => {
     const productDetails = products.find((product) => product[40] == productId);
     res.json(productDetails);
   }
-})
+});
+
+router
+  .route("/discountedPrice/:productName/:discountRate")
+  .get(async (req, res) => {
+    if (products.length === 0) {
+      fs.createReadStream(
+        "./data/summer-products-with-rating-and-performance_2020-08.csv"
+      )
+        .pipe(parse({ delimiter: ",", from_line: 2, to_line: toLine }))
+        .on("data", function (row) {
+          products.push(row);
+        });
+    }
+    const productName = req.params.productName;
+    const discountRate = parseFloat(req.params.discountRate);
+
+    const productDetails = products.find(
+      (product) => product[1] === productName
+    );
+
+    if (!productDetails) {
+      res.status(404).json({ error: "Product not found" });
+      return;
+    }
+
+    const originalPrice = parseFloat(productDetails[2]);
+    const discountedPrice = originalPrice * (discountRate / 100);
+
+    res.json({ originalPrice, discountRate, discountedPrice });
+  });
 
 module.exports = router;
