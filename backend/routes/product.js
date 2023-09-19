@@ -59,4 +59,35 @@ router.route("/getDetails/:id").get(async (req, res) => {
   }
 })
 
+//Required route for featured products 
+router.route("/getFeaturedDetails/:title").get(async (req, res) => {
+  let title = req.params.title;
+
+  if (products.length === 0) {
+    fs.createReadStream(
+      "./data/summer-products-with-rating-and-performance_2020-08.csv"
+    )
+      .pipe(parse({ delimiter: ",", from_line: 2, to_line: toLine }))
+      .on("data", function (row) {
+        products.push(row);
+      })
+      .on("end", function () {
+        const productDetails = products.find((product) => product[1] == title);
+        res.json(productDetails);
+      })
+      .on("error", function (error) {
+        console.log(error.message);
+        res.status(500).send({
+          status: "Error with fetching the product",
+          error: error.message,
+        });
+      });
+  } else {
+    const productDetails = products.find((product) => product[1] == title);
+    res.json(productDetails);
+  }
+})
+
+
+
 module.exports = router;
