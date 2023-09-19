@@ -297,6 +297,13 @@ export default function ProductPage() {
         </Form>
 
         {/* fetch comments and display */}
+        <div class="card-columns">
+  <div class="card bg-primary">
+    <div class="card-body text-center">
+      <p class="card-text">Some text inside the first card</p>
+    </div>
+  </div>
+  </div>
 
 
       </div>
