@@ -27,12 +27,6 @@ export default function ProductPage() {
   const [custcomments, setcustComments] = useState([]);
 
   useEffect(() => {
-    //Get customer comments
-    axios.get(`http://localhost:8070/rating/`).then((res) => {
-      console.log(res.data);
-      setcustComments(res.data);
-    });
-
     axios
       .get(`http://localhost:8070/product/getDetails/${id}`)
       .then((res) => {
@@ -52,6 +46,12 @@ export default function ProductPage() {
               setCustomerComment(res.data[0].customerComments);
             }
           });
+
+           //Get customer comments
+    axios.get(`http://localhost:8070/rating/get/${res.data[1]}`).then((res) => {
+      console.log(res.data);
+      setcustComments(res.data);
+    });
       })
       .catch((err) => {
         alert(err.message);
@@ -295,19 +295,15 @@ export default function ProductPage() {
         </Form>
 
         {/* fetch comments and display */}
-        {custcomments.map((custcomments)=>(
-
-<div class="card-columns">
-<div class="card bg-primary">
-  <div class="card-body text-center">
-    <p class="card-text">{custcomments.customerComments}</p>
-  </div>
-</div>
-</div>
-
+        {custcomments.map((custcomments) => (
+          <div class="card-columns">
+            <div class="card bg-primary">
+              <div class="card-body text-center">
+                <p class="card-text">{custcomments.customerComments}</p>
+              </div>
+            </div>
+          </div>
         ))}
-        
-
       </div>
     </div>
   );
