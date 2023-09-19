@@ -29,6 +29,7 @@ export default function ProductPage() {
   useEffect(() => {
     //Get customer comments
     axios.get(`http://localhost:8070/rating/`).then((res) => {
+      console.log(res.data);
       setcustComments(res.data);
     });
 
@@ -294,7 +295,7 @@ export default function ProductPage() {
         </Form>
 
         {/* fetch comments and display */}
-        {setcustComments.map((custcomments)=>{
+        {custcomments.map((custcomments)=>(
 
 <div class="card-columns">
 <div class="card bg-primary">
@@ -304,7 +305,7 @@ export default function ProductPage() {
 </div>
 </div>
 
-        })}
+        ))}
         
 
       </div>
