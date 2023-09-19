@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
 
 export default function SalesForecastResult() {
   const dataFromStorage = JSON.parse(window.localStorage.getItem("data"));
@@ -87,7 +88,10 @@ export default function SalesForecastResult() {
   }
 
   return (
-    <>
+    <div className="container">
+      <a type="button" href="/adminhome/salesforecast">
+        <Button variant="dark">Back</Button>
+      </a>
       <center>
         <h2>Prediction Summary</h2>
 
@@ -123,7 +127,7 @@ export default function SalesForecastResult() {
                 <td className="text-right" style={{ paddingRight: "100px" }}>
                   {dataFromModel.XXXS}
                 </td>
-                <td className="text-right" style={{ paddingRight: "70px" }}>
+                <td className="text-right" style={{ paddingRight: "50px" }}>
                   {dataFromStorage.XXXS_P * dataFromModel.XXXS} €
                 </td>
               </tr>
@@ -137,7 +141,7 @@ export default function SalesForecastResult() {
                 <td className="text-right" style={{ paddingRight: "100px" }}>
                   {dataFromModel.XXS}
                 </td>
-                <td className="text-right" style={{ paddingRight: "70px" }}>
+                <td className="text-right" style={{ paddingRight: "50px" }}>
                   {dataFromStorage.XXS_P * dataFromModel.XXS} €
                 </td>
               </tr>
@@ -151,7 +155,7 @@ export default function SalesForecastResult() {
                 <td className="text-right" style={{ paddingRight: "100px" }}>
                   {dataFromModel.XS}
                 </td>
-                <td className="text-right" style={{ paddingRight: "70px" }}>
+                <td className="text-right" style={{ paddingRight: "50px" }}>
                   {dataFromStorage.XS_P * dataFromModel.XS} €
                 </td>
               </tr>
@@ -165,7 +169,7 @@ export default function SalesForecastResult() {
                 <td className="text-right" style={{ paddingRight: "100px" }}>
                   {dataFromModel.S}
                 </td>
-                <td className="text-right" style={{ paddingRight: "70px" }}>
+                <td className="text-right" style={{ paddingRight: "50px" }}>
                   {dataFromStorage.S_P * dataFromModel.S} €
                 </td>
               </tr>
@@ -179,7 +183,7 @@ export default function SalesForecastResult() {
                 <td className="text-right" style={{ paddingRight: "100px" }}>
                   {dataFromModel.M}
                 </td>
-                <td className="text-right" style={{ paddingRight: "70px" }}>
+                <td className="text-right" style={{ paddingRight: "50px" }}>
                   {dataFromStorage.M_P * dataFromModel.M} €
                 </td>
               </tr>
@@ -193,7 +197,7 @@ export default function SalesForecastResult() {
                 <td className="text-right" style={{ paddingRight: "100px" }}>
                   {dataFromModel.L}
                 </td>
-                <td className="text-right" style={{ paddingRight: "70px" }}>
+                <td className="text-right" style={{ paddingRight: "50px" }}>
                   {dataFromStorage.L_P * dataFromModel.L} €
                 </td>
               </tr>
@@ -207,7 +211,7 @@ export default function SalesForecastResult() {
                 <td className="text-right" style={{ paddingRight: "100px" }}>
                   {dataFromModel.XL}
                 </td>
-                <td className="text-right" style={{ paddingRight: "70px" }}>
+                <td className="text-right" style={{ paddingRight: "50px" }}>
                   {dataFromStorage.XL_P * dataFromModel.XL} €
                 </td>
               </tr>
@@ -221,7 +225,7 @@ export default function SalesForecastResult() {
                 <td className="text-right" style={{ paddingRight: "100px" }}>
                   {dataFromModel.XXL}
                 </td>
-                <td className="text-right" style={{ paddingRight: "70px" }}>
+                <td className="text-right" style={{ paddingRight: "50px" }}>
                   {dataFromStorage.XXL_P * dataFromModel.XXL} €
                 </td>
               </tr>
@@ -235,7 +239,7 @@ export default function SalesForecastResult() {
                 <td className="text-right" style={{ paddingRight: "100px" }}>
                   {dataFromModel.XXXL}
                 </td>
-                <td className="text-right" style={{ paddingRight: "70px" }}>
+                <td className="text-right" style={{ paddingRight: "50px" }}>
                   {dataFromStorage.XXXL_P * dataFromModel.XXXL} €
                 </td>
               </tr>
@@ -249,7 +253,7 @@ export default function SalesForecastResult() {
                 <td className="text-right" style={{ paddingRight: "100px" }}>
                   {dataFromModel.XXXXL}
                 </td>
-                <td className="text-right" style={{ paddingRight: "70px" }}>
+                <td className="text-right" style={{ paddingRight: "50px" }}>
                   {dataFromStorage.XXXXL_P * dataFromModel.XXXXL} €
                 </td>
               </tr>
@@ -263,7 +267,7 @@ export default function SalesForecastResult() {
                 <td className="text-right" style={{ paddingRight: "100px" }}>
                   {dataFromModel.XXXXXL}
                 </td>
-                <td className="text-right" style={{ paddingRight: "70px" }}>
+                <td className="text-right" style={{ paddingRight: "50px" }}>
                   {dataFromStorage.XXXXXL_P * dataFromModel.XXXXXL} €
                 </td>
               </tr>
@@ -274,13 +278,13 @@ export default function SalesForecastResult() {
               <th className="align-middle text-center">
                 Total Projected Earnings
               </th>
-              <th className="text-right" style={{ paddingRight: "70px" }}>
+              <th className="text-right" style={{ paddingRight: "50px" }}>
                 {total} €
               </th>
             </tr>
           </tbody>
         </table>
       </center>
-    </>
+    </div>
   );
 }
