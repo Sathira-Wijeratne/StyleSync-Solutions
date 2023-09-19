@@ -296,9 +296,10 @@ export default function ProductPage() {
 
         {/* fetch comments and display */}
         {custcomments.map((custcomments) => (
-          <div class="card-columns">
+          <div class="card-rows">
             <div class="card bg-primary">
-              <div class="card-body text-center">
+              <div class="card-body text-left">
+              <p class="card-text">{custcomments.customerEmail}</p>
                 <p class="card-text">{custcomments.customerComments}</p>
               </div>
             </div>
