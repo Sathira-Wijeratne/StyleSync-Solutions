@@ -24,13 +24,11 @@ export default function ProductPage() {
   const [size, setSize] = useState("");
   const [rateObj, setRateObj] = useState({});
   const [hasRateObj, setHasRateObj] = useState(false);
-  const [custEmail, setCustEmail] = useState([]);
   const [custcomments, setcustComments] = useState([]);
 
   useEffect(() => {
     //Get customer comments
     axios.get(`http://localhost:8070/rating/`).then((res) => {
-      setCustEmail(res.data);
       setcustComments(res.data);
     });
 
@@ -296,13 +294,19 @@ export default function ProductPage() {
         </Form>
 
         {/* fetch comments and display */}
-        <div class="card-columns">
-          <div class="card bg-primary">
-            <div class="card-body text-center">
-              <p class="card-text">Some text inside the first card</p>
-            </div>
-          </div>
-        </div>
+        {setcustComments.map((custcomments)=>{
+
+<div class="card-columns">
+<div class="card bg-primary">
+  <div class="card-body text-center">
+    <p class="card-text">{custcomments.customerComments}</p>
+  </div>
+</div>
+</div>
+
+        })}
+        
+
       </div>
     </div>
   );
