@@ -24,8 +24,17 @@ export default function ProductPage() {
   const [size, setSize] = useState("");
   const [rateObj, setRateObj] = useState({});
   const [hasRateObj, setHasRateObj] = useState(false);
+  const [custEmail,setCustEmail]=useState([]);
+  const [custcomments,setcustComments]=useState([]);
 
   useEffect(() => {
+
+    //Get customer comments 
+    axios.get(`http://localhost:8070/rating/`).then((res)=>{
+      setCustEmail(res.data);
+      setcustComments(res.data);
+    }) ; 
+
     axios
       .get(`http://localhost:8070/product/getDetails/${id}`)
       .then((res) => {
@@ -286,6 +295,10 @@ export default function ProductPage() {
             </button>
           </Form.Group>
         </Form>
+
+        {/* fetch comments and display */}
+
+
       </div>
     </div>
   );
