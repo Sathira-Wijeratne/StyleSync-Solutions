@@ -24,16 +24,15 @@ export default function ProductPage() {
   const [size, setSize] = useState("");
   const [rateObj, setRateObj] = useState({});
   const [hasRateObj, setHasRateObj] = useState(false);
-  const [custEmail,setCustEmail]=useState([]);
-  const [custcomments,setcustComments]=useState([]);
+  const [custEmail, setCustEmail] = useState([]);
+  const [custcomments, setcustComments] = useState([]);
 
   useEffect(() => {
-
-    //Get customer comments 
-    axios.get(`http://localhost:8070/rating/`).then((res)=>{
+    //Get customer comments
+    axios.get(`http://localhost:8070/rating/`).then((res) => {
       setCustEmail(res.data);
       setcustComments(res.data);
-    }) ; 
+    });
 
     axios
       .get(`http://localhost:8070/product/getDetails/${id}`)
@@ -298,14 +297,12 @@ export default function ProductPage() {
 
         {/* fetch comments and display */}
         <div class="card-columns">
-  <div class="card bg-primary">
-    <div class="card-body text-center">
-      <p class="card-text">Some text inside the first card</p>
-    </div>
-  </div>
-  </div>
-
-
+          <div class="card bg-primary">
+            <div class="card-body text-center">
+              <p class="card-text">Some text inside the first card</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
