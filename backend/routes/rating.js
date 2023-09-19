@@ -1,7 +1,7 @@
 const router = require("express").Router();
 let Rate = require("../models/Rating");
 
-//Route to add ratings || comments 
+//Route to add ratings || comments
 router.route("/add").post((req, res) => {
   const title_orig = req.body.title_orig;
   const customerEmail = req.body.customerEmail;
@@ -14,7 +14,7 @@ router.route("/add").post((req, res) => {
     customerEmail,
     noOfRate,
     customerComments,
-    size
+    size,
   });
 
   newRate
@@ -27,7 +27,7 @@ router.route("/add").post((req, res) => {
     });
 });
 
-//Get all rates and comments 
+//Get all rates and comments
 router.route("/").get((req, res) => {
   Rate.find()
     .then((rate) => {
@@ -38,7 +38,7 @@ router.route("/").get((req, res) => {
     });
 });
 
-//Get rates and comments by product 
+//Get rates and comments by product
 router.route("/get/:title_orig").get(async (req, res) => {
   let title_orig = req.params.title_orig;
 
@@ -68,7 +68,7 @@ router
         res.status(500).send({ status: "Opps! Error in loading the rates" });
       });
   });
-//Update comments or routes 
+//Update comments or routes
 router.route("/update").put(async (req, res) => {
   const title_orig = req.body.title_orig;
   const customerEmail = req.body.customerEmail;
@@ -81,11 +81,11 @@ router.route("/update").put(async (req, res) => {
     customerEmail,
     noOfRate,
     customerComments,
-    size
+    size,
   };
 
   await Rate.findOneAndUpdate(
-    { buyerEmail: customerEmail, itemName: title_orig },
+    { customerEmail: customerEmail, title_orig: title_orig },
     updateRate
   )
     .then(() => {
