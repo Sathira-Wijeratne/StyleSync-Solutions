@@ -42,7 +42,7 @@ router.route("/").get((req, res) => {
 router.route("/get/:title_orig").get(async (req, res) => {
   let title_orig = req.params.title_orig;
 
-  await Rate.find({ ItemName: title_orig })
+  await Rate.find({ title_orig: title_orig })
     .then((rate) => {
       res.json(rate);
     })
