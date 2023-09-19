@@ -68,6 +68,24 @@ router
         res.status(500).send({ status: "Opps! Error in loading the rates" });
       });
   });
+
+  //Get featured products 
+  //Sort -1 to get the things in decending order 
+  router.route("/featuredProducts/").get(async(req,res)=>{
+    Rate.aggregate([{$group:{_id:"$title_orig",sum_value:{$sum:"$noOfRate"}}},
+  {$sort:{sum_value:-1}}]).then((rate)=>{
+      res.json(rate);
+    }).catch((err)=>{
+      console.log(err);
+      res.status(500).send({ status: "Opps! Error in loading the rates" });
+    });
+
+  });
+
+
+
+
+
 //Update comments or routes
 router.route("/update").put(async (req, res) => {
   const title_orig = req.body.title_orig;
