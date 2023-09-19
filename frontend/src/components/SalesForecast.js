@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
 
 export default function SalesForecast() {
   const [XXXS_P, setXXXS_P] = useState("0");
@@ -13,6 +14,18 @@ export default function SalesForecast() {
   const [XXXL_P, setXXXL_P] = useState("0");
   const [XXXXL_P, setXXXXL_P] = useState("0");
   const [XXXXXL_P, setXXXXXL_P] = useState("0");
+
+  const [XXXS_RC, setXXXS_RC] = useState(0);
+  const [XXS_RC, setXXS_RC] = useState(0);
+  const [XS_RC, setXS_RC] = useState(0);
+  const [S_RC, setS_RC] = useState(0);
+  const [M_RC, setM_RC] = useState(0);
+  const [L_RC, setL_RC] = useState(0);
+  const [XL_RC, setXL_RC] = useState(0);
+  const [XXL_RC, setXXL_RC] = useState(0);
+  const [XXXL_RC, setXXXL_RC] = useState(0);
+  const [XXXXL_RC, setXXXXL_RC] = useState(0);
+  const [XXXXXL_RC, setXXXXXL_RC] = useState(0);
 
   function getPredictions(e) {
     e.preventDefault();
@@ -30,6 +43,17 @@ export default function SalesForecast() {
         XXXL_P,
         XXXXL_P,
         XXXXXL_P,
+        XXXS_RC,
+        XXS_RC,
+        XS_RC,
+        S_RC,
+        M_RC,
+        L_RC,
+        XL_RC,
+        XXL_RC,
+        XXXL_RC,
+        XXXXL_RC,
+        XXXXXL_RC,
       };
       var data = JSON.stringify(jsonobj);
       window.localStorage.setItem("data", data);
@@ -98,6 +122,11 @@ export default function SalesForecast() {
                     } else {
                       setXXXS_P(e.target.value);
                     }
+                    axios
+                      .get(`http://localhost:8070/prediction/getratings/XXXS`)
+                      .then((res) => {
+                        setXXXS_RC(res.data.length);
+                      });
                   }}
                 />{" "}
                 €
@@ -117,6 +146,11 @@ export default function SalesForecast() {
                     } else {
                       setXXS_P(e.target.value);
                     }
+                    axios
+                      .get(`http://localhost:8070/prediction/getratings/XXS`)
+                      .then((res) => {
+                        setXXS_RC(res.data.length);
+                      });
                   }}
                 />{" "}
                 €
@@ -136,6 +170,12 @@ export default function SalesForecast() {
                     } else {
                       setXS_P(e.target.value);
                     }
+                    axios
+                      .get(`http://localhost:8070/prediction/getratings/XS`)
+                      .then((res) => {
+                        setXS_RC(res.data.length);
+                        console.log(res.data.length);
+                      });
                   }}
                 />{" "}
                 €
@@ -155,6 +195,11 @@ export default function SalesForecast() {
                     } else {
                       setS_P(e.target.value);
                     }
+                    axios
+                      .get(`http://localhost:8070/prediction/getratings/S`)
+                      .then((res) => {
+                        setS_RC(res.data.length);
+                      });
                   }}
                 />{" "}
                 €
@@ -174,6 +219,12 @@ export default function SalesForecast() {
                     } else {
                       setM_P(e.target.value);
                     }
+                    axios
+                      .get(`http://localhost:8070/prediction/getratings/M`)
+                      .then((res) => {
+                        setM_RC(res.data.length);
+                        console.log(res.data.length);
+                      });
                   }}
                 />{" "}
                 €
@@ -193,6 +244,11 @@ export default function SalesForecast() {
                     } else {
                       setL_P(e.target.value);
                     }
+                    axios
+                      .get(`http://localhost:8070/prediction/getratings/L`)
+                      .then((res) => {
+                        setL_RC(res.data.length);
+                      });
                   }}
                 />{" "}
                 €
@@ -212,6 +268,11 @@ export default function SalesForecast() {
                     } else {
                       setXL_P(e.target.value);
                     }
+                    axios
+                      .get(`http://localhost:8070/prediction/getratings/XL`)
+                      .then((res) => {
+                        setXL_RC(res.data.length);
+                      });
                   }}
                 />{" "}
                 €
@@ -231,6 +292,11 @@ export default function SalesForecast() {
                     } else {
                       setXXL_P(e.target.value);
                     }
+                    axios
+                      .get(`http://localhost:8070/prediction/getratings/XXL`)
+                      .then((res) => {
+                        setXXL_RC(res.data.length);
+                      });
                   }}
                 />{" "}
                 €
@@ -250,6 +316,11 @@ export default function SalesForecast() {
                     } else {
                       setXXXL_P(e.target.value);
                     }
+                    axios
+                      .get(`http://localhost:8070/prediction/getratings/XXXL`)
+                      .then((res) => {
+                        setXXXL_RC(res.data.length);
+                      });
                   }}
                 />{" "}
                 €
@@ -269,6 +340,11 @@ export default function SalesForecast() {
                     } else {
                       setXXXXL_P(e.target.value);
                     }
+                    axios
+                      .get(`http://localhost:8070/prediction/getratings/XXXXL`)
+                      .then((res) => {
+                        setXXXXL_RC(res.data.length);
+                      });
                   }}
                 />{" "}
                 €
@@ -288,6 +364,11 @@ export default function SalesForecast() {
                     } else {
                       setXXXXXL_P(e.target.value);
                     }
+                    axios
+                      .get(`http://localhost:8070/prediction/getratings/XXXXXL`)
+                      .then((res) => {
+                        setXXXXXL_RC(res.data.length);
+                      });
                   }}
                 />{" "}
                 €
