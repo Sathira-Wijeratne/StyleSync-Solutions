@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import backgroundImage from "../images/dele.jpg";
+import backgroundImage from "../images/add.jpg";
 
 export default function DeleteDiscount() {
   const [discountId, setDiscountId] = useState("");
@@ -81,7 +81,7 @@ export default function DeleteDiscount() {
               />
             </div>
           </div>
-          <div className="col-md-6">
+          {/* <div className="col-md-6">
             <div className="form-group">
               <label className="label-bold-black" htmlFor="discountType">
                 Discount Type
@@ -95,7 +95,7 @@ export default function DeleteDiscount() {
                 disabled
               />
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="row">
           <div className="col-md-6">
