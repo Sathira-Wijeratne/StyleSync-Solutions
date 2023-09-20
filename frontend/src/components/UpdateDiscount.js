@@ -7,7 +7,7 @@ import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import AsyncSelect from "react-select/async";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import backgroundImage from "../images/mmm.jpg";
+import backgroundImage from "../images/add.jpg";
 
 function UpdateDiscount() {
   const [discountId, setDiscountId] = useState("");
