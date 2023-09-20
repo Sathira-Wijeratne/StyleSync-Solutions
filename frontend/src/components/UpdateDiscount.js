@@ -7,7 +7,7 @@ import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import AsyncSelect from "react-select/async";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import backgroundImage from "../images/update.jpg";
+import backgroundImage from "../images/mmm.jpg";
 
 function UpdateDiscount() {
   const [discountId, setDiscountId] = useState("");
@@ -134,12 +134,14 @@ function UpdateDiscount() {
 
   return (
     <div className="container" style={containerStyle}>
-      <h1>Update Discounts</h1>
+      <h1 style={{ color: "black" }}>Update Discounts</h1>
       <form onSubmit={updateData}>
         <div className="row">
           <div className="col-md-6 mb-3">
             <div className="form-group">
-              <label htmlFor="discountId">Discount Id</label>
+              <label style={{ color: "black" }} htmlFor="discountId">
+                Discount Id
+              </label>
               <input
                 type="text"
                 className="form-control bold-black-outline"
@@ -153,7 +155,7 @@ function UpdateDiscount() {
               />
             </div>
           </div>
-          <div className="col-md-6 mb-3">
+          {/* <div className="col-md-6 mb-3">
             <div className="form-group">
               <label htmlFor="discountType">Discount Type</label>
               <input
@@ -169,12 +171,14 @@ function UpdateDiscount() {
               />
               <p style={{ color: "red" }}>{errorMessage}</p>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="row">
           <div className="col-md-6 mb-3">
             <div className="form-group">
-              <label htmlFor="discountRate">Discount Rate</label>
+              <label style={{ color: "black" }} htmlFor="discountRate">
+                Discount Rate
+              </label>
               <input
                 type="text"
                 className="form-control bold-black-outline"
@@ -191,7 +195,9 @@ function UpdateDiscount() {
           </div>
           <div className="col-md-6 mb-3">
             <div className="form-group">
-              <label htmlFor="discountProductName">Discount Product Name</label>
+              <label style={{ color: "black" }} htmlFor="discountProductName">
+                Discount Product Name
+              </label>
               <input
                 type="text"
                 className="form-control bold-black-outline"
@@ -206,7 +212,9 @@ function UpdateDiscount() {
           </div>
         </div>
         <div className="form-group">
-          <label htmlFor="discountDescription">Discount Description</label>
+          <label style={{ color: "black" }} htmlFor="discountDescription">
+            Discount Description
+          </label>
           <input
             type="text"
             className="form-control bold-black-outline"
@@ -222,7 +230,9 @@ function UpdateDiscount() {
           <div className="row">
             <div className="col-md-6 mb-3">
               <div className="form-group">
-                <label htmlFor="discountStartDate">Discount Start Date</label>
+                <label style={{ color: "black" }} htmlFor="discountStartDate">
+                  Discount Start Date
+                </label>
                 <div
                   className="input-group datepicker-container bold-black-outline"
                   onClick={handleStartDateClick}
@@ -246,7 +256,10 @@ function UpdateDiscount() {
 
             <div className="col-md-6 mb-3">
               <div className="form-group">
-                <label htmlFor="discountExpirationDate">
+                <label
+                  style={{ color: "black" }}
+                  htmlFor="discountExpirationDate"
+                >
                   Expiration Date of Discount
                 </label>
                 <div

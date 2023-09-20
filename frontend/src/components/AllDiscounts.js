@@ -5,7 +5,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "react-bootstrap/Button";
-import backgroundImage from "../images/all.jpg";
+import backgroundImage from "../images/trrrr.jpg";
 
 export default function AllDiscounts() {
   const [discounts, setDiscounts] = useState([]);
@@ -44,7 +44,7 @@ export default function AllDiscounts() {
 
   return (
     <div className="container" style={containerStyle}>
-      <h1>All Discounts</h1>
+      <h1 style={{color:'black'}}>All Discounts</h1>
       <div className="d-flex justify-content-end">
         <Button
           variant="primary"
