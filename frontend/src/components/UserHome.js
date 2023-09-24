@@ -13,6 +13,10 @@ import image03 from "../images/image03.png";
 // } from "@fortawesome/free-solid-svg-icons";
 
 export default function UserHome() {
+  if (sessionStorage.getItem("sSyncSolRemotsuc") === null) {
+    window.location.replace("/");
+  }
+
   const [products, setProducts] = useState([]);
   const [avgRatings, setAvgRatings] = useState({});
   const [title_orig, settitle_orig] = useState([]);
