@@ -1,27 +1,97 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../images/logo.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCartShopping,
+  faClockRotateLeft,
+  faUserCircle,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Header() {
+  const [showDropdown, setShowDropdown] = useState(false); // State to control dropdown visibility
+
+  // Function to toggle dropdown visibility
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
+
   return (
-    <div>
-      <nav className="navbar fixed-top bg-dark" style={{ color: "white" }}>
-        <div className="row">
-          <div className="col-3">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <img src={logo} width="40%" alt="Logo"></img>
-          </div>
-          <div className="col" style={{ fontSize: "70px" }}>
-            <b>StyleSync Summer Store</b>
-          </div>
-        </div>
-      </nav>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+    <div className="container-fluid" style={{ backgroundColor: "black" }}>
+      <table className="borderless">
+        <tbody>
+          <tr>
+            <td>
+              <div className="col-md-12 text-left">
+                <img src={logo} width={80} height={80} alt="Logo" />
+              </div>
+            </td>
+            <td width={1050}></td>
+            <td>
+              <div
+                className="col-md-12 text-end"
+                style={{ justifyContent: "right", display: "flex" }}
+              >
+                <a type="button" href="/cart">
+                  <FontAwesomeIcon
+                    icon={faCartShopping}
+                    shake
+                    size="1x" // Change to "1x" for normal size
+                    style={{ marginLeft: "25px", color: "white" }}
+                  />
+                </a>
+                <a type="button" href="/purchaseHistory">
+                  <FontAwesomeIcon
+                    icon={faClockRotateLeft}
+                    size="1x" // Change to "1x" for normal size
+                    style={{ marginLeft: "25px", color: "white" }}
+                  />
+                </a>
+                <div
+                  onClick={toggleDropdown}
+                  style={{ cursor: "pointer", marginLeft: "25px" }}
+                >
+                  <FontAwesomeIcon
+                    icon={faUserCircle}
+                    size="1x" // Change to "1x" for normal size
+                    style={{ color: "white" }}
+                  />
+                </div>
+                {/* Dropdown menu */}
+                {showDropdown && (
+                  <div className="dropdown" style={{ marginLeft: "25px" }}>
+                    <button
+                      className="btn btn-danger dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      style={{ backgroundColor: "black", border: "none" }}
+                    >
+                      Sign Out
+                    </button>
+                    <div
+                      className="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
+                      <a
+                        className="dropdown-item"
+                        href="/"
+                        onClick={() => {
+                          sessionStorage.removeItem("sSyncSolRemotsuc");
+                          sessionStorage.removeItem("customerEmail");
+                        }}
+                      >
+                        Sign Out
+                      </a>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }
