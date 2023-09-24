@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Button from "react-bootstrap/Button";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 export default function PurchaseHistory() {
     const [products, setProducts] = useState([]);
@@ -24,15 +21,7 @@ export default function PurchaseHistory() {
 
     return (
         <div className="container">
-            <div id="product-page-buttons" style={{ float: "right" }}>
-                <a type="button" href="/home">
-                    <Button variant="dark">Home</Button>
-                </a>
-                <a type="button" href="/cart">
-                    <FontAwesomeIcon icon={faCartShopping} shake size="2xl" style={{ marginLeft: '25px' }} />
-                </a>
-            </div>
-            <div id="product-page-heading" style={{ textAlign: "center", marginTop: '10px' }}>
+            <div id="product-page-heading" style={{ textAlign: "center" }}>
                 <h1>Welcome to your transactions 💲💲💲</h1>
             </div>
             <div class="col-md-12">

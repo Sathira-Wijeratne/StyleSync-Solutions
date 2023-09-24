@@ -5,6 +5,7 @@ import {
   faCartShopping,
   faClockRotateLeft,
   faUserCircle,
+  faHouse
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header() {
@@ -31,18 +32,25 @@ export default function Header() {
                 className="col-md-12 text-end"
                 style={{ justifyContent: "right", display: "flex" }}
               >
+                <a type="button" href="/home">
+                  <FontAwesomeIcon
+                    icon={faHouse}
+                    size="xl" // Change to "1x" for normal size
+                    style={{ marginLeft: "25px", color: "white" }}
+                  />
+                </a>
                 <a type="button" href="/cart">
                   <FontAwesomeIcon
                     icon={faCartShopping}
                     shake
-                    size="1x" // Change to "1x" for normal size
+                    size="xl" // Change to "1x" for normal size
                     style={{ marginLeft: "25px", color: "white" }}
                   />
                 </a>
                 <a type="button" href="/purchaseHistory">
                   <FontAwesomeIcon
                     icon={faClockRotateLeft}
-                    size="1x" // Change to "1x" for normal size
+                    size="xl" // Change to "1x" for normal size
                     style={{ marginLeft: "25px", color: "white" }}
                   />
                 </a>
@@ -52,7 +60,7 @@ export default function Header() {
                 >
                   <FontAwesomeIcon
                     icon={faUserCircle}
-                    size="1x" // Change to "1x" for normal size
+                    size="xl" // Change to "1x" for normal size
                     style={{ color: "white" }}
                   />
                 </div>
