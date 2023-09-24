@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 
 export default function SalesForecast() {
+  if (sessionStorage.getItem("sSyncSolNimda") === null) {
+    window.location.replace("/");
+  }
+
   const [result, setResult] = useState(<></>);
 
   function getPredictions(e) {

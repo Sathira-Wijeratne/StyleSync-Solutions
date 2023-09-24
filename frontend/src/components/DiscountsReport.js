@@ -2,6 +2,10 @@ import React from "react";
 import backgroundImage from "../images/reports.jpg";
 
 const DiscountsReport = () => {
+  if (sessionStorage.getItem("sSyncSolNimda") === null) {
+    window.location.replace("/");
+  }
+
   // Define hardcoded data for the report
   const reportData = [
     {

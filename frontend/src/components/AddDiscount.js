@@ -9,6 +9,10 @@ import axios from "axios";
 import backgroundImage from "../images/add.jpg";
 
 export default function AddDiscount() {
+  if (sessionStorage.getItem("sSyncSolNimda") === null) {
+    window.location.replace("/");
+  }
+
   const [discountId, setDiscountId] = useState("");
   const [discountType, setDiscountType] = useState("");
   const [discountRate, setDiscountRate] = useState();
@@ -253,11 +257,11 @@ export default function AddDiscount() {
             </div>
           </div>
 
-          <div className="form-group" style={{ display: 'flex', flexWrap: 'nowrap' }}>
-            <button
-              type="submit"
-              className="btn btn-success col-md-6 mb-3"
-            >
+          <div
+            className="form-group"
+            style={{ display: "flex", flexWrap: "nowrap" }}
+          >
+            <button type="submit" className="btn btn-success col-md-6 mb-3">
               Submit
             </button>
             <a

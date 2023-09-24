@@ -14,6 +14,10 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function AdminHome() {
+  if (sessionStorage.getItem("sSyncSolNimda") === null) {
+    window.location.replace("/");
+  }
+
   const containerStyle = {
     backgroundImage: `url(${backgroundImage})`, // Set the background image
     backgroundSize: "cover", // Cover the entire container
@@ -55,12 +59,21 @@ export default function AdminHome() {
 
   return (
     <div className="container" style={containerStyle}>
-      <div style={{ backgroundColor: '#a6633f', borderRadius: '10px', marginBottom: '10px', padding: '5px' }}>
+      <div
+        style={{
+          backgroundColor: "#a6633f",
+          borderRadius: "10px",
+          marginBottom: "10px",
+          padding: "5px",
+        }}
+      >
         <h1 style={{ color: "black" }}>Welcome Admin</h1>
       </div>
-      <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
+      <div style={{ display: "flex", flexWrap: "nowrap" }}>
         <a href="/adminhome/ProductRatingReport">
-          <button className="btn btn-primary" style={{ marginRight: '20px' }}>Rating Report</button>
+          <button className="btn btn-primary" style={{ marginRight: "20px" }}>
+            Rating Report
+          </button>
         </a>
         <a href="/adminhome/salesforecast">
           <button className="btn btn-primary">Sales Forecast</button>

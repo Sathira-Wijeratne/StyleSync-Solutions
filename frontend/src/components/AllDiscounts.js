@@ -8,6 +8,10 @@ import Button from "react-bootstrap/Button";
 import backgroundImage from "../images/all.jpg";
 
 export default function AllDiscounts() {
+  if (sessionStorage.getItem("sSyncSolNimda") === null) {
+    window.location.replace("/");
+  }
+
   const [discounts, setDiscounts] = useState([]);
   let history = useHistory();
 

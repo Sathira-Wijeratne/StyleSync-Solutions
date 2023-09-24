@@ -4,6 +4,10 @@ import { useParams } from "react-router-dom";
 import backgroundImage from "../images/delete.jpg";
 
 export default function DeleteDiscount() {
+  if (sessionStorage.getItem("sSyncSolNimda") === null) {
+    window.location.replace("/");
+  }
+
   const [discountId, setDiscountId] = useState("");
   const [discountType, setDiscountType] = useState("");
   const [discountRate, setDiscountRate] = useState("");
@@ -173,8 +177,12 @@ export default function DeleteDiscount() {
             </div>
           </div>
         </div>
-        <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
-          <button type="submit" className="btn btn-danger col-md-6" style={{ marginRight: '10px' }}>
+        <div style={{ display: "flex", flexWrap: "nowrap" }}>
+          <button
+            type="submit"
+            className="btn btn-danger col-md-6"
+            style={{ marginRight: "10px" }}
+          >
             Delete
           </button>
           <a

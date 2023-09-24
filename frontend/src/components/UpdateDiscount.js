@@ -10,6 +10,10 @@ import { useParams } from "react-router-dom";
 import backgroundImage from "../images/update.jpg";
 
 function UpdateDiscount() {
+  if (sessionStorage.getItem("sSyncSolNimda") === null) {
+    window.location.replace("/");
+  }
+
   const [discountId, setDiscountId] = useState("");
   const [discountType, setDiscountType] = useState("");
   const [discountRate, setDiscountRate] = useState("");
@@ -220,8 +224,12 @@ function UpdateDiscount() {
             </div>
           </div>
         </div>
-        <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
-          <button type="submit" className="btn btn-success col-md-6 mb-3" style={{ marginRight: '10px' }}>
+        <div style={{ display: "flex", flexWrap: "nowrap" }}>
+          <button
+            type="submit"
+            className="btn btn-success col-md-6 mb-3"
+            style={{ marginRight: "10px" }}
+          >
             Update
           </button>
           <a
@@ -234,8 +242,6 @@ function UpdateDiscount() {
         </div>
       </form>
     </div>
-
-
   );
 }
 
