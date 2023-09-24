@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Rater from "react-rater";
 import "react-rater/lib/react-rater.css";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -103,7 +103,7 @@ export default function UserHome() {
         marginBottom: "20px",
       }}
     >
-      <div id="product-page-buttons" style={{ float: "right" }}>
+      {/* <div id="product-page-buttons" style={{ float: "right" }}>
         <a
           href="/"
           onClick={() => {
@@ -128,7 +128,7 @@ export default function UserHome() {
             style={{ marginLeft: "25px" }}
           />
         </a>
-      </div>
+      </div> */}
       <br></br>
       <div>
         <div id="product-page-heading" style={{ textAlign: "center" }}>
