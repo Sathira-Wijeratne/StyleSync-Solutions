@@ -11,7 +11,7 @@ export default function ProductPage() {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
   const buyerEmail = sessionStorage.getItem("customerEmail");
-  const [rate, setRate] = useState(0); // Initial user rating for the product is set to 0
+  const [rate, setRate] = useState(0);
   const [title_orig, settitle_orig] = useState([]);
   const customerEmail = sessionStorage.getItem("customerEmail");
   const [customerComment, setCustomerComment] = useState("");
@@ -35,17 +35,16 @@ export default function ProductPage() {
           .then((res) => {
             setRateObj(res.data);
             if (res.data.length !== 0) {
-              setRate(res.data[0].noOfRate); // If user has already rated the product, set the rating to the user's previous rating
+              setRate(res.data[0].noOfRate);
               setRateObj(res.data);
               setCustomerComment(res.data[0].customerComments);
             }
           });
 
-           //Get customer comments
-    axios.get(`http://localhost:8070/rating/get/${res.data[1]}`).then((res) => {
-      console.log(res.data);
-      setcustComments(res.data);
-    });
+        axios.get(`http://localhost:8070/rating/get/${res.data[1]}`).then((res) => {
+          console.log(res.data);
+          setcustComments(res.data);
+        });
       })
       .catch((err) => {
         alert(err.message);
@@ -73,7 +72,6 @@ export default function ProductPage() {
       });
   }
 
-  // Function to allow users to rate the product
   function rateProduct(noOfRate) {
     const newRate = {
       title_orig,
@@ -82,9 +80,8 @@ export default function ProductPage() {
       customerComments: customerComment,
       size,
     };
-    // Check if the product has been rated before or not
+
     if (rate === 0 && rateObj.length === 0 && hasRateObj === false) {
-      // If not, add the rating to the server
       axios
         .post("http://localhost:8070/rating/add", newRate)
         .then(() => {
@@ -95,38 +92,34 @@ export default function ProductPage() {
           alert("Rating Service is not available.");
         });
     } else {
-      // If already rated, update the rating on the server
       axios.put("http://localhost:8070/rating/update", newRate).catch((err) => {
         alert("Rating Service is not available.");
       });
     }
   }
-  //Styles added to the comments section
+
   const buttonStyle = {
     background: "none",
     border: "none",
     cursor: "pointer",
     padding: "0",
     marginLeft: "10px",
-    color: "#007bff", 
+    color: "#000", // Set the text color to black
   };
 
   const containerStyle = {
     display: "flex",
-    alignItems: "center", // Vertically center the form control and button
+    alignItems: "center",
   };
 
-  //Function to save comments
   function submitComment(e) {
     e.preventDefault();
 
-    //Avoid user submitting an empty comment
     if (customerComment.trim() === "") {
       alert("Comment cannot be empty");
       return;
     }
 
-    //create an object and send it to the db using the api
     const commentData = {
       title_orig,
       customerEmail,
@@ -136,7 +129,6 @@ export default function ProductPage() {
     };
 
     if (rateObj.length !== 0 || hasRateObj === true) {
-      // If not, add the rating to the server
       axios
         .put("http://localhost:8070/rating/update", commentData)
         .then(() => {
@@ -144,10 +136,9 @@ export default function ProductPage() {
         })
         .catch((err) => {
           alert(err);
-          alert("Error in uploading a update.");
+          alert("Error in uploading an update.");
         });
     } else {
-      // If already rated, update the rating on the server
       axios
         .post("http://localhost:8070/rating/add", commentData)
         .then(() => {
@@ -161,36 +152,25 @@ export default function ProductPage() {
   }
 
   return (
-    <div className="container" style={{ marginBottom: "40px" }}>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-      </div>
-      <div
-        className="product-page-card"
-        style={{ marginTop: "20px", borderRadius: "10px" }}
-      >
+      <div className="container" >
+        <br></br><br></br>
         <div className="container-fliud">
           <div className="wrapper row">
             <div className="preview col-md-6">
               <div className="preview-pic tab-content">
                 <div className="tab-pane active grow" id="pic-1">
+                 
                   <img
                     alt="..."
-                    style={{ borderRadius: "10px" }}
+                    style={{ borderRadius: "10px", width: "300px", height: "300px" }}
                     src={product[39]}
                   />
                 </div>
               </div>
             </div>
             <div className="details col-md-6">
-              <h3 className="product-title">{product[1]}</h3>
+              <h3 className="product-title" style={{ fontFamily: "Oswald, sans-serif" }}>{product[1]}</h3>
 
-              {/* Rating function related logic begin here  */}
               <div className="rating">
                 <b>Rate the Product</b> &nbsp;
                 <Rater
@@ -205,23 +185,18 @@ export default function ProductPage() {
                 <br />
                 <span className="review-no">{product[8]} reviews</span>
               </div>
-              {/* Rating function related logic Ends here  */}
 
-              {/* <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p> */}
               <h4 className="price">
                 Price: <span>{parseFloat(product[2]).toFixed(2)} €</span>
               </h4>
-              {/* <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p> */}
+
               <h5 className="sizes">
                 Size:
                 <span className="size" data-toggle="tooltip" title="small">
                   {product[20]}
                 </span>
               </h5>
-              <div
-                style={{ display: "flex", alignItems: "center" }}
-                className="sizes"
-              >
+              <div style={{ display: "flex", alignItems: "center" }} className="sizes">
                 <span style={{ marginRight: "10px" }}>Quantity: </span>
                 <input
                   className="form-control"
@@ -272,18 +247,17 @@ export default function ProductPage() {
           </Form.Group>
         </Form>
 
-        {/* fetch comments and display */}
         {custcomments.map((custcomments) => (
           <div class="card-rows">
             <div class="card bg-primary">
               <div class="card-body text-left">
-              <p class="card-text">{custcomments.customerEmail}</p>
+                <p class="card-text">{custcomments.customerEmail}</p>
                 <p class="card-text">{custcomments.customerComments}</p>
               </div>
             </div>
           </div>
         ))}
       </div>
-    </div>
+    
   );
 }
