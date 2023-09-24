@@ -167,7 +167,6 @@ export default function ProductPage() {
   }
 
   return (
-    // Referenced from : https://bootsnipp.com/snippets/56bAW
     <div className="container" style={{ marginBottom: "40px" }}>
       <div
         style={{
