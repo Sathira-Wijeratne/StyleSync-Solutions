@@ -98,71 +98,44 @@ export default function UserHome() {
 
   return (
   <div>
-   <div
-  className="container-flex"
-  style={{ height: "50vh", overflow: "hidden" }}
->
-  <div
-    id="carouselExampleControls"
-    className="carousel slide"
-    data-ride="carousel"
-    style={{ height: "100%" }}
-  >
+<div className="container-flex" style={{ height: "50vh", overflow: "hidden" }}>
+  <div id="carouselExampleControls" className="carousel slide" data-ride="carousel" style={{ height: "100%" }}>
     <div className="carousel-inner" style={{ height: "100%" }}>
       <div className="carousel-item active" style={{ height: "100%" }}>
         <img
           className="d-block w-100"
           src={image03}
           alt="Second slide"
-          style={{ height: "100%", objectFit: "cover" }}
+          style={{ maxHeight: "100%", width: "100%", objectFit: "cover" }}
         />
       </div>
-      <div className="carousel-item" style={{ height: "50%" }}>
+      <div className="carousel-item" style={{ height: "100%" }}>
         <img
           className="d-block w-100"
           src={imageTwo}
           alt="Second slide"
-          style={{ height: "50%", objectFit: "cover" }}
+          style={{ maxHeight: "100%", width: "100%", objectFit: "cover" }}
         />
       </div>
-      <div className="carousel-item" style={{ height: "50%" }}>
+      <div className="carousel-item" style={{ height: "100%" }}>
         <img
           className="d-block w-100"
           src={womens}
           alt="Second slide"
-          style={{ height: "50%", objectFit: "cover" }}
+          style={{ maxHeight: "100%", width: "100%", objectFit: "cover" }}
         />
       </div>
     </div>
-    <a
-      className="carousel-control-prev"
-      href="#carouselExampleControls"
-      role="button"
-      data-slide="prev"
-    >
+    <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
       <span className="carousel-control-prev-icon" aria-hidden="true"></span>
       <span className="sr-only">Previous</span>
     </a>
-    <a
-      className="carousel-control-next"
-      href="#carouselExampleControls"
-      role="button"
-      data-slide="next"
-    >
+    <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
       <span className="carousel-control-next-icon" aria-hidden="true"></span>
       <span className="sr-only">Next</span>
     </a>
   </div>
-</div>
-
-  
-      
-      
-  
-      
-      
-      
-      
+</div>   
      <div>
       <div
         className="container-flex"
@@ -175,7 +148,9 @@ export default function UserHome() {
       >
         <div>
           <div id="product-page-heading" style={{ textAlign: "center" }}>
-            <h1>Featured Products</h1>
+          <h1 style={{ fontFamily: 'Oswald, sans-serif' }}>Featured Products</h1>
+
+
             <br></br>
           </div>
 
@@ -190,8 +165,8 @@ export default function UserHome() {
                 gap: "1rem",
               }}
             >
-              {/* Featured Product one */}
-              <div
+            {/* Featured Product one */}
+            <div
                 id="product-page-product"
                 style={{
                   display: "flex",
@@ -199,16 +174,18 @@ export default function UserHome() {
                   alignItems: "center",
                   padding: "1rem",
                   border: "5px solid #027ee3",
+                  borderColor:"black",
                   borderRadius: "20px",
-                }}
-                key={FeaturedProductOne[1]}
-              >
-                <div className="grow">
-                  <img
-                    src={FeaturedProductOne[39]}
-                    style={{ maxWidth: "100%", borderRadius: "10px" }}
-                  />
-                </div>
+              }}
+              key={FeaturedProductOne[1]}
+            >
+            <div className="grow">
+              <img
+                src={FeaturedProductOne[39]}
+                style={{ maxWidth: "100%", borderRadius: "10px" }}
+              />
+            </div>
+
                 <div
                   style={{
                     display: "flex",
@@ -220,6 +197,7 @@ export default function UserHome() {
                   <h3 style={{ fontSize: "1.1rem", marginBottom: "0.5rem" }}>
                     {FeaturedProductOne[1]}
                   </h3>
+
                   <span style={{ fontWeight: "bold", marginBottom: "0.5rem" }}>
                     {parseFloat(FeaturedProductOne[2]).toFixed(2)} €
                   </span>
@@ -230,6 +208,7 @@ export default function UserHome() {
                     interactive={false}
                     style={{ fontSize: "30px" }}
                   />
+
                   <button
                     className="btn btn-secondary"
                     onClick={() => {
@@ -237,6 +216,7 @@ export default function UserHome() {
                         `http://localhost:3000/viewproduct/${FeaturedProductOne[40]}`
                       );
                     }}
+                    style={{ backgroundColor: "black", color: "white" }}
                   >
                     View
                   </button>
@@ -252,6 +232,7 @@ export default function UserHome() {
                   alignItems: "center",
                   padding: "1rem",
                   border: "5px solid #027ee3",
+                  borderColor:"black",
                   borderRadius: "20px",
                 }}
                 key={FeaturedProductTwo[2]}
@@ -290,6 +271,7 @@ export default function UserHome() {
                         `http://localhost:3000/viewproduct/${FeaturedProductTwo[40]}`
                       );
                     }}
+                    style={{ backgroundColor: "black", color: "white" }}
                   >
                     View
                   </button>
@@ -305,6 +287,7 @@ export default function UserHome() {
                   alignItems: "center",
                   padding: "1rem",
                   border: "5px solid #027ee3",
+                  borderColor:"black",
                   borderRadius: "20px",
                 }}
                 key={FeaturedProductThree[3]}
@@ -343,6 +326,7 @@ export default function UserHome() {
                         `http://localhost:3000/viewproduct/${FeaturedProductThree[40]}`
                       );
                     }}
+                    style={{ backgroundColor: "black", color: "white" }}
                   >
                     View
                   </button>
@@ -358,6 +342,7 @@ export default function UserHome() {
                   alignItems: "center",
                   padding: "1rem",
                   border: "5px solid #027ee3",
+                  borderColor:"black",
                   borderRadius: "20px",
                 }}
                 key={FeaturedProductFour[4]}
@@ -396,6 +381,7 @@ export default function UserHome() {
                         `http://localhost:3000/viewproduct/${FeaturedProductFour[40]}`
                       );
                     }}
+                    style={{ backgroundColor: "black", color: "white" }}
                   >
                     View
                   </button>
@@ -406,7 +392,8 @@ export default function UserHome() {
 
             <div>
               <div id="product-page-heading" style={{ textAlign: "center" }}>
-                <h1>All Products ☀️</h1>
+              <h1 style={{ fontFamily: 'Oswald, sans-serif' }}>All Products</h1>
+
                 <br></br>
               </div>
 
@@ -430,6 +417,7 @@ export default function UserHome() {
                         alignItems: "center",
                         padding: "1rem",
                         border: "5px solid #027ee3",
+                        borderColor:"black",
                         borderRadius: "20px",
                       }}
                       key={product[40]}
@@ -472,6 +460,7 @@ export default function UserHome() {
                               `http://localhost:3000/viewproduct/${product[40]}`
                             );
                           }}
+                          style={{ backgroundColor: "black", color: "white" }}
                         >
                           View
                         </button>
