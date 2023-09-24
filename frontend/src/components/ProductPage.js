@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import Button from "react-bootstrap/Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCartShopping,
-  faClockRotateLeft,
-} from "@fortawesome/free-solid-svg-icons";
 import Rater from "react-rater";
 import "react-rater/lib/react-rater.css";
 import Form from "react-bootstrap/Form";
@@ -114,7 +108,7 @@ export default function ProductPage() {
     cursor: "pointer",
     padding: "0",
     marginLeft: "10px",
-    color: "#007bff", //
+    color: "#007bff", 
   };
 
   const containerStyle = {
@@ -175,21 +169,6 @@ export default function ProductPage() {
           justifyContent: "space-between",
         }}
       >
-        <a type="button" href="/home">
-          <Button variant="dark">Back</Button>
-        </a>
-        <div>
-          <a type="button" href="/cart">
-            <FontAwesomeIcon icon={faCartShopping} shake size="2xl" />
-          </a>
-          <a type="button" href="/purchaseHistory">
-            <FontAwesomeIcon
-              icon={faClockRotateLeft}
-              size="2xl"
-              style={{ marginLeft: "25px" }}
-            />
-          </a>
-        </div>
       </div>
       <div
         className="product-page-card"
