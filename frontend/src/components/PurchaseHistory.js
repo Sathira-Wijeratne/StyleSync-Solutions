@@ -32,7 +32,7 @@ export default function PurchaseHistory() {
                     <FontAwesomeIcon icon={faCartShopping} shake size="2xl" style={{ marginLeft: '25px' }} />
                 </a>
             </div>
-            <div id="product-page-heading" style={{ textAlign: "center" }}>
+            <div id="product-page-heading" style={{ textAlign: "center", marginTop: '10px' }}>
                 <h1>Welcome to your transactions 💲💲💲</h1>
             </div>
             <div class="col-md-12">
