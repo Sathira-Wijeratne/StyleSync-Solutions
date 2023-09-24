@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Button from "react-bootstrap/Button";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClockRotateLeft } from '@fortawesome/free-solid-svg-icons';
 
 export default function ShoppingCart() {
     const [products, setProducts] = useState([]);
@@ -99,14 +96,6 @@ export default function ShoppingCart() {
         return (
             // Referenced from : https://mdbootstrap.com/docs/standard/extended/shopping-carts/#!
             <div class="container">
-                <div style={{ marginTop: '5px', display: "flex", alignItems: "center", float: 'right' }}>
-                    <a type="button" href="/home">
-                        <Button variant="dark">Home</Button>
-                    </a>
-                    <a type="button" href="/purchaseHistory">
-                        <FontAwesomeIcon icon={faClockRotateLeft} size="2xl" style={{ marginLeft: '25px' }} />
-                    </a>
-                </div>
                 <br /><br />
                 <div class="row d-flex justify-content-center my-4">
                     <div class="col-md-8">
@@ -212,14 +201,6 @@ export default function ShoppingCart() {
         return (
             // Referenced from : https://bbbootstrap.com/snippets/bootstrap-empty-cart-template-25715727
             <div class="container">
-                <div style={{ marginTop: '5px', marginBottom: '20px', display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <a type="button" href="/home">
-                        <Button variant="dark">Home</Button>
-                    </a>
-                    <a type="button" href="/purchaseHistory">
-                        <FontAwesomeIcon icon={faClockRotateLeft} size="2xl" style={{ marginLeft: '25px' }} />
-                    </a>
-                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card" style={{ height: "140%", borderRadius: '10px', background: "#eee" }}>
