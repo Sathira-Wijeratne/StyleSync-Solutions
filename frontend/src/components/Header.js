@@ -5,7 +5,7 @@ import {
   faCartShopping,
   faClockRotateLeft,
   faUserCircle,
-  faHouse
+  faHouse,
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header() {
@@ -32,38 +32,56 @@ export default function Header() {
                 className="col-md-12 text-end"
                 style={{ justifyContent: "right", display: "flex" }}
               >
-                <a type="button" href="/home">
-                  <FontAwesomeIcon
-                    icon={faHouse}
-                    size="xl" // Change to "1x" for normal size
-                    style={{ marginLeft: "25px", color: "white" }}
-                  />
-                </a>
-                <a type="button" href="/cart">
-                  <FontAwesomeIcon
-                    icon={faCartShopping}
-                    shake
-                    size="xl" // Change to "1x" for normal size
-                    style={{ marginLeft: "25px", color: "white" }}
-                  />
-                </a>
-                <a type="button" href="/purchaseHistory">
-                  <FontAwesomeIcon
-                    icon={faClockRotateLeft}
-                    size="xl" // Change to "1x" for normal size
-                    style={{ marginLeft: "25px", color: "white" }}
-                  />
-                </a>
-                <div
-                  onClick={toggleDropdown}
-                  style={{ cursor: "pointer", marginLeft: "25px" }}
-                >
-                  <FontAwesomeIcon
-                    icon={faUserCircle}
-                    size="xl" // Change to "1x" for normal size
-                    style={{ color: "white" }}
-                  />
-                </div>
+                {sessionStorage.getItem("customerEmail") && (
+                  <a type="button" href="/home">
+                    <FontAwesomeIcon
+                      icon={faHouse}
+                      size="xl" // Change to "1x" for normal size
+                      style={{ marginLeft: "25px", color: "white" }}
+                    />
+                  </a>
+                )}
+                {sessionStorage.getItem("adminEmail") && (
+                  <a type="button" href="/adminhome">
+                    <FontAwesomeIcon
+                      icon={faHouse}
+                      size="xl" // Change to "1x" for normal size
+                      style={{ marginLeft: "25px", color: "white" }}
+                    />
+                  </a>
+                )}
+                {sessionStorage.getItem("customerEmail") && (
+                  <a type="button" href="/cart">
+                    <FontAwesomeIcon
+                      icon={faCartShopping}
+                      shake
+                      size="xl" // Change to "1x" for normal size
+                      style={{ marginLeft: "25px", color: "white" }}
+                    />
+                  </a>
+                )}
+                {sessionStorage.getItem("customerEmail") && (
+                  <a type="button" href="/purchaseHistory">
+                    <FontAwesomeIcon
+                      icon={faClockRotateLeft}
+                      size="xl" // Change to "1x" for normal size
+                      style={{ marginLeft: "25px", color: "white" }}
+                    />
+                  </a>
+                )}
+                {(sessionStorage.getItem("customerEmail") ||
+                  sessionStorage.getItem("adminEmail")) && (
+                  <div
+                    onClick={toggleDropdown}
+                    style={{ cursor: "pointer", marginLeft: "25px" }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faUserCircle}
+                      size="xl" // Change to "1x" for normal size
+                      style={{ color: "white" }}
+                    />
+                  </div>
+                )}
                 {/* Dropdown menu */}
                 {showDropdown && (
                   <div className="dropdown" style={{ marginLeft: "25px" }}>
@@ -88,6 +106,7 @@ export default function Header() {
                         onClick={() => {
                           sessionStorage.removeItem("sSyncSolRemotsuc");
                           sessionStorage.removeItem("customerEmail");
+                          sessionStorage.removeItem("adminEmail");
                         }}
                       >
                         Sign Out
