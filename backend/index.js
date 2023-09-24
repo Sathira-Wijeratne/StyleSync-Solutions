@@ -50,6 +50,9 @@ app.use("/cart", cartRouter);
 const purchaseRouter = require("./routes/purchase.js");
 app.use("/purchases", purchaseRouter);
 
+const predictionRouter = require("./routes/prediction.js");
+app.use("/prediction", predictionRouter);
+
 // --------- EXECUTING PREDICTION MODEL - BEGIN ----------------
 const { execFile } = require("child_process");
 app.post("/prediction", (req, res) => {
