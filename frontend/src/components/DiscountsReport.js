@@ -4,6 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 
 const DiscountsReport = () => {
+  if (sessionStorage.getItem("sSyncSolNimda") === null) {
+    window.location.replace("/");
+  }
+
   // Define hardcoded data for the report
   const reportData = [
     {

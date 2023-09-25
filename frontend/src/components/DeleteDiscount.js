@@ -4,6 +4,10 @@ import { useParams } from "react-router-dom";
 import backgroundImage from "../images/add.jpg";
 
 export default function DeleteDiscount() {
+  if (sessionStorage.getItem("sSyncSolNimda") === null) {
+    window.location.replace("/");
+  }
+
   const [discountId, setDiscountId] = useState("");
   const [discountType, setDiscountType] = useState("");
   const [discountRate, setDiscountRate] = useState("");

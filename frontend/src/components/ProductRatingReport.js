@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 function ProductRatingReport() {
+  if (sessionStorage.getItem("sSyncSolNimda") === null) {
+    window.location.replace("/");
+  }
+
   const [rating, setRating] = useState([]);
   const [avgRatings, setAvgRatings] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
@@ -18,7 +22,9 @@ function ProductRatingReport() {
         setRating(res.data);
         setAvgRatings(getAverageRatings(res.data));
         // Extract distinct item names using Set
-        const distinctNames = [...new Set(res.data.map((item) => item.title_orig))];
+        const distinctNames = [
+          ...new Set(res.data.map((item) => item.title_orig)),
+        ];
         console.log(distinctNames);
         setDistinctItemNames(distinctNames);
       })
@@ -90,7 +96,8 @@ function ProductRatingReport() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        &nbsp;<FontAwesomeIcon icon={faSearch} className="search-icon" />
+        &nbsp;
+        <FontAwesomeIcon icon={faSearch} className="search-icon" />
       </div>
 
       <center>

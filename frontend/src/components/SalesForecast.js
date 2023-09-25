@@ -3,6 +3,10 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 
 export default function SalesForecast() {
+  if (sessionStorage.getItem("sSyncSolNimda") === null) {
+    window.location.replace("/");
+  }
+
   const [XXXS_P, setXXXS_P] = useState("0");
   const [XXS_P, setXXS_P] = useState("0");
   const [XS_P, setXS_P] = useState("0");

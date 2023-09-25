@@ -9,6 +9,10 @@ import axios from "axios";
 import backgroundImage from "../images/add.jpg";
 
 export default function AddDiscount() {
+  if (sessionStorage.getItem("sSyncSolNimda") === null) {
+    window.location.replace("/");
+  }
+
   const [discountId, setDiscountId] = useState("");
   const [discountType, setDiscountType] = useState("");
   const [discountRate, setDiscountRate] = useState();
