@@ -9,13 +9,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header() {
-  const [showDropdown, setShowDropdown] = useState(false); // State to control dropdown visibility
-
-  // Function to toggle dropdown visibility
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
-  };
-
   return (
     <div className="container-fluid" style={{ backgroundColor: "black" }}>
       <table className="borderless">
@@ -71,47 +64,22 @@ export default function Header() {
                 )}
                 {(sessionStorage.getItem("customerEmail") ||
                   sessionStorage.getItem("adminEmail")) && (
-                  <div
-                    onClick={toggleDropdown}
-                    style={{ cursor: "pointer", marginLeft: "25px" }}
-                  >
-                    <FontAwesomeIcon
-                      icon={faUserCircle}
-                      size="xl" // Change to "1x" for normal size
-                      style={{ color: "white" }}
-                    />
-                  </div>
-                )}
-                {/* Dropdown menu */}
-                {showDropdown && (
                   <div className="dropdown" style={{ marginLeft: "25px" }}>
                     <button
                       className="btn btn-danger dropdown-toggle"
                       type="button"
                       id="dropdownMenuButton"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
                       style={{ backgroundColor: "black", border: "none" }}
+                      onClick={() => {
+                        sessionStorage.removeItem("sSyncSolRemotsuc");
+                        sessionStorage.removeItem("sSyncSolNimda");
+                        sessionStorage.removeItem("customerEmail");
+                        sessionStorage.removeItem("adminEmail");
+                        window.location.replace("/");
+                      }}
                     >
                       Sign Out
                     </button>
-                    <div
-                      className="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton"
-                    >
-                      <a
-                        className="dropdown-item"
-                        href="/"
-                        onClick={() => {
-                          sessionStorage.removeItem("sSyncSolRemotsuc");
-                          sessionStorage.removeItem("customerEmail");
-                          sessionStorage.removeItem("adminEmail");
-                        }}
-                      >
-                        Sign Out
-                      </a>
-                    </div>
                   </div>
                 )}
               </div>
