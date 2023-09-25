@@ -79,18 +79,7 @@ export default function AdminHome() {
           <button className="btn btn-primary">Sales Forecast</button>
         </a>
       </div>
-      <a href="/">
-        <Button
-          variant="danger"
-          style={buttonStyle} // Apply styles to the button
-          onClick={() => {
-            sessionStorage.removeItem("sSyncSolNimda");
-            sessionStorage.removeItem("adminEmail");
-          }}
-        >
-          Signout
-        </Button>
-      </a>
+
       <div style={{ float: "right" }}>
         <a
           href="/"
