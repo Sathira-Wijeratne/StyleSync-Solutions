@@ -66,7 +66,7 @@ export default function Header() {
                   sessionStorage.getItem("adminEmail")) && (
                   <div className="dropdown" style={{ marginLeft: "25px" }}>
                     <button
-                      className="btn btn-danger dropdown-toggle"
+                      className="btn btn-danger"
                       type="button"
                       id="dropdownMenuButton"
                       style={{ backgroundColor: "black", border: "none" }}
