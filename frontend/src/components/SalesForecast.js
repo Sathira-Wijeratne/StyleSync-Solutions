@@ -406,7 +406,7 @@ export default function SalesForecast() {
             onClick={(e) => {
               getPredictions(e);
             }}
-            style={{ marginLeft: "70%" }}
+            style={{ marginLeft: "70%" ,backgroundColor:"black"}}
             className="btn btn-primary"
           >
             Get Predictions
