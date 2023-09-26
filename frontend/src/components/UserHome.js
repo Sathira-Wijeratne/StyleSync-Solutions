@@ -102,17 +102,6 @@ export default function UserHome() {
 
   return (
     <div>
-      <nav aria-label="breadcrumb">
-        <span class="breadcrumb">
-          <div className="container">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item active" aria-current="page">
-                Home
-              </li>
-            </ol>
-          </div>
-        </span>
-      </nav>
       <div
         className="container-flex"
         style={{ height: "50vh", overflow: "hidden" }}
