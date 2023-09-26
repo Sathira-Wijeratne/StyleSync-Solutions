@@ -183,7 +183,7 @@ export default function ShoppingCart() {
                               }
                             }}
                           >
-                            <i class="fas fa-trash"></i>
+                            <i class="fas fa-trash" style={{float:"right"}}></i>
                           </button>
                         </div>
 
@@ -192,7 +192,8 @@ export default function ShoppingCart() {
                             className="d-flex mb-4"
                             style={{ maxWidth: 300 }}
                           >
-                            <div class="form-outline">
+                            <div class="form-outline" style={{display: 'flex',alignItems: 'center'}} >
+                              <center>
                               <input
                                 id="form1"
                                 min="1"
@@ -200,7 +201,7 @@ export default function ShoppingCart() {
                                 value={product.productQuantity}
                                 type="number"
                                 class="form-control"
-                                style={{ border: "3px solid #1691ef" }}
+                                style={{ border: "3px solid #000000" , textAlign: "center" }}
                                 onChange={(e) => {
                                   handleQuantityChange(
                                     product.productId,
@@ -215,10 +216,11 @@ export default function ShoppingCart() {
                               <label class="form-label" for="form1">
                                 Quantity
                               </label>
+                              </center>
                             </div>
                           </div>
                           <p class="text-start text-md-center">
-                            <strong>{product.productPrice} €</strong>
+                            <strong>Price : {product.productPrice} €</strong>
                           </p>
                           {calculateTotal(
                             product.productQuantity,
@@ -258,7 +260,8 @@ export default function ShoppingCart() {
 
                   <button
                     type="button"
-                    class="btn btn-primary btn-lg btn-block"
+                    class="btn-lg btn-block"
+                    backgroundColor="black"
                     onClick={() => {
                       var response = window.confirm(
                         "Are you sure you want to purchase?"
@@ -320,8 +323,9 @@ export default function ShoppingCart() {
                     <a
                       href="/home"
                       class="btn btn-primary cart-btn-transform m-3"
+                      backgroundColor="black"
                       data-abc="true"
-                      style={{ fontSize: "30px" }}
+                      style={{ fontSize: "30px",backgroundColor:"black" }}
                     >
                       Go back to shopping
                     </a>
