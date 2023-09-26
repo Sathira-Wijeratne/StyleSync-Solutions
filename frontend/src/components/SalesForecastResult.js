@@ -90,220 +90,291 @@ export default function SalesForecastResult() {
 
   if ("XXXS" in dataFromModel) {
     return (
-      <div className="container">
-        <a type="button" href="/adminhome/salesforecast">
-          <Button variant="dark">Back</Button>
-        </a>
-        <center>
-          <h2>Prediction Summary</h2>
-
-          <span style={{ color: "red" }}>
-            Please note that the predicted values are for the{" "}
-            <b>summer season </b>
-            only.
+      <div>
+        <nav aria-label="breadcrumb">
+          <span class="breadcrumb">
+            <div className="container">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="/adminhome">Admin Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                  <a href="/adminhome/salesforecast">Sales Forecast</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Sales Forecast Result
+                </li>
+              </ol>
+            </div>
           </span>
-          <br />
-          <br />
-          <table
-            className="table"
-            style={{
-              width: "75%",
-              // textAlign: "center",
-            }}
-          >
-            <thead>
-              <tr>
-                <th className="text-center">Product Size</th>
-                <th className="text-center">Product Price</th>
-                <th className="text-center">Predicted Sales</th>
-                <th className="text-center">Projected Revenue</th>
-              </tr>
-            </thead>
-            <tbody>
-              {dataFromStorage.XXXS_P !== "0" && (
+        </nav>
+        <div className="container">
+          {/* <a type="button" href="/adminhome/salesforecast">
+            <Button variant="dark">Back</Button>
+          </a> */}
+          <center>
+            <h2>Prediction Summary</h2>
+
+            <span style={{ color: "red" }}>
+              Please note that the predicted values are for the{" "}
+              <b>summer season </b>
+              only.
+            </span>
+            <br />
+            <br />
+            <table
+              className="table"
+              style={{
+                width: "75%",
+                // textAlign: "center",
+              }}
+            >
+              <thead>
                 <tr>
-                  <td className="align-middle text-center">XXXS</td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.XXXS_P} €
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "100px" }}>
-                    {dataFromModel.XXXS}
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.XXXS_P * dataFromModel.XXXS} €
-                  </td>
+                  <th className="text-center">Product Size</th>
+                  <th className="text-center">Product Price</th>
+                  <th className="text-center">Predicted Sales</th>
+                  <th className="text-center">Projected Revenue</th>
                 </tr>
-              )}
-              {dataFromStorage.XXS_P !== "0" && (
+              </thead>
+              <tbody>
+                {dataFromStorage.XXXS_P !== "0" && (
+                  <tr>
+                    <td className="align-middle text-center">XXXS</td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.XXXS_P} €
+                    </td>
+                    <td
+                      className="text-right"
+                      style={{ paddingRight: "100px" }}
+                    >
+                      {dataFromModel.XXXS}
+                    </td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.XXXS_P * dataFromModel.XXXS} €
+                    </td>
+                  </tr>
+                )}
+                {dataFromStorage.XXS_P !== "0" && (
+                  <tr>
+                    <td className="align-middle text-center">XXS</td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.XXS_P} €
+                    </td>
+                    <td
+                      className="text-right"
+                      style={{ paddingRight: "100px" }}
+                    >
+                      {dataFromModel.XXS}
+                    </td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.XXS_P * dataFromModel.XXS} €
+                    </td>
+                  </tr>
+                )}
+                {dataFromStorage.XS_P !== "0" && (
+                  <tr>
+                    <td className="align-middle text-center">XS</td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.XS_P} €
+                    </td>
+                    <td
+                      className="text-right"
+                      style={{ paddingRight: "100px" }}
+                    >
+                      {dataFromModel.XS}
+                    </td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.XS_P * dataFromModel.XS} €
+                    </td>
+                  </tr>
+                )}
+                {dataFromStorage.S_P !== "0" && (
+                  <tr>
+                    <td className="align-middle text-center">S</td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.S_P} €
+                    </td>
+                    <td
+                      className="text-right"
+                      style={{ paddingRight: "100px" }}
+                    >
+                      {dataFromModel.S}
+                    </td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.S_P * dataFromModel.S} €
+                    </td>
+                  </tr>
+                )}
+                {dataFromStorage.M_P !== "0" && (
+                  <tr>
+                    <td className="align-middle text-center">M</td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.M_P} €
+                    </td>
+                    <td
+                      className="text-right"
+                      style={{ paddingRight: "100px" }}
+                    >
+                      {dataFromModel.M}
+                    </td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.M_P * dataFromModel.M} €
+                    </td>
+                  </tr>
+                )}
+                {dataFromStorage.L_P !== "0" && (
+                  <tr>
+                    <td className="align-middle text-center">L</td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.L_P} €
+                    </td>
+                    <td
+                      className="text-right"
+                      style={{ paddingRight: "100px" }}
+                    >
+                      {dataFromModel.L}
+                    </td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.L_P * dataFromModel.L} €
+                    </td>
+                  </tr>
+                )}
+                {dataFromStorage.XL_P !== "0" && (
+                  <tr>
+                    <td className="align-middle text-center">XL</td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.XL_P} €
+                    </td>
+                    <td
+                      className="text-right"
+                      style={{ paddingRight: "100px" }}
+                    >
+                      {dataFromModel.XL}
+                    </td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.XL_P * dataFromModel.XL} €
+                    </td>
+                  </tr>
+                )}
+                {dataFromStorage.XXL_P !== "0" && (
+                  <tr>
+                    <td className="align-middle text-center">XXL</td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.XXL_P} €
+                    </td>
+                    <td
+                      className="text-right"
+                      style={{ paddingRight: "100px" }}
+                    >
+                      {dataFromModel.XXL}
+                    </td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.XXL_P * dataFromModel.XXL} €
+                    </td>
+                  </tr>
+                )}
+                {dataFromStorage.XXXL_P !== "0" && (
+                  <tr>
+                    <td className="align-middle text-center">XXXL</td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.XXXL_P} €
+                    </td>
+                    <td
+                      className="text-right"
+                      style={{ paddingRight: "100px" }}
+                    >
+                      {dataFromModel.XXXL}
+                    </td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.XXXL_P * dataFromModel.XXXL} €
+                    </td>
+                  </tr>
+                )}
+                {dataFromStorage.XXXXL_P !== "0" && (
+                  <tr>
+                    <td className="align-middle text-center">XXXXL</td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.XXXXL_P} €
+                    </td>
+                    <td
+                      className="text-right"
+                      style={{ paddingRight: "100px" }}
+                    >
+                      {dataFromModel.XXXXL}
+                    </td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.XXXXL_P * dataFromModel.XXXXL} €
+                    </td>
+                  </tr>
+                )}
+                {dataFromStorage.XXXXXL_P !== "0" && (
+                  <tr>
+                    <td className="align-middle text-center">XXXXXL</td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.XXXXXL_P} €
+                    </td>
+                    <td
+                      className="text-right"
+                      style={{ paddingRight: "100px" }}
+                    >
+                      {dataFromModel.XXXXXL}
+                    </td>
+                    <td className="text-right" style={{ paddingRight: "50px" }}>
+                      {dataFromStorage.XXXXXL_P * dataFromModel.XXXXXL} €
+                    </td>
+                  </tr>
+                )}
                 <tr>
-                  <td className="align-middle text-center">XXS</td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.XXS_P} €
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "100px" }}>
-                    {dataFromModel.XXS}
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.XXS_P * dataFromModel.XXS} €
-                  </td>
+                  <td className="align-middle text-center"></td>
+                  <td></td>
+                  <th className="align-middle text-center">
+                    Total Projected Earnings
+                  </th>
+                  <th className="text-right" style={{ paddingRight: "50px" }}>
+                    {total} €
+                  </th>
                 </tr>
-              )}
-              {dataFromStorage.XS_P !== "0" && (
-                <tr>
-                  <td className="align-middle text-center">XS</td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.XS_P} €
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "100px" }}>
-                    {dataFromModel.XS}
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.XS_P * dataFromModel.XS} €
-                  </td>
-                </tr>
-              )}
-              {dataFromStorage.S_P !== "0" && (
-                <tr>
-                  <td className="align-middle text-center">S</td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.S_P} €
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "100px" }}>
-                    {dataFromModel.S}
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.S_P * dataFromModel.S} €
-                  </td>
-                </tr>
-              )}
-              {dataFromStorage.M_P !== "0" && (
-                <tr>
-                  <td className="align-middle text-center">M</td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.M_P} €
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "100px" }}>
-                    {dataFromModel.M}
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.M_P * dataFromModel.M} €
-                  </td>
-                </tr>
-              )}
-              {dataFromStorage.L_P !== "0" && (
-                <tr>
-                  <td className="align-middle text-center">L</td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.L_P} €
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "100px" }}>
-                    {dataFromModel.L}
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.L_P * dataFromModel.L} €
-                  </td>
-                </tr>
-              )}
-              {dataFromStorage.XL_P !== "0" && (
-                <tr>
-                  <td className="align-middle text-center">XL</td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.XL_P} €
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "100px" }}>
-                    {dataFromModel.XL}
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.XL_P * dataFromModel.XL} €
-                  </td>
-                </tr>
-              )}
-              {dataFromStorage.XXL_P !== "0" && (
-                <tr>
-                  <td className="align-middle text-center">XXL</td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.XXL_P} €
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "100px" }}>
-                    {dataFromModel.XXL}
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.XXL_P * dataFromModel.XXL} €
-                  </td>
-                </tr>
-              )}
-              {dataFromStorage.XXXL_P !== "0" && (
-                <tr>
-                  <td className="align-middle text-center">XXXL</td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.XXXL_P} €
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "100px" }}>
-                    {dataFromModel.XXXL}
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.XXXL_P * dataFromModel.XXXL} €
-                  </td>
-                </tr>
-              )}
-              {dataFromStorage.XXXXL_P !== "0" && (
-                <tr>
-                  <td className="align-middle text-center">XXXXL</td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.XXXXL_P} €
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "100px" }}>
-                    {dataFromModel.XXXXL}
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.XXXXL_P * dataFromModel.XXXXL} €
-                  </td>
-                </tr>
-              )}
-              {dataFromStorage.XXXXXL_P !== "0" && (
-                <tr>
-                  <td className="align-middle text-center">XXXXXL</td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.XXXXXL_P} €
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "100px" }}>
-                    {dataFromModel.XXXXXL}
-                  </td>
-                  <td className="text-right" style={{ paddingRight: "50px" }}>
-                    {dataFromStorage.XXXXXL_P * dataFromModel.XXXXXL} €
-                  </td>
-                </tr>
-              )}
-              <tr>
-                <td className="align-middle text-center"></td>
-                <td></td>
-                <th className="align-middle text-center">
-                  Total Projected Earnings
-                </th>
-                <th className="text-right" style={{ paddingRight: "50px" }}>
-                  {total} €
-                </th>
-              </tr>
-            </tbody>
-          </table>
-        </center>
+              </tbody>
+            </table>
+          </center>
+        </div>
       </div>
     );
   } else {
     return (
-      <div className="container">
-        <a type="button" href="/adminhome/salesforecast">
-          <Button variant="dark">Back</Button>
-        </a>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <center>
-          <h1>Stay tuned while we decode the future 🔮...</h1>
-          <Spinner color="primary" />
-        </center>
+      <div>
+        <nav aria-label="breadcrumb">
+          <span class="breadcrumb">
+            <div className="container">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="/adminhome">Admin Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                  <a href="/adminhome/salesforecast">Sales Forecast</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Sales Forecast Result
+                </li>
+              </ol>
+            </div>
+          </span>
+        </nav>
+        <div className="container">
+          <a type="button" href="/adminhome/salesforecast">
+            <Button variant="dark">Back</Button>
+          </a>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <center>
+            <h1>Stay tuned while we decode the future 🔮...</h1>
+            <Spinner color="primary" />
+          </center>
+        </div>
       </div>
     );
   }

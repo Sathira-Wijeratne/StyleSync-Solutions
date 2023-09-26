@@ -47,92 +47,118 @@ export default function AllDiscounts() {
   };
 
   return (
-    <div className="container" style={containerStyle}>
-      <h1 style={{color:'black'}}>All Discounts</h1>
-      <div className="d-flex justify-content-end">
-        <Button
-          variant="primary"
-          onClick={() => {
-            window.location.replace(
-              `http://localhost:3000/adminhome/discount/add/`
-            );
-          }}
-        >
-          <FontAwesomeIcon icon={faPlus} /> Add New Discounts
-        </Button>
-      </div>
-
-      <table
-        className="table table-borderless; table-hover"
-        style={{ marginTop: "20px" }}
-      >
-        <div className="row">
-          <div class="btn-group" role="group" aria-label="Basic example"></div>
-          <div class="btn-group" role="group" aria-label="Basic example"></div>
+    <div>
+      <nav aria-label="breadcrumb">
+        <span class="breadcrumb">
+          <div className="container">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/adminhome">Admin Home</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Discounts
+              </li>
+            </ol>
+          </div>
+        </span>
+      </nav>
+      <div className="container" style={containerStyle}>
+        <h1 style={{ color: "black" }}>All Discounts</h1>
+        <div className="d-flex justify-content-end">
+          <Button
+            variant="primary"
+            onClick={() => {
+              window.location.replace(
+                `http://localhost:3000/adminhome/discount/add/`
+              );
+            }}
+          >
+            <FontAwesomeIcon icon={faPlus} /> Add New Discounts
+          </Button>
         </div>
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Discount ID</th>
-            <th scope="col">Discount Type</th>
-            <th scope="col">Discount Rate</th>
-            <th scope="col">Product Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Start Date</th>
-            <th scope="col">Expiration Date</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
 
-        <tbody>
-          {discounts.map((discount) => (
-            <tr scope="row">
-              <td class="text-uppercase label-bold-black">
-                {discount.discountId}
-              </td>
-              <td className="label-bold-black">{discount.discountType}</td>
-              <td className="label-bold-black">{discount.discountRate}</td>
-              <td className="label-bold-black">
-                {discount.discountProductName}
-              </td>
-              <td className="label-bold-black">
-                {discount.discountDescription}
-              </td>
-              <td className="label-bold-black">{discount.discountStartDate}</td>
-              <td className="label-bold-black">
-                {discount.discountExpirationDate}
-              </td>
-              <td>
-                <button
-                  className="btn btn-success"
-                  onClick={() => {
-                    window.location.replace(
-                      `http://localhost:3000/adminhome/discount/update/${discount._id}`
-                    );
-                  }}
-                >
-                  <FontAwesomeIcon icon={faEdit} />
-                  {/* UPDATE */}
-                </button>
-              </td>
-
-              <td>
-                <button
-                  className="btn btn-danger"
-                  onClick={() => {
-                    window.location.replace(
-                      `http://localhost:3000/adminhome/discount/delete/${discount._id}`
-                    );
-                  }}
-                >
-                  <FontAwesomeIcon icon={faTrash} />
-                  {/* DELETE */}
-                </button>
-              </td>
+        <table
+          className="table table-borderless; table-hover"
+          style={{ marginTop: "20px" }}
+        >
+          <div className="row">
+            <div
+              class="btn-group"
+              role="group"
+              aria-label="Basic example"
+            ></div>
+            <div
+              class="btn-group"
+              role="group"
+              aria-label="Basic example"
+            ></div>
+          </div>
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Discount ID</th>
+              <th scope="col">Discount Type</th>
+              <th scope="col">Discount Rate</th>
+              <th scope="col">Product Name</th>
+              <th scope="col">Description</th>
+              <th scope="col">Start Date</th>
+              <th scope="col">Expiration Date</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {discounts.map((discount) => (
+              <tr scope="row">
+                <td class="text-uppercase label-bold-black">
+                  {discount.discountId}
+                </td>
+                <td className="label-bold-black">{discount.discountType}</td>
+                <td className="label-bold-black">{discount.discountRate}</td>
+                <td className="label-bold-black">
+                  {discount.discountProductName}
+                </td>
+                <td className="label-bold-black">
+                  {discount.discountDescription}
+                </td>
+                <td className="label-bold-black">
+                  {discount.discountStartDate}
+                </td>
+                <td className="label-bold-black">
+                  {discount.discountExpirationDate}
+                </td>
+                <td>
+                  <button
+                    className="btn btn-success"
+                    onClick={() => {
+                      window.location.replace(
+                        `http://localhost:3000/adminhome/discount/update/${discount._id}`
+                      );
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faEdit} />
+                    {/* UPDATE */}
+                  </button>
+                </td>
+
+                <td>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => {
+                      window.location.replace(
+                        `http://localhost:3000/adminhome/discount/delete/${discount._id}`
+                      );
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                    {/* DELETE */}
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

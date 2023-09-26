@@ -84,44 +84,63 @@ function ProductRatingReport() {
   };
 
   return (
-    <div className="container" align="Center">
-      <center>
-        <h1>Product Rating Report</h1>
-      </center>
+    <div>
+      <nav aria-label="breadcrumb">
+        <span class="breadcrumb">
+          <div className="container">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/adminhome">Admin Home</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Product Rating Report
+              </li>
+            </ol>
+          </div>
+        </span>
+      </nav>
+      <div className="container" align="Center">
+        <center>
+          <h1>Product Rating Report</h1>
+        </center>
 
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search items"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        &nbsp;
-        <FontAwesomeIcon icon={faSearch} className="search-icon" />
-      </div>
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search items"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          &nbsp;
+          <FontAwesomeIcon icon={faSearch} className="search-icon" />
+        </div>
 
-      <center>
-        <table>
-          <thead>
-            <tr>
-              <th>Item Name</th>
-              <th>
-                <center>No. of Rates</center>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredItems.map((itemName) => (
-              <tr key={itemName} className={getRowClass(avgRatings[itemName])}>
-                <td>{itemName}</td>
-                <td>
-                  <center>{avgRatings[itemName]}</center>
-                </td>
+        <center>
+          <table>
+            <thead>
+              <tr>
+                <th>Item Name</th>
+                <th>
+                  <center>No. of Rates</center>
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </center>
+            </thead>
+            <tbody>
+              {filteredItems.map((itemName) => (
+                <tr
+                  key={itemName}
+                  className={getRowClass(avgRatings[itemName])}
+                >
+                  <td>{itemName}</td>
+                  <td>
+                    <center>{avgRatings[itemName]}</center>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </center>
+      </div>
     </div>
   );
 }

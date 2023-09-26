@@ -84,10 +84,10 @@ export default function Header() {
                       style={{ marginLeft: "20px", color: "white" }}
                       onClick={toggleDropdown} // Add event handler to toggle dropdown
                     />
-                      {/* Sign Out
+                    {/* Sign Out
                     </button> */}
                     <div
-                      className={`dropdown-menu ${showDropdown ? 'show' : ''}`}
+                      className={`dropdown-menu ${showDropdown ? "show" : ""}`}
                       aria-labelledby="dropdownMenuButton"
                     >
                       <a
@@ -95,7 +95,9 @@ export default function Header() {
                         href="/"
                         onClick={() => {
                           sessionStorage.removeItem("sSyncSolRemotsuc");
+                          sessionStorage.removeItem("sSyncSolNimda");
                           sessionStorage.removeItem("customerEmail");
+                          sessionStorage.removeItem("adminEmail");
                         }}
                       >
                         Sign Out

@@ -149,6 +149,23 @@ export default function AddDiscount() {
 
   return (
     <div>
+      <nav aria-label="breadcrumb">
+        <span class="breadcrumb">
+          <div className="container">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/adminhome">Admin Home</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a href="/adminhome/discount">Discounts</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Add Discount
+              </li>
+            </ol>
+          </div>
+        </span>
+      </nav>
       <div className="container" style={containerStyle}>
         <form onSubmit={sendData} style={{ marginBottom: "20px" }}>
           <h1 className="container label-bold-black">Add Discount</h1>
