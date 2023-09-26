@@ -160,19 +160,20 @@ export default function ProductPage() {
   return (
     <div>
       <nav aria-label="breadcrumb">
-        <span class="breadcrumb">
-          <div className="container">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <a href="/home">Home</a>
-              </li>
-              <li class="breadcrumb-item active" aria-current="page">
-                Product
-              </li>
-            </ol>
-          </div>
-        </span>
-      </nav>
+  <div className="breadcrumb" style={{ height: "80px" ,fontSize:"15px"}}>
+    <div className="container">
+      <ol className="breadcrumb">
+        <li className="breadcrumb-item">
+          <a href="/home">Home</a>
+        </li>
+        <li className="breadcrumb-item active" aria-current="page">
+          Product
+        </li>
+      </ol>
+    </div>
+  </div>
+</nav>
+
       <div className="container">
         <br></br>
         <br></br>
