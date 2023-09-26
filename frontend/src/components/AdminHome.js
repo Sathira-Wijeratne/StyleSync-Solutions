@@ -58,149 +58,162 @@ export default function AdminHome() {
   };
 
   return (
-    <div className="container" style={containerStyle}>
-      <div
-        style={{
-          backgroundColor: "#a6633f",
-          borderRadius: "10px",
-          marginBottom: "10px",
-          padding: "5px",
-        }}
-      >
-        <h1 style={{ color: "black" }}>Welcome Admin</h1>
-      </div>
-      <div style={{ display: "flex", flexWrap: "nowrap" }}>
-        <a href="/adminhome/ProductRatingReport">
-          <button className="btn btn-primary" style={{ marginRight: "20px" }}>
-            Rating Report
-          </button>
-        </a>
-        <a href="/adminhome/salesforecast">
-          <button className="btn btn-primary">Sales Forecast</button>
-        </a>
-      </div>
-
-      <div style={{ float: "right" }}>
-        <a
-          href="/"
-          onClick={() => {
-            sessionStorage.removeItem("sSyncSolNimda");
-            sessionStorage.removeItem("adminEmail");
+    <div>
+      <nav aria-label="breadcrumb">
+        <span class="breadcrumb">
+          <div className="container">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active" aria-current="page">
+                Admin Home
+              </li>
+            </ol>
+          </div>
+        </span>
+      </nav>
+      <div className="container" style={containerStyle}>
+        <div
+          style={{
+            backgroundColor: "#a6633f",
+            borderRadius: "10px",
+            marginBottom: "10px",
+            padding: "5px",
           }}
         >
-          {/*Buttons*/}
-        </a>
-      </div>
+          <h1 style={{ color: "black" }}>Welcome Admin</h1>
+        </div>
+        <div style={{ display: "flex", flexWrap: "nowrap" }}>
+          <a href="/adminhome/ProductRatingReport">
+            <button className="btn btn-primary" style={{ marginRight: "20px" }}>
+              Rating Report
+            </button>
+          </a>
+          <a href="/adminhome/salesforecast">
+            <button className="btn btn-primary">Sales Forecast</button>
+          </a>
+        </div>
 
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {/* Card 1 */}
-        <Card style={cardStyle}>
-          {/* <CardImg
+        <div style={{ float: "right" }}>
+          <a
+            href="/"
+            onClick={() => {
+              sessionStorage.removeItem("sSyncSolNimda");
+              sessionStorage.removeItem("adminEmail");
+            }}
+          >
+            {/*Buttons*/}
+          </a>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {/* Card 1 */}
+          <Card style={cardStyle}>
+            {/* <CardImg
             variant="top"
             src="../images/card1.jpg" // Replace with the actual image path
             alt="Card 1 Image"
           /> */}
-          <Card.Body
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <a href="/adminhome/discount/add" style={linkStyle}>
-              <Card.Title>Add Discount</Card.Title>
-              <FontAwesomeIcon
-                icon={faPlus}
-                style={{ fontSize: "48px", marginTop: "10px" }}
-              />
-              {/* <Card.Text>Card content here.</Card.Text> */}
-            </a>
-          </Card.Body>
-        </Card>
+            <Card.Body
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <a href="/adminhome/discount/add" style={linkStyle}>
+                <Card.Title>Add Discount</Card.Title>
+                <FontAwesomeIcon
+                  icon={faPlus}
+                  style={{ fontSize: "48px", marginTop: "10px" }}
+                />
+                {/* <Card.Text>Card content here.</Card.Text> */}
+              </a>
+            </Card.Body>
+          </Card>
 
-        {/* Card 2 */}
-        <Card style={cardStyle}>
-          {/* <CardImg
+          {/* Card 2 */}
+          <Card style={cardStyle}>
+            {/* <CardImg
             variant="top"
             src="../images/card2.jpg" // Replace with the actual image path
             alt="Card 2 Image"
           /> */}
-          <Card.Body
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <a href="/adminhome/discount/" style={linkStyle}>
-              <Card.Title>View All Discounts</Card.Title>
-              <FontAwesomeIcon
-                icon={faList}
-                style={{ fontSize: "48px", marginTop: "10px" }}
-              />
-              {/* <Card.Text>Card content here.</Card.Text> */}
-            </a>
-          </Card.Body>
-        </Card>
+            <Card.Body
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <a href="/adminhome/discount/" style={linkStyle}>
+                <Card.Title>View All Discounts</Card.Title>
+                <FontAwesomeIcon
+                  icon={faList}
+                  style={{ fontSize: "48px", marginTop: "10px" }}
+                />
+                {/* <Card.Text>Card content here.</Card.Text> */}
+              </a>
+            </Card.Body>
+          </Card>
 
-        {/* Card 3 */}
-        <Card style={cardStyle}>
-          {/* <CardImg
+          {/* Card 3 */}
+          <Card style={cardStyle}>
+            {/* <CardImg
             variant="top"
             src="../images/card3.jpg" // Replace with the actual image path
             alt="Card 3 Image"
           /> */}
-          <Card.Body
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Card.Title>Update Discounts</Card.Title>
-            <FontAwesomeIcon
-              icon={faEdit}
-              style={{ fontSize: "48px", marginTop: "10px" }}
-            />
-            {/* <Card.Text>Card content here.</Card.Text> */}
-          </Card.Body>
-        </Card>
+            <Card.Body
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Card.Title>Update Discounts</Card.Title>
+              <FontAwesomeIcon
+                icon={faEdit}
+                style={{ fontSize: "48px", marginTop: "10px" }}
+              />
+              {/* <Card.Text>Card content here.</Card.Text> */}
+            </Card.Body>
+          </Card>
 
-        {/* Card 4 */}
-        <Card style={cardStyle}>
-          {/* <CardImg
+          {/* Card 4 */}
+          <Card style={cardStyle}>
+            {/* <CardImg
             variant="top"
             // src="../images/card4.jpg" // Replace with the actual image path
             alt="Card 4 Image"
           /> */}
-          <Card.Body
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <a href="/adminhome/discount/reports" style={linkStyle}>
-              <Card.Title>Reports and Analytics</Card.Title>
-              <FontAwesomeIcon
-                icon={faChartLine}
-                style={{ fontSize: "48px", marginTop: "10px" }}
-              />
-              {/* <Card.Text>Card content here.</Card.Text> */}
-            </a>
-          </Card.Body>
-        </Card>
+            <Card.Body
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <a href="/adminhome/discount/reports" style={linkStyle}>
+                <Card.Title>Reports and Analytics</Card.Title>
+                <FontAwesomeIcon
+                  icon={faChartLine}
+                  style={{ fontSize: "48px", marginTop: "10px" }}
+                />
+                {/* <Card.Text>Card content here.</Card.Text> */}
+              </a>
+            </Card.Body>
+          </Card>
+        </div>
       </div>
     </div>
   );
