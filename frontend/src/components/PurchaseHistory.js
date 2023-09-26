@@ -44,13 +44,10 @@ export default function PurchaseHistory() {
       </nav>
       <div className="container">
         <div id="product-page-heading" style={{ textAlign: "center" }}>
-          <h1>Welcome to your transactions 💲💲💲</h1>
+          <h1>Transaction History 💰</h1>
         </div>
         <div class="col-md-12">
           <div class="card mb-4">
-            <div class="card-header py-3">
-              <h5 class="mb-0">Purchase History</h5>
-            </div>
             {products.map((product) => (
               <>
                 <div class="card-body">
@@ -106,6 +103,9 @@ export default function PurchaseHistory() {
                             style={{ maxWidth: 300 }}
                           >
                             <div class="form-outline">
+                            <label class="form-label" for="form1">
+                                Quantity
+                              </label>
                               <input
                                 id="form1"
                                 min="1"
@@ -113,19 +113,17 @@ export default function PurchaseHistory() {
                                 value={item.productQuantity}
                                 type="number"
                                 class="form-control"
-                                style={{ border: "3px solid #1691ef" }}
+                                style={{ border: "3px solid #000000"}}
                                 disabled
                                 onChange={(e) => {
                                   // handleQuantityChange(item.productId, e.target.value);
                                   // updateProductQuantity(item.productId, e.target.value);
                                 }}
                               />
-                              <label class="form-label" for="form1">
-                                Quantity
-                              </label>
+                              
                             </div>
                           </div>
-                          <p class="text-start text-md-center">
+                          <p class="text-start text-md-center"> Price : 
                             <strong>{item.productPrice} €</strong>
                           </p>
                           {/* {calculateTotal(item.productQuantity, item.productPrice)} */}
