@@ -233,9 +233,10 @@ export default function ProductPage() {
                 className="add-to-cart btn btn-default"
                 type="button"
                 onClick={addToCart}
-                style={{ marginRight: "10px" }}
+                style={{ backgroundColor: "black" ,width:100,height:20,alignItems: "center",
+                justifyContent: "center"}}
               >
-                Add to cart
+                Add
               </button>
             </div>
           </div>
@@ -247,34 +248,39 @@ export default function ProductPage() {
         <b>Product Reviews </b>
       </h2>
       <br></br>
-      <Form onSubmit={submitComment}>
-        <Form.Group
-          className="mb-3"
-          controlId="exampleForm.ControlInput1"
-          style={containerStyle}
-        >
-          <Form.Control
-            type="text"
-            placeholder="Add Comments"
-            value={customerComment}
-            onChange={(e) => setCustomerComment(e.target.value)}
-          />
-          <button type="submit" style={buttonStyle}>
-            <RiSendPlane2Line />
-          </button>
-        </Form.Group>
-      </Form>
+      <Form onSubmit={submitComment} style={{ backgroundColor: "black", color: "white", padding: "20px" }}>
+  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" style={{ display: "flex", alignItems: "center" }}>
+    <Form.Control
+      type="text"
+      placeholder="Add Comments"
+      value={customerComment}
+      onChange={(e) => setCustomerComment(e.target.value)}
+      style={{ backgroundColor: "white", color: "black", border: "", marginRight: "10px", padding: "10px", flex: 1 }}
+    />
+    <button type="submit" style={{ backgroundColor: "white", color: "black", border: "none", padding: "10px", cursor: "pointer" }}>
+      <RiSendPlane2Line style={{ fontSize: "1.5rem" }} />
+    </button>
+  </Form.Group>
+</Form>
 
-      {custcomments.map((custcomments) => (
-        <div class="card-rows">
-          <div class="card bg-primary">
-            <div class="card-body text-left">
-              <p class="card-text">{custcomments.customerEmail}</p>
-              <p class="card-text">{custcomments.customerComments}</p>
-            </div>
-          </div>
+<div style={{ fontFamily: "Oswald, sans-serif", color: "white", margin: "20px 0" }}>
+  {custcomments.map((custcomments) => (
+    <div className="card-rows" key={custcomments.id}>
+      <div className="card" style={{ backgroundColor: "black", color: "white", margin: "10px 0" }}>
+        <div className="card-body text-left">
+          <p className="card-text" style={{ fontWeight: "bold" }}>
+            {custcomments.customerEmail}
+          </p>
+          <p className="card-text" style={{ fontFamily: "Oswald, sans-serif", color: "white" }}>
+            {custcomments.customerComments}
+          </p>
         </div>
-      ))}
+      </div>
+    </div>
+  ))}
+</div>
+
+
     </div>
   );
 }
