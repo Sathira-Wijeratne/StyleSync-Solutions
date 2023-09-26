@@ -371,7 +371,7 @@ export default function SalesForecastResult() {
           <br />
           <br />
           <center>
-            <h1>Stay tuned while we decode the future 🔮...</h1>
+            <h1>Stay tuned while we predict the future 🔮...</h1>
             <Spinner color="primary" />
           </center>
         </div>
