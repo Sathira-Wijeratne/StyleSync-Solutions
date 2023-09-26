@@ -1,7 +1,7 @@
 import React from "react";
 import backgroundImage from "../images/reports.jpg";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilter } from "@fortawesome/free-solid-svg-icons";
 
 const DiscountsReport = () => {
   if (sessionStorage.getItem("sSyncSolNimda") === null) {
@@ -15,21 +15,21 @@ const DiscountsReport = () => {
       discountRate: 0.1, // 10% discount rate
       Month: 1,
       revenueBeforeDiscount: 100, // $100 revenue before discount
-      noOfUnitsSold: 49
+      noOfUnitsSold: 49,
     },
     {
       productName: "Product B",
       discountRate: 0.15, // 15% discount rate
       Month: 1,
       revenueBeforeDiscount: 150, // $150 revenue before discount
-      noOfUnitsSold: 65
+      noOfUnitsSold: 65,
     },
     {
       productName: "Product C",
       discountRate: 0.05, // 5% discount rate
       Month: 1,
       revenueBeforeDiscount: 80, // $80 revenue before discount
-      noOfUnitsSold: 89
+      noOfUnitsSold: 89,
     },
   ];
 
@@ -54,46 +54,84 @@ const DiscountsReport = () => {
   };
 
   return (
-    <div style={containerStyle}>
-      <div style={{ float: "right" }}>
-        <FontAwesomeIcon icon={faFilter} size="2xl" style={{ color: "#000000", marginRight: '230px', marginTop: '38px'}} />
-      </div>
-      <div className="container">
-        <br/><h1 style={{backgroundColor: '#d5dae2', borderRadius: '10px', marginBottom: '10px', padding: '5px' }}>Discounts Report</h1>
-      </div>
+    <div>
+      <nav aria-label="breadcrumb">
+        <span class="breadcrumb">
+          <div className="container">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/adminhome">Admin Home</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a href="/adminhome/discount">Discounts</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Report
+              </li>
+            </ol>
+          </div>
+        </span>
+      </nav>
+      <div style={containerStyle}>
+        <div style={{ float: "right" }}>
+          <FontAwesomeIcon
+            icon={faFilter}
+            size="2xl"
+            style={{
+              color: "#000000",
+              marginRight: "230px",
+              marginTop: "38px",
+            }}
+          />
+        </div>
+        <div className="container">
+          <br />
+          <h1
+            style={{
+              backgroundColor: "#d5dae2",
+              borderRadius: "10px",
+              marginBottom: "10px",
+              padding: "5px",
+            }}
+          >
+            Discounts Report
+          </h1>
+        </div>
 
-      <table className="container table" style={{ backgroundColor: 'lightgrey' }}>
-        <thead class="thead-dark">
-          <tr>
-            <th className="label-bold-black">Product Name</th>
-            <th className="label-bold-black">Discount Rate</th>
-            <th className="label-bold-black">No. Of Units Sold</th>
-            {/* <th className="label-bold-black">Month</th> */}
-            {/* <th className="label-bold-black">Revenue Before Discount</th> */}
-            {/* <th className="label-bold-black">Revenue After Discount</th> */}
-          </tr>
-        </thead>
-        <tbody>
-          {reportDataWithRevenueAfterDiscount.map((data, index) => (
-            <tr key={index}>
-              <td className="label-bold-black">{data.productName}</td>
-              <td className="label-bold-black">{`${(
-                data.discountRate * 100
-              ).toFixed(2)}%`}</td>
-              {/* <td className="label-bold-black">{data.Month}</td>
+        <table
+          className="container table"
+          style={{ backgroundColor: "lightgrey" }}
+        >
+          <thead class="thead-dark">
+            <tr>
+              <th className="label-bold-black">Product Name</th>
+              <th className="label-bold-black">Discount Rate</th>
+              <th className="label-bold-black">No. Of Units Sold</th>
+              {/* <th className="label-bold-black">Month</th> */}
+              {/* <th className="label-bold-black">Revenue Before Discount</th> */}
+              {/* <th className="label-bold-black">Revenue After Discount</th> */}
+            </tr>
+          </thead>
+          <tbody>
+            {reportDataWithRevenueAfterDiscount.map((data, index) => (
+              <tr key={index}>
+                <td className="label-bold-black">{data.productName}</td>
+                <td className="label-bold-black">{`${(
+                  data.discountRate * 100
+                ).toFixed(2)}%`}</td>
+                {/* <td className="label-bold-black">{data.Month}</td>
               <td className="label-bold-black">
                 ${data.revenueBeforeDiscount.toFixed(2)}
               </td>
               <td className="label-bold-black">
                 ${data.revenueAfterDiscount.toFixed(2)}
               </td> */}
-              <td className="label-bold-black">
-                {data.noOfUnitsSold}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                <td className="label-bold-black">{data.noOfUnitsSold}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
