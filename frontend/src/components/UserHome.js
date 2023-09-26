@@ -104,7 +104,7 @@ export default function UserHome() {
     <div>
       <div
         className="container-flex"
-        style={{ height: "50vh", overflow: "hidden" }}
+        style={{ height: "80vh", overflow: "hidden" }}
       >
         <div
           id="carouselExampleControls"
