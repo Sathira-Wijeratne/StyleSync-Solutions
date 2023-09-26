@@ -28,11 +28,11 @@ export default function Header() {
             </td>
             <td width={1050}></td>
             <td>
-              <div
-                className="col-md-12 text-end"
+             <div
+              className="col-md-12 text-end"
                 style={{ justifyContent: "right", display: "flex" }}
               >
-                {sessionStorage.getItem("customerEmail") && (
+                   {/* {sessionStorage.getItem("customerEmail") && (
                   <a type="button" href="/home">
                     <FontAwesomeIcon
                       icon={faHouse}
@@ -49,7 +49,7 @@ export default function Header() {
                       style={{ marginLeft: "25px", color: "white" }}
                     />
                   </a>
-                )}
+                )} */}
                 {sessionStorage.getItem("customerEmail") && (
                   <a type="button" href="/cart">
                     <FontAwesomeIcon
