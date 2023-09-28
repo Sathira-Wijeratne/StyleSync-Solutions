@@ -20,7 +20,7 @@ export default function AdminHome() {
 
   const containerStyle = {
     backgroundImage: `url(${backgroundImage})`, // Set the background image
-    backgroundSize: "cover", // Cover the entire container
+    backgroundSize: "fill", // Cover the entire container
     backgroundRepeat: "no-repeat", // Don't repeat the background image
     backgroundAttachment: "fixed", // Keep the background image fixed
     backgroundPosition: "center", // Center the background image
@@ -41,7 +41,7 @@ export default function AdminHome() {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)", // Add background color with opacity
+    backgroundColor: "rgba(0, 0, 0, 1.5)", // Add background color with opacity
     borderRadius: "10px", // Add rounded corners
   };
 
@@ -58,19 +58,9 @@ export default function AdminHome() {
   };
 
   return (
-    <div>
-      <nav aria-label="breadcrumb">
-        <span class="breadcrumb">
-          <div className="container">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item active" aria-current="page">
-                Admin Home
-              </li>
-            </ol>
-          </div>
-        </span>
-      </nav>
-      <div className="container" style={containerStyle}>
+    <div className="container-fluid" >
+      
+      <div className="container-fluid"style={containerStyle} >
         <div
           style={{
             backgroundColor: "#a6633f",
@@ -83,12 +73,12 @@ export default function AdminHome() {
         </div>
         <div style={{ display: "flex", flexWrap: "nowrap" }}>
           <a href="/adminhome/ProductRatingReport">
-            <button className="btn btn-primary" style={{ marginRight: "20px" }}>
+            <button className="btn btn-primary" style={{ marginRight: "20px",backgroundColor:"black" }}>
               Rating Report
             </button>
           </a>
           <a href="/adminhome/salesforecast">
-            <button className="btn btn-primary">Sales Forecast</button>
+            <button className="btn btn-primary" style={{backgroundColor:"black"}}>Sales Forecast</button>
           </a>
         </div>
 
