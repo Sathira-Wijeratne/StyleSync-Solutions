@@ -48,7 +48,7 @@ export default function AllDiscounts() {
 
   return (
     <div className="container" style={containerStyle}>
-      <h1 style={{color:'black'}}>All Discounts</h1>
+      <h1 style={{ color: "black" }}>All Discounts</h1>
       <div className="d-flex justify-content-end">
         <Button
           variant="primary"
@@ -73,7 +73,6 @@ export default function AllDiscounts() {
         <thead class="thead-dark">
           <tr>
             <th scope="col">Discount ID</th>
-            <th scope="col">Discount Type</th>
             <th scope="col">Discount Rate</th>
             <th scope="col">Product Name</th>
             <th scope="col">Description</th>
@@ -90,7 +89,6 @@ export default function AllDiscounts() {
               <td class="text-uppercase label-bold-black">
                 {discount.discountId}
               </td>
-              <td className="label-bold-black">{discount.discountType}</td>
               <td className="label-bold-black">{discount.discountRate}</td>
               <td className="label-bold-black">
                 {discount.discountProductName}
