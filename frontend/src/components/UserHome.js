@@ -25,6 +25,8 @@ export default function UserHome() {
   const [FeaturedProductTwo, setFeaturedProductTwo] = useState([]);
   const [FeaturedProductThree, setFeaturedProductThree] = useState([]);
   const [FeaturedProductFour, setFeaturedProductFour] = useState([]);
+  const [discounts, setDiscounts] = useState([]);
+  const [discountData, setDiscountData] = useState({});
 
   useEffect(() => {
     function getProductDetails() {
@@ -38,6 +40,28 @@ export default function UserHome() {
           alert(err.message);
         });
     }
+    // function getDiscounts() {
+    //   axios
+    //     .get("http://localhost:8070/discount/")
+    //     .then((res) => {
+    //       console.log(res.data);
+    //       setDiscounts(res.data);
+    //     })
+    //     .catch((err) => {
+    //       alert(err.message);
+    //     });
+    // }
+    // getDiscounts();
+    axios.get("http://localhost:8070/discount/").then((res) => {
+      const discountMap = {};
+      res.data.forEach((discount) => {
+        discountMap[discount.discountProductName] = {
+          discountRate: discount.discountRate,
+          discountDescription: discount.discountDescription,
+        };
+      });
+      setDiscountData(discountMap);
+    });
 
     // Fetch ratings data and calculate average ratings using the getAverageRatings function
     axios.get("http://localhost:8070/rating").then((res) => {
@@ -98,6 +122,26 @@ export default function UserHome() {
     });
 
     return result;
+  }
+
+  function getDiscountRate(product) {
+    const discount = discounts.find(
+      (discount) => discount.discountProductName === product[1]
+    );
+    return discount ? discount.discountRate + "%" : "N/A";
+  }
+
+  function calculatePriceAfterDiscount(product) {
+    const discount = discounts.find(
+      (discount) => discount.discountProductName === product[1]
+    );
+    if (discount) {
+      const discountRate = parseFloat(discount.discountRate) / 100;
+      const originalPrice = parseFloat(product[2]);
+      const discountedPrice = originalPrice - originalPrice * discountRate;
+      return discountedPrice.toFixed(2);
+    }
+    return parseFloat(product[2]).toFixed(2);
   }
 
   return (
@@ -342,6 +386,7 @@ export default function UserHome() {
                     <h3 style={{ fontSize: "1.1rem", marginBottom: "0.5rem" }}>
                       {FeaturedProductThree[1]}
                     </h3>
+
                     <span
                       style={{ fontWeight: "bold", marginBottom: "0.5rem" }}
                     >
@@ -493,6 +538,36 @@ export default function UserHome() {
                             {parseFloat(product[2]).toFixed(2)} €
                           </span>
 
+                          {discountData[product[1]] && (
+                            <div>
+                              <label>Price Before Discount:</label>
+                              <span style={{ textDecoration: "line-through" }}>
+                                {parseFloat(product[2]).toFixed(2)} €
+                              </span>
+                            </div>
+                          )}
+                          {discountData[product[1]] && (
+                            <div>
+                              <label>Discount Rate:</label>
+                              <span>
+                                {discountData[product[1]].discountRate}%
+                              </span>
+                            </div>
+                          )}
+                          {discountData[product[1]] && (
+                            <div>
+                              <label>Price After Discount:</label>
+                              <span>
+                                {(
+                                  parseFloat(product[2]) -
+                                  (parseFloat(product[2]) *
+                                    discountData[product[1]].discountRate) /
+                                    100
+                                ).toFixed(2)}{" "}
+                                €
+                              </span>
+                            </div>
+                          )}
                           <Rater
                             total={5}
                             rating={avgRatings[product[1]]}
