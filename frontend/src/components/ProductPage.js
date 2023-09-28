@@ -25,6 +25,7 @@ export default function ProductPage() {
   const [hasRateObj, setHasRateObj] = useState(false);
   const [custcomments, setcustComments] = useState([]);
   const [productDiscountRate, setProductDiscountRate] = useState(null);
+  const [priceAfterDiscount, setPriceAfterDiscount] = useState(null);
 
   useEffect(() => {
     axios
@@ -57,16 +58,45 @@ export default function ProductPage() {
       .catch((err) => {
         alert(err.message);
       });
+    // axios
+    //   .get(`http://localhost:8070/product/getDetails/${id}`)
+    //   .then((res) => {
+    //     axios.get("http://localhost:8070/discount/").then((discountRes) => {
+    //       const discounts = discountRes.data;
+    //       const matchingDiscount = discounts.find(
+    //         (discount) => discount.discountProductName === res.data[1]
+    //       );
+    //       if (matchingDiscount) {
+    //         setProductDiscountRate(matchingDiscount.discountRate);
+    //       }
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     alert(err.message);
+    //   });
     axios
       .get(`http://localhost:8070/product/getDetails/${id}`)
       .then((res) => {
+        // ... (existing code)
+
+        // Fetch the list of discounts
         axios.get("http://localhost:8070/discount/").then((discountRes) => {
           const discounts = discountRes.data;
+
+          // Find the discount that matches the current product's name
           const matchingDiscount = discounts.find(
             (discount) => discount.discountProductName === res.data[1]
           );
+
+          // If a matching discount is found, set the discount rate
           if (matchingDiscount) {
             setProductDiscountRate(matchingDiscount.discountRate);
+            // Calculate the price after discount
+            const originalPrice = parseFloat(res.data[2]);
+            const discountRate = parseFloat(matchingDiscount.discountRate);
+            const discountedPrice =
+              originalPrice - (originalPrice * discountRate) / 100;
+            setPriceAfterDiscount(discountedPrice);
           }
         });
       })
@@ -245,24 +275,19 @@ export default function ProductPage() {
                 }}
               />
             </div>
+            {/* {priceBeforeDiscount !== null && (
+              <div>
+                <b>Price Before Discount:</b> {priceBeforeDiscount.toFixed(2)} €
+              </div>
+            )} */}
             {productDiscountRate !== null && (
-              <div style={{ color: "red" }}>
-                <b>
-                  <FaPercentage
-                    style={{
-                      transition: "transform 0.2s",
-                      display: "inline-block",
-                    }}
-                    onMouseEnter={(e) =>
-                      (e.target.style.transform = "scale(1.2)")
-                    }
-                    onMouseLeave={(e) =>
-                      (e.target.style.transform = "scale(1)")
-                    }
-                  />{" "}
-                  Discount Rate:
-                </b>{" "}
-                {productDiscountRate}%
+              <div>
+                <b>Discount Rate:</b> {productDiscountRate}%
+              </div>
+            )}
+            {priceAfterDiscount !== null && (
+              <div>
+                <b>Price After Discount:</b> {priceAfterDiscount.toFixed(2)} €
               </div>
             )}
 
