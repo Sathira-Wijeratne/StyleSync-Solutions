@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import Rater from "react-rater";
 import "react-rater/lib/react-rater.css";
 import Form from "react-bootstrap/Form";
+import { FaPercentage } from "react-icons/fa";
 import { RiSendPlane2Line } from "react-icons/ri";
 
 export default function ProductPage() {
@@ -23,6 +24,7 @@ export default function ProductPage() {
   const [rateObj, setRateObj] = useState({});
   const [hasRateObj, setHasRateObj] = useState(false);
   const [custcomments, setcustComments] = useState([]);
+  const [productDiscountRate, setProductDiscountRate] = useState(null);
 
   useEffect(() => {
     axios
@@ -51,6 +53,22 @@ export default function ProductPage() {
             console.log(res.data);
             setcustComments(res.data);
           });
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+    axios
+      .get(`http://localhost:8070/product/getDetails/${id}`)
+      .then((res) => {
+        axios.get("http://localhost:8070/discount/").then((discountRes) => {
+          const discounts = discountRes.data;
+          const matchingDiscount = discounts.find(
+            (discount) => discount.discountProductName === res.data[1]
+          );
+          if (matchingDiscount) {
+            setProductDiscountRate(matchingDiscount.discountRate);
+          }
+        });
       })
       .catch((err) => {
         alert(err.message);
@@ -227,6 +245,26 @@ export default function ProductPage() {
                 }}
               />
             </div>
+            {productDiscountRate !== null && (
+              <div style={{ color: "red" }}>
+                <b>
+                  <FaPercentage
+                    style={{
+                      transition: "transform 0.2s",
+                      display: "inline-block",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.target.style.transform = "scale(1.2)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.target.style.transform = "scale(1)")
+                    }
+                  />{" "}
+                  Discount Rate:
+                </b>{" "}
+                {productDiscountRate}%
+              </div>
+            )}
 
             <div className="action">
               <button
