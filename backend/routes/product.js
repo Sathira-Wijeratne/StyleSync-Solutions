@@ -3,15 +3,13 @@ const fs = require("fs");
 const { parse } = require("csv-parse");
 
 let products = [];
-let toLine = 10;
 
 router.route("/").get(async (req, res) => {
-  // let products = [];
   if (products.length === 0) {
     fs.createReadStream(
       "./data/summer-products-with-rating-and-performance_2020-08.csv"
     )
-      .pipe(parse({ delimiter: ",", from_line: 2, to_line: toLine }))
+      .pipe(parse({ delimiter: ",", from_line: 2}))
       .on("data", function (row) {
         products.push(row);
       })

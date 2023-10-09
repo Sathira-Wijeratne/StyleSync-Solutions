@@ -3,9 +3,9 @@ import Rater from "react-rater";
 import "react-rater/lib/react-rater.css";
 // import Button from "react-bootstrap/Button";
 import axios from "axios";
-import womens from "../images/womens.png";
-import imageTwo from "../images/imageTwo.png";
-import image03 from "../images/image03.png";
+import womens from "../images/womens.jpg";
+import imageTwo from "../images/imageTwo.jpg";
+import image03 from "../images/image03c.jpg";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import {
 //   faCartShopping,
@@ -26,6 +26,46 @@ export default function UserHome() {
   const [FeaturedProductThree, setFeaturedProductThree] = useState([]);
   const [FeaturedProductFour, setFeaturedProductFour] = useState([]);
 
+  //pagination variables
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordsPerPage = 18;
+  const lastIndex = currentPage * recordsPerPage;
+  const firstIndex = lastIndex - recordsPerPage;
+  const records = products.slice(firstIndex, lastIndex);
+  const npage = Math.ceil(products.length / recordsPerPage)
+  const numbers = [...Array(npage + 1).keys()].slice(1);
+
+  const visiblePagesPerSection = 10;
+  const totalSections = Math.ceil(npage / visiblePagesPerSection);
+  const currentSection = Math.ceil(currentPage / visiblePagesPerSection);
+  const startPage = (currentSection - 1) * visiblePagesPerSection + 1;
+  const endPage = Math.min(startPage + visiblePagesPerSection - 1, npage);
+  const sectionPageNumbers = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+
+  //pagination methods
+  function prePage(e) {
+    if (currentPage !== firstIndex) {
+      e.preventDefault();
+      setCurrentPage(currentPage - 1);
+      window.scrollTo({ top: 1085 });
+    }
+  }
+
+  function nextPage(e) {
+    if (currentPage !== lastIndex) {
+      e.preventDefault();
+      setCurrentPage(currentPage + 1);
+      window.scrollTo({ top: 1085 });
+    }
+  }
+
+  function changeCPage(e, id) {
+    e.preventDefault();
+    setCurrentPage(id);
+    window.scrollTo({ top: 1085 });
+  }
+
+
   useEffect(() => {
     function getProductDetails() {
       axios
@@ -38,7 +78,6 @@ export default function UserHome() {
           alert(err.message);
         });
     }
-
     // Fetch ratings data and calculate average ratings using the getAverageRatings function
     axios.get("http://localhost:8070/rating").then((res) => {
       setAvgRatings(getAverageRatings(res.data));
@@ -448,7 +487,7 @@ export default function UserHome() {
                       gap: "1rem",
                     }}
                   >
-                    {products.map((product) => (
+                    {records.map((product) => (
                       <div
                         id="product-page-product"
                         style={{
@@ -515,6 +554,36 @@ export default function UserHome() {
                     ))}
                   </div>
                 </div>
+
+                <nav aria-label="Page navigation example" style={{ display: 'flex', justifyContent: 'center' }}>
+                  <ul class="pagination">
+                    <li className="page-item">
+                      <a className="page-link"
+                        onClick={prePage}
+                        href='#'>
+                        Previous
+                      </a>
+                    </li>
+
+                    {/* {numbers.map((n, i) => (
+                      <li className="page-items">
+                        <a href='#' className="page-link" onClick={(e) => changeCPage(e, n)}> {n}</a>
+                      </li>
+                    ))} */}
+
+                    {sectionPageNumbers.map((n, i) => (
+                      <li class="page-item"><a href='#' className="page-link" onClick={(e) => changeCPage(e, n)}>{n}</a></li>
+                    ))}
+
+                    <li className="page-item">
+                      <a className="page-link"
+                        onClick={nextPage}
+                        href='#'>
+                        Next
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
               </div>
             </div>
           </div>
