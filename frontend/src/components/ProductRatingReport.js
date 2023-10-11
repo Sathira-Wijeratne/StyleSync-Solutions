@@ -50,7 +50,7 @@ function ProductRatingReport() {
     console.log(arr);
     const itemMap = new Map();
     const result = {};
-
+  
     arr.forEach((obj) => {
       if (!itemMap.has(obj.title_orig)) {
         itemMap.set(obj.title_orig, [obj.noOfRate]);
@@ -58,15 +58,16 @@ function ProductRatingReport() {
         itemMap.get(obj.title_orig).push(obj.noOfRate);
       }
     });
-
+  
     itemMap.forEach((value, key) => {
       const sum = value.reduce((acc, curr) => acc + curr, 0);
       const avg = sum / value.length;
-      result[key] = avg;
+      result[key] = Math.round(avg); // Round the average to a whole number
     });
-
+  
     return result;
   }
+  
 
   // Function to change the row color based on the rates
   const getRowClass = (noOfRate) => {
