@@ -1,4 +1,5 @@
 const router = require("express").Router();
+let Discount = require("../models/Discount");
 let Purchase = require("../models/Purchase");
 
 // Add new purchase
@@ -42,69 +43,140 @@ router.route("/get/:buyerEmail").get(async (req, res) => {
 router.route("/product-history/:productName").get(async (req, res) => {
   const productName = req.params.productName;
 
-  const retrieve = await Purchase.find({ "purchaseItems.productName": productName })
+  const retrieve = await Purchase.find({
+    "purchaseItems.productName": productName,
+  })
     .then((purchases) => {
       res.json(purchases);
     })
     .catch((err) => {
-      res.status(500).send({ status: "Oops! Error in loading the purchase history" });
+      res
+        .status(500)
+        .send({ status: "Oops! Error in loading the purchase history" });
     });
 });
 
-
 // Get total purchases of a specific product within a given month
-router
-  .route("/total-purchases/:year/:month/:productName")
-  .get(async (req, res) => {
-    const year = parseInt(req.params.year); // Extract year from URL parameter
-    const month = parseInt(req.params.month); // Extract month from URL parameter
-    const productName = req.params.productName; // Extract product name from URL parameter
+router.route("/getDiscountReportData/:year/:month").get(async (req, res) => {
+  const year = parseInt(req.params.year);
+  const month = parseInt(req.params.month);
 
-    if (isNaN(year) || isNaN(month)) {
-      return res.status(400).json({ error: "Invalid year or month provided." });
-    }
+  const startDate = new Date(year, month - 1, 2);
+  const endDate = new Date(year, month, 1);
 
-    // Calculate the start and end dates of the given month
-    // const startDate = new Date(year, month - 1, 1);
-    // const endDate = new Date(year, month - 1, 0);
-    const startDate = new Date(year, month - 1, 1);
-    const endDate = new Date(year, month, 0); // Set day to 0 to get the last day of the previous month
+  // try {
+  //   // Use MongoDB aggregation to count the number of purchases of the specific product within the specified month
+  //   const result = await Purchase.aggregate([
+  //     {
+  //       $match: {
+  //         purchaseDate: {
+  //           $gte: startDate,
+  //           $lte: endDate,
+  //         },
+  //         // "purchaseItems.productName": productName,
+  //       },
+  //     },
+  //     {
+  //       $group: {
+  //         _id: null,
+  //         totalPurchases: { $sum: "$purchaseItems.quantity" }, // Sum the quantity for the specific product
+  //       },
+  //     },
+  //   ]);
 
-    // Get the last day of the specified month
+  //   if (result.length === 0) {
+  //     // No purchases found for the given product and month
+  //     return res.json({ totalPurchases: 0 });
+  //   }
 
-    try {
-      // Use MongoDB aggregation to count the number of purchases of the specific product within the specified month
-      const result = await Purchase.aggregate([
-        {
-          $match: {
-            purchaseDate: {
-              $gte: startDate,
-              $lte: endDate,
-            },
-            "purchaseItems.productName": productName,
+  //   // Return the total number of purchases of the specific product for the given month
+  //   res.json({ totalPurchases: result[0].totalPurchases });
+  // } catch (error) {
+  //   console.error(error);
+  //   res.status(500).json({
+  //     error: "An error occurred while calculating the total purchases.",
+  //   });
+  // }
+
+  try {
+    const discountProductNamePipeline = [
+      {
+        $match: {
+          $expr: {
+            $and: [
+              { $eq: [{ $year: "$discountStartDate" }, year] },
+              { $eq: [{ $month: "$discountStartDate" }, month] },
+            ],
           },
         },
-        {
-          $group: {
-            _id: null,
-            totalPurchases: { $sum: "$purchaseItems.quantity" }, // Sum the quantity for the specific product
+      },
+      {
+        $group: {
+          _id: null,
+          distinctDiscounts: { $addToSet: "$discountProductName" },
+        },
+      },
+    ];
+
+    const distinctDiscounts = await Discount.aggregate(
+      discountProductNamePipeline
+    );
+
+    const productNameFilter = {
+      "purchaseItems.productName": {
+        $in: distinctDiscounts[0].distinctDiscounts,
+      },
+    };
+
+    const purchaseItemsPipeline = [
+      { $match: productNameFilter },
+      { $unwind: "$purchaseItems" },
+      {
+        $match: {
+          "purchaseItems.productName": {
+            $in: distinctDiscounts[0].distinctDiscounts,
+          },
+          $expr: {
+            $and: [
+              { $eq: [{ $year: "$purchaseDate" }, year] },
+              { $eq: [{ $month: "$purchaseDate" }, month] },
+            ],
           },
         },
-      ]);
+      },
+      {
+        $group: {
+          _id: "$purchaseItems.productName",
+          totalQuantity: { $sum: "$purchaseItems.productQuantity" },
+        },
+      },
+      {
+        $lookup: {
+          from: "discounts",
+          localField: "_id",
+          foreignField: "discountProductName",
+          as: "discountData",
+        },
+      },
+      {
+        $unwind: "$discountData",
+      },
+      {
+        $project: {
+          _id: 1,
+          totalQuantity: 1,
+          discountId: "$discountData.discountId",
+          discountRate: "$discountData.discountRate",
+        },
+      },
+    ];
 
-      if (result.length === 0) {
-        // No purchases found for the given product and month
-        return res.json({ totalPurchases: 0 });
-      }
+    const totalQuantities = await Purchase.aggregate(purchaseItemsPipeline);
 
-      // Return the total number of purchases of the specific product for the given month
-      res.json({ totalPurchases: result[0].totalPurchases });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({
-        error: "An error occurred while calculating the total purchases.",
-      });
-    }
-  });
+    res.send(totalQuantities);
+  } catch (e) {
+    res.json([]);
+  }
+});
 
 module.exports = router;

@@ -33,36 +33,65 @@ const DiscountsReport = () => {
     "December",
   ];
 
-  useEffect(() => {
-    console.log("Hello");
-    function getDiscounts() {
+  // useEffect(() => {
+  //   console.log("Hello");
+  //   function getDiscounts() {
+  //     axios
+  //       .get("http://localhost:8070/discount/")
+  //       .then((res) => {
+  //         console.log(res.data);
+  //         setDiscounts(res.data);
+  //       })
+  //       .catch((err) => {
+  //         alert(err.message);
+  //       });
+  //   }
+  //   getDiscounts();
+  // }, []);
+
+  // useEffect(() => {
+  //   if (selectedMonth && selectedYear) {
+  //     axios
+  //       .get(
+  //         `http://localhost:8070/total-purchases/${selectedYear}/${selectedMonth}/`
+  //       )
+  //       .then((res) => {
+  //         setQuantitySold(res.data);
+  //       })
+  //       .catch((err) => {
+  //         alert(err.message);
+  //       });
+  //   }
+  // }, [selectedMonth, selectedYear]);
+
+  function getReportData(e) {
+    e.preventDefault();
+    if (validateDropdowns() === true) {
       axios
-        .get("http://localhost:8070/discount/")
+        .get(
+          `http://localhost:8070/purchases/getDiscountReportData/${selectedYear}/${selectedMonth}/`
+        )
         .then((res) => {
           console.log(res.data);
           setDiscounts(res.data);
+          if (res.data.length === 0) {
+            alert("No data found for the selected month and year");
+          }
         })
         .catch((err) => {
-          alert(err.message);
+          console.log(err);
         });
+    } else {
+      alert("Please select a month and year");
     }
-    getDiscounts();
-  }, []);
+  }
 
-  useEffect(() => {
-    if (selectedMonth && selectedYear) {
-      axios
-        .get(
-          `http://localhost:8070/total-purchases/${selectedYear}/${selectedMonth}/`
-        )
-        .then((res) => {
-          setQuantitySold(res.data);
-        })
-        .catch((err) => {
-          alert(err.message);
-        });
+  function validateDropdowns() {
+    if (selectedYear !== "" && selectedMonth !== "") {
+      return true;
     }
-  }, [selectedMonth, selectedYear]);
+    return false;
+  }
 
   const containerStyle = {
     backgroundImage: `url(${backgroundImage})`,
@@ -100,6 +129,19 @@ const DiscountsReport = () => {
           value={selectedMonth}
           onChange={(e) => setSelectedMonth(e.target.value)}
         >
+          <option value="">Select a Month</option>
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
           {/* ...options for months */}
         </select>
         <select
@@ -108,6 +150,8 @@ const DiscountsReport = () => {
           onChange={(e) => setSelectedYear(e.target.value)}
         >
           <option value="">Select a Year</option>
+          <option value="2023">2023</option>
+          <option value="2024">2024</option>
           {/* Add options for years here */}
         </select>
       </div>
@@ -115,7 +159,13 @@ const DiscountsReport = () => {
         className="form-group"
         style={{ display: "flex", flexWrap: "nowrap" }}
       >
-        <button type="submit" className="btn btn-success">
+        <button
+          type="submit"
+          className="btn btn-success"
+          onClick={(e) => {
+            getReportData(e);
+          }}
+        >
           Submit
         </button>
       </div>
@@ -143,9 +193,8 @@ const DiscountsReport = () => {
                 {discount.discountId}
               </td>
               <td className="label-bold-black">{discount.discountRate}</td>
-              <td className="label-bold-black">
-                {discount.discountProductName}
-              </td>
+              <td className="label-bold-black">{discount._id}</td>
+              <td className="label-bold-black">{discount.totalQuantity}</td>
             </tr>
           ))}
         </tbody>
