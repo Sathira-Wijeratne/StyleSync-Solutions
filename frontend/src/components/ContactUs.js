@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 export default function ContactUs() {
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState("");
@@ -87,21 +88,12 @@ export default function ContactUs() {
     };
 
     // Send a POST request to your server to add the data
-    fetch("http://localhost:8070/ContactUs/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Handle the response from the server, e.g., show a success message
-        console.log(data);
+    axios.post("http://localhost:8070/ContactUs/add",formData)
+      .then((res) => {
+        // Handle the response from the server
         alert("Inquiry Added.");
       })
       .catch((error) => {
-        // Handle any errors, e.g., show an error message
         console.error(error);
         alert("An error occurred. Please try again.");
       });
@@ -163,6 +155,7 @@ export default function ContactUs() {
         <button
           type="submit"
           style={{ backgroundColor: "black", color: "white" }}
+          href="/home"
         >
           Submit
         </button>

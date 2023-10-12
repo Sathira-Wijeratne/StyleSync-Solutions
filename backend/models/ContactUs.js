@@ -24,7 +24,7 @@ const contactUsSchema = new Schema({
 });
 
 // create a model based on the buyer schema
-const ContactUs = mongoose.model("Customer", contactUsSchema);
+const ContactUs = mongoose.model("ContactUs", contactUsSchema);
 
 // export the Buyer model to be used in other parts of the application
 module.exports = ContactUs;
