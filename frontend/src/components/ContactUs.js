@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 export default function ContactUs() {
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState("");
@@ -7,6 +6,8 @@ export default function ContactUs() {
   const [emailError, setEmailError] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [phoneNumberError, setPhoneNumberError] = useState("");
+  const [inqure, setInqure] = useState(""); // Fix the variable name
+  const [inqureError, setInqureError] = useState(""); // Fix the variable name
 
   const mainDivStyle = {
     margin: "100px", // Add margin
@@ -57,13 +58,23 @@ export default function ContactUs() {
     }
   };
 
+  const handleInqureChange = (e) => {
+    const value = e.target.value;
+    setInqure(value);
+
+    if (!value) {
+      setInqureError("Inquiry field cannot be empty.");
+    } else {
+      setInqureError("");
+    }
+  };
+
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent the default form submission
+    e.preventDefault();
 
     // Check if any of the required fields are empty
-    if (!name || !email || !phoneNumber) {
-      // Display an error message or handle it as needed
-      alert("All fields are required");
+    if (!name || !email || !phoneNumber || !inqure) {
+      alert("You must fill all the fields");
       return;
     }
 
@@ -71,8 +82,8 @@ export default function ContactUs() {
     const formData = {
       name,
       email,
-      phone: phoneNumber, // Assuming the field name is 'phone' on the server
-      Inquery: inqure, // You can set this as needed
+      phone: phoneNumber,
+      Inquery: inqure,
     };
 
     // Send a POST request to your server to add the data
@@ -98,6 +109,9 @@ export default function ContactUs() {
 
   return (
     <div style={mainDivStyle}>
+      <center>
+        <h1>Customer Inquries</h1>
+      </center>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Name</label>
@@ -141,10 +155,15 @@ export default function ContactUs() {
             className="form-control"
             id="exampleInputPassword1"
             value={inqure}
+            onChange={handleInqureChange}
           />
+          {inqureError && <div className="text-danger">{inqureError}</div>}
         </div>
 
-        <button type="submit" className="btn btn-primary">
+        <button
+          type="submit"
+          style={{ backgroundColor: "black", color: "white" }}
+        >
           Submit
         </button>
       </form>
