@@ -1,6 +1,5 @@
 import Button from "react-bootstrap/Button";
 
-
 export default function AdminHome() {
   if (sessionStorage.getItem("sSyncSolNimda") === null) {
     window.location.replace("/");
@@ -28,6 +27,35 @@ export default function AdminHome() {
 
   return (
     <div>
+      <div>
+        <center>
+          <h1>Customer Inquries</h1>
+        </center>
+      </div>
+      <div
+        className="card"
+        style={{
+          margin: "20px",
+          maxWidth: "1000px",
+          minHeight: "100px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          maxWidth: "1200px",
+          height: "50px",
+          padding: "35px",
+          border: "1px solid rgba(255, 255, 255, .25)",
+          borderRadius: "20px",
+          backgroundColor: "rgba(255, 255, 255, 0.45)",
+          boxShadow: "0 0 10px 1px rgba(0, 0, 0, 0.25)",
+          backdropFilter: "blur(15px)",
+        }}
+      >
+        <p style={{ margin: "0" }}>
+          <strong>{custcomments.customerEmail} : </strong>{" "}
+          {custcomments.customerComments}
+        </p>
+      </div>
       <nav style={navPanelStyle}>
         <a href="/adminhome/ProductRatingReport" style={linkStyle}>
           <Button style={buttonStyle} variant="dark">
@@ -58,10 +86,6 @@ export default function AdminHome() {
           </Button>
         </a>
       </nav>
-      <div alignItems='left'>
-        
-
-      </div>
     </div>
   );
 }
