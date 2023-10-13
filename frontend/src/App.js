@@ -25,8 +25,8 @@ function App() {
       <Route path="/" exact component={Login} />
       <Route path="/signup" exact component={Signup} />
       <Route path="/adminlogin" exact component={AdminLogin} />
-      <Route path="/home" exact component={UserHome} />
-      <Route path="/viewproduct/:id" exact component={ProductPage} />
+      <Route path="/home/:pNum" exact component={UserHome} />
+      <Route path="/viewproduct/:id/:pNum" exact component={ProductPage} />
       <Route path="/cart" exact component={ShoppingCart} />
       <Route path="/purchaseHistory" exact component={PurchaseHistory} />
       <Route path="/adminhome" exact component={AdminHome} />

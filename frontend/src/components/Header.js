@@ -26,7 +26,7 @@ export default function Header() {
                 style={{ justifyContent: "right", display: "flex" }}
               >
                 {sessionStorage.getItem("customerEmail") && (
-                  <a type="button" href="/home">
+                  <a type="button" href="/home/1">
                     <FontAwesomeIcon
                       icon={faHouse}
                       size="xl" // Change to "1x" for normal size
@@ -64,24 +64,24 @@ export default function Header() {
                 )}
                 {(sessionStorage.getItem("customerEmail") ||
                   sessionStorage.getItem("adminEmail")) && (
-                  <div className="dropdown" style={{ marginLeft: "25px" }}>
-                    <button
-                      className="btn btn-danger"
-                      type="button"
-                      id="dropdownMenuButton"
-                      style={{ backgroundColor: "black", border: "none" }}
-                      onClick={() => {
-                        sessionStorage.removeItem("sSyncSolRemotsuc");
-                        sessionStorage.removeItem("sSyncSolNimda");
-                        sessionStorage.removeItem("customerEmail");
-                        sessionStorage.removeItem("adminEmail");
-                        window.location.replace("/");
-                      }}
-                    >
-                      Sign Out
-                    </button>
-                  </div>
-                )}
+                    <div className="dropdown" style={{ marginLeft: "25px" }}>
+                      <button
+                        className="btn btn-danger"
+                        type="button"
+                        id="dropdownMenuButton"
+                        style={{ backgroundColor: "black", border: "none" }}
+                        onClick={() => {
+                          sessionStorage.removeItem("sSyncSolRemotsuc");
+                          sessionStorage.removeItem("sSyncSolNimda");
+                          sessionStorage.removeItem("customerEmail");
+                          sessionStorage.removeItem("adminEmail");
+                          window.location.replace("/");
+                        }}
+                      >
+                        Sign Out
+                      </button>
+                    </div>
+                  )}
               </div>
             </td>
           </tr>
