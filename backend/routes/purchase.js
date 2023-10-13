@@ -29,7 +29,7 @@ router.route("/add").post((req, res) => {
 router.route("/get/:buyerEmail").get(async (req, res) => {
     let buyerEmail = req.params.buyerEmail;
 
-    const retrieve = await Purchase.find({ "buyerEmail": buyerEmail }).then((purchase) => {
+    const retrieve = await Purchase.find({ "buyerEmail": buyerEmail }).sort({ purchaseDate: -1 }).then((purchase) => {
         res.json(purchase);
     }).catch((err) => {
         res.status(500).send({ status: "Opps! Error in loading the purchases" });
