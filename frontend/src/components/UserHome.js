@@ -12,7 +12,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 //   faCartShopping,
 //   faClockRotateLeft,
 // } from "@fortawesome/free-solid-svg-icons";
-// import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
 
 export default function UserHome() {
   if (sessionStorage.getItem("sSyncSolRemotsuc") === null) {
@@ -27,7 +27,6 @@ export default function UserHome() {
   const [FeaturedProductTwo, setFeaturedProductTwo] = useState([]);
   const [FeaturedProductThree, setFeaturedProductThree] = useState([]);
   const [FeaturedProductFour, setFeaturedProductFour] = useState([]);
-  // const history = useHistory();
 
   //pagination variables
   const { pNum } = useParams()
@@ -67,8 +66,6 @@ export default function UserHome() {
     e.preventDefault();
     setCurrentPage(id);
     window.scrollTo({ top: 1085 });
-    // window.history.replaceState(null, "StyleSync Summer Store", `http://localhost:3000/home/${cPage}`)
-    // history.replace(`/home/${cPage}`)
   }
 
 

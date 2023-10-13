@@ -14,7 +14,7 @@ export default function Login() {
         if (res.data[0].password === password) {
           sessionStorage.setItem("sSyncSolRemotsuc", Math.random().toString());
           sessionStorage.setItem("customerEmail", email);
-          window.location.replace(`http://localhost:3000/home`);
+          window.location.replace(`http://localhost:3000/home/1`);
         } else {
           alert("Invalid Credentials !");
         }
