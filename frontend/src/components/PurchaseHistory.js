@@ -9,6 +9,47 @@ export default function PurchaseHistory() {
   const [products, setProducts] = useState([]);
   const buyerEmail = sessionStorage.getItem("customerEmail");
 
+  //variables and functions for sort feature
+  const sortByNewestDate = (products) => {
+    return products.slice().sort((a, b) => new Date(b.purchaseDate) - new Date(a.purchaseDate));
+  };
+
+  const sortByOldestDate = (products) => {
+    return products.slice().sort((a, b) => new Date(a.purchaseDate) - new Date(b.purchaseDate));
+  };
+
+  const sortByHighestTotal = (products) => {
+    return products.slice().sort((a, b) => b.purchaseTotal - a.purchaseTotal);
+  };
+
+  const sortByLeastTotal = (products) => {
+    return products.slice().sort((a, b) => a.purchaseTotal - b.purchaseTotal);
+  };
+
+  const sortedByNewestDate = sortByNewestDate(products);
+  const sortedByOldestDate = sortByOldestDate(products);
+  const sortedByHighestTotal = sortByHighestTotal(products);
+  const sortedByLeastTotal = sortByLeastTotal(products);
+
+  //set sorted products to displayed products
+  function sortByNewDate() {
+    setProducts(sortedByNewestDate);
+  }
+
+  function sortByOldDate() {
+    setProducts(sortedByOldestDate);
+  }
+
+  function sortByHighTotal() {
+    setProducts(sortedByHighestTotal);
+  }
+
+  function sortByLowTotal() {
+    setProducts(sortedByLeastTotal);
+  }
+
+  /*variables and functions for sort feature end */
+
   useEffect(() => {
     function getPurchasedProducts() {
       axios
@@ -28,13 +69,26 @@ export default function PurchaseHistory() {
 
   return (
     <div className="container">
-      <div id="product-page-heading" style={{ textAlign: "center" }}>
+      <div id="product-page-heading" style={{ textAlign: "center", marginTop: '20px' }}>
         <h1>Welcome to your transactions 💲💲💲</h1>
       </div>
       <div class="col-md-12">
         <div class="card mb-4">
-          <div class="card-header py-3">
-            <h5 class="mb-0">Purchase History</h5>
+          <div class="card-header py-3" style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <h3 class="mb-0">Purchase History</h3>
+
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sort by
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" onClick={sortByNewDate}>Newest</a>
+                <a class="dropdown-item" onClick={sortByOldDate}>Oldest</a>
+                <a class="dropdown-item" onClick={sortByHighTotal}>Most Expensive</a>
+                <a class="dropdown-item" onClick={sortByLowTotal}>Least Expensive</a>
+              </div>
+            </div>
+
           </div>
           {products.map((product) => (
             <>
@@ -75,19 +129,17 @@ export default function PurchaseHistory() {
                           <strong>{item.productName}</strong>
                         </p>
                         <p>Size: {item.productSize}</p>
-                        {/* <button type="button" class="btn btn-danger btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item" onClick={() => {
-                var response = window.confirm("Are you sure you want to remove this item from the cart?");
-                if (response) {
-                    // removeItem(item.productId);
-                }
-            }}>
-                <i class="fas fa-trash"></i>
-            </button> */}
+                        <p class="text-start">
+                          Cost : <strong>{parseFloat(item.productPrice).toFixed(2)} €</strong>
+                        </p>
                       </div>
 
                       <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                         <div className="d-flex mb-4" style={{ maxWidth: 300 }}>
                           <div class="form-outline">
+                            <label class="form-label" for="form1">
+                              <b>Quantity :</b>
+                            </label>
                             <input
                               id="form1"
                               min="1"
@@ -97,20 +149,10 @@ export default function PurchaseHistory() {
                               class="form-control"
                               style={{ border: "3px solid #1691ef" }}
                               disabled
-                              onChange={(e) => {
-                                // handleQuantityChange(item.productId, e.target.value);
-                                // updateProductQuantity(item.productId, e.target.value);
-                              }}
                             />
-                            <label class="form-label" for="form1">
-                              Quantity
-                            </label>
+
                           </div>
                         </div>
-                        <p class="text-start text-md-center">
-                          <strong>{item.productPrice} €</strong>
-                        </p>
-                        {/* {calculateTotal(item.productQuantity, item.productPrice)} */}
                       </div>
                     </div>
                     <br></br>
@@ -118,7 +160,7 @@ export default function PurchaseHistory() {
                 ))}
                 <center>
                   <h3>
-                    <b>Total : {product.purchaseTotal} €</b>
+                    <b>Total : {parseFloat(product.purchaseTotal).toFixed(2)} €</b>
                   </h3>
                 </center>
               </div>
