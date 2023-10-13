@@ -7,7 +7,7 @@ export default function ShoppingCart() {
   }
 
   const [products, setProducts] = useState([]);
-  const [productCount, setProductCount] = useState("");
+  const [productCount, setProductCount] = useState(0);
   const buyerEmail = sessionStorage.getItem("customerEmail");
   let total = 0;
 
@@ -60,7 +60,7 @@ export default function ShoppingCart() {
       .delete(`http://localhost:8070/cart/removeAll/${buyerEmail}`)
       .then((res) => {
         // alert("Item removed from the cart");
-        window.location.replace("/home");
+        window.location.replace("/home/1");
       })
       .catch((err) => {
         alert("Opps! Error in removing the items from the cart");
@@ -122,7 +122,7 @@ export default function ShoppingCart() {
           <div class="col-md-8">
             <div class="card mb-4">
               <div class="card-header py-3">
-                <h5 class="mb-0">Cart - {productCount}</h5>
+                <h5 class="mb-0">Number of items in Cart - <b>{productCount}</b></h5>
               </div>
               <div class="card-body">
                 {products.map((product) => (
@@ -261,7 +261,7 @@ export default function ShoppingCart() {
   } else {
     return (
       // Referenced from : https://bbbootstrap.com/snippets/bootstrap-empty-cart-template-25715727
-      <div class="container">
+      <div class="container" style={{ marginTop: "30px" }}>
         <div class="row">
           <div class="col-md-12">
             <div
@@ -284,7 +284,7 @@ export default function ShoppingCart() {
                     <strong>Your Cart is Empty 😔</strong>
                   </h1>
                   <a
-                    href="/home"
+                    href="/home/1"
                     class="btn btn-primary cart-btn-transform m-3"
                     data-abc="true"
                     style={{ fontSize: "30px" }}
