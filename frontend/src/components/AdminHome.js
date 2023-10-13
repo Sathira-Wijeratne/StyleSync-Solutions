@@ -1,9 +1,12 @@
 import Button from "react-bootstrap/Button";
+import React, { useEffect, useState } from "react";
 
 export default function AdminHome() {
   if (sessionStorage.getItem("sSyncSolNimda") === null) {
     window.location.replace("/");
   }
+
+  const [custcomments, setCustcomments] = useState([]);
 
   const navPanelStyle = {
     backgroundColor: "#000000",
