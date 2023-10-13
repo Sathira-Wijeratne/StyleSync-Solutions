@@ -114,182 +114,157 @@ export default function ShoppingCart() {
   if (products.length > 0) {
     return (
       // Referenced from : https://mdbootstrap.com/docs/standard/extended/shopping-carts/#!
-      <div class="container">
-        <br />
-        <br />
-        <div class="row d-flex justify-content-center my-4">
-          <div class="col-md-8">
-            <div class="card mb-4">
-              <div class="card-header py-3">
-                <h5 class="mb-0">Number of items in Cart - <b>{productCount}</b></h5>
-              </div>
-              <div class="card-body">
-                {products.map((product) => (
-                  <>
-                    <div class="row" key={product.productId}>
-                      <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                        <div
-                          class="bg-image hover-overlay hover-zoom ripple rounded"
-                          data-mdb-ripple-color="light"
-                        >
-                          <img
-                            src={product.productImage}
-                            class="w-100"
-                            alt="Blue Jeans Jacket"
-                          />
-                          <a href="#!">
-                            <div
-                              className="mask"
-                              style={{
-                                backgroundColor: "rgba(251, 251, 251, 0.2)",
-                              }}
-                            ></div>
-                          </a>
-                        </div>
-                      </div>
+      <div>
+        <nav aria-label="breadcrumb">
+          <div className="breadcrumb" style={{ height: "80px", fontSize: "15px" }}>
+            <div className="container">
+              <ol className="breadcrumb">
+                <li className="breadcrumb-item">
+                  <a href="/home/1">Home</a>
+                </li>
+                <li className="breadcrumb-item active" aria-current="page">
+                  Shopping Cart
+                </li>
+              </ol>
+            </div>
+          </div>
+        </nav>
 
-                      <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                        <p>
-                          <strong>{product.productName}</strong>
-                        </p>
-                        <p>Size: {product.productSize}</p>
-                        <button
-                          type="button"
-                          class="btn btn-danger btn-sm me-1 mb-2"
-                          data-mdb-toggle="tooltip"
-                          title="Remove item"
-                          onClick={() => {
-                            var response = window.confirm(
-                              "Are you sure you want to remove this item from the cart?"
-                            );
-                            if (response) {
-                              removeItem(product.productId);
-                            }
-                          }}
-                        >
-                          <i class="fas fa-trash"></i>
-                        </button>
-                      </div>
-
-                      <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                        <div className="d-flex mb-4" style={{ maxWidth: 300 }}>
-                          <div class="form-outline">
-                            <input
-                              id="form1"
-                              min="1"
-                              name="quantity"
-                              value={product.productQuantity}
-                              type="number"
-                              class="form-control"
-                              style={{ border: "3px solid #1691ef" }}
-                              onChange={(e) => {
-                                handleQuantityChange(
-                                  product.productId,
-                                  e.target.value
-                                );
-                                updateProductQuantity(
-                                  product.productId,
-                                  e.target.value
-                                );
-                              }}
+        <div class="container">
+          <div class="row d-flex justify-content-center my-4">
+            <div class="col-md-8">
+              <div class="card mb-4">
+                <div class="card-header py-3">
+                  <h5 class="mb-0">Number of items in Cart - <b>{productCount}</b></h5>
+                </div>
+                <div class="card-body">
+                  {products.map((product) => (
+                    <>
+                      <div class="row" key={product.productId}>
+                        <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                          <div
+                            class="bg-image hover-overlay hover-zoom ripple rounded"
+                            data-mdb-ripple-color="light"
+                          >
+                            <img
+                              src={product.productImage}
+                              class="w-100"
+                              alt="Blue Jeans Jacket"
                             />
-                            <label class="form-label" for="form1">
-                              Quantity
-                            </label>
+                            <a href="#!">
+                              <div
+                                className="mask"
+                                style={{
+                                  backgroundColor: "rgba(251, 251, 251, 0.2)",
+                                }}
+                              ></div>
+                            </a>
                           </div>
                         </div>
-                        <p class="text-start text-md-center">
-                          <strong>{product.productPrice} €</strong>
-                        </p>
-                        {calculateTotal(
-                          product.productQuantity,
-                          product.productPrice
-                        )}
-                      </div>
-                    </div>
-                    <hr class="my-4" />
-                  </>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card mb-4">
-              <div class="card-header py-3">
-                <h5 class="mb-0">Summary</h5>
-              </div>
-              <div class="card-body">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                    Products
-                    <span>{parseFloat(total).toFixed(2)} €</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                    <div>
-                      <strong>Total amount</strong>
-                      <strong>
-                        <p class="mb-0">(including VAT)</p>
-                      </strong>
-                    </div>
-                    <span>
-                      <strong>{parseFloat(total).toFixed(2)} €</strong>
-                    </span>
-                  </li>
-                </ul>
 
-                <button
-                  type="button"
-                  class="btn btn-primary btn-lg btn-block"
-                  onClick={() => {
-                    var response = window.confirm(
-                      "Are you sure you want to purchase?"
-                    );
-                    if (response) {
-                      makePurchase();
-                    }
-                  }}
-                >
-                  Pay Now
-                </button>
+                        <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                          <p>
+                            <strong>{product.productName}</strong>
+                          </p>
+                          <p>Size: {product.productSize}</p>
+                          <p class="text-start">
+                            Cost : <strong>{parseFloat(product.productPrice).toFixed(2)} €</strong>
+                          </p>
+                          <button
+                            type="button"
+                            class="btn btn-danger btn-sm me-1 mb-2"
+                            data-mdb-toggle="tooltip"
+                            title="Remove item"
+                            onClick={() => {
+                              var response = window.confirm(
+                                "Are you sure you want to remove this item from the cart?"
+                              );
+                              if (response) {
+                                removeItem(product.productId);
+                              }
+                            }}
+                          >
+                            <i class="fas fa-trash"></i>
+                          </button>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                          <div className="d-flex mb-4" style={{ maxWidth: 300 }}>
+                            <div class="form-outline">
+                              <label class="form-label" for="form1">
+                                Quantity
+                              </label>
+                              <input
+                                id="form1"
+                                min="1"
+                                name="quantity"
+                                value={product.productQuantity}
+                                type="number"
+                                class="form-control"
+                                style={{ border: "3px solid #1691ef" }}
+                                onChange={(e) => {
+                                  handleQuantityChange(
+                                    product.productId,
+                                    e.target.value
+                                  );
+                                  updateProductQuantity(
+                                    product.productId,
+                                    e.target.value
+                                  );
+                                }}
+                              />
+                            </div>
+                          </div>
+                          {calculateTotal(
+                            product.productQuantity,
+                            product.productPrice
+                          )}
+                        </div>
+                      </div>
+                      <hr class="my-4" style={{ height: "1px", background: "black" }} />
+                    </>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      // Referenced from : https://bbbootstrap.com/snippets/bootstrap-empty-cart-template-25715727
-      <div class="container" style={{ marginTop: "30px" }}>
-        <div class="row">
-          <div class="col-md-12">
-            <div
-              class="card"
-              style={{
-                height: "140%",
-                borderRadius: "10px",
-                background: "#eee",
-              }}
-            >
-              <div class="card-body cart">
-                <div class="col-sm-12 empty-cart-cls text-center">
-                  <img
-                    src="https://i.imgur.com/dCdflKN.png"
-                    width="130"
-                    height="130"
-                    class="img-fluid mb-4 mr-3"
-                  />
-                  <h1>
-                    <strong>Your Cart is Empty 😔</strong>
-                  </h1>
-                  <a
-                    href="/home/1"
-                    class="btn btn-primary cart-btn-transform m-3"
-                    data-abc="true"
-                    style={{ fontSize: "30px" }}
+            <div class="col-md-4">
+              <div class="card mb-4">
+                <div class="card-header py-3">
+                  <h5 class="mb-0">Summary</h5>
+                </div>
+                <div class="card-body">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                      Products
+                      <span>{parseFloat(total).toFixed(2)} €</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                      <div>
+                        <strong>Total amount</strong>
+                        <strong>
+                          <p class="mb-0">(including VAT)</p>
+                        </strong>
+                      </div>
+                      <span>
+                        <strong>{parseFloat(total).toFixed(2)} €</strong>
+                      </span>
+                    </li>
+                  </ul>
+
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-lg btn-block"
+                    onClick={() => {
+                      var response = window.confirm(
+                        "Are you sure you want to purchase?"
+                      );
+                      if (response) {
+                        makePurchase();
+                      }
+                    }}
                   >
-                    Go back to shopping
-                  </a>
+                    Pay Now
+                  </button>
                 </div>
               </div>
             </div>
@@ -297,5 +272,64 @@ export default function ShoppingCart() {
         </div>
       </div>
     );
+  } else {
+
+    return (
+      <div>
+        <nav aria-label="breadcrumb">
+          <span class="breadcrumb">
+            <div className="container">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="/home/1">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Shopping Cart
+                </li>
+              </ol>
+            </div>
+          </span>
+        </nav>
+
+        {/* Referenced from : https://bbbootstrap.com/snippets/bootstrap-empty-cart-template-25715727 */}
+        <div class="container" style={{ marginTop: "30px" }}>
+          <div class="row">
+            <div class="col-md-12">
+              <div
+                class="card"
+                style={{
+                  height: "140%",
+                  borderRadius: "10px",
+                  background: "#eee",
+                }}
+              >
+                <div class="card-body cart">
+                  <div class="col-sm-12 empty-cart-cls text-center">
+                    <img
+                      src="https://i.imgur.com/dCdflKN.png"
+                      width="130"
+                      height="130"
+                      class="img-fluid mb-4 mr-3"
+                    />
+                    <h1>
+                      <strong>Your Cart is Empty 😔</strong>
+                    </h1>
+                    <a
+                      href="/home/1"
+                      class="btn btn-primary cart-btn-transform m-3"
+                      data-abc="true"
+                      style={{ fontSize: "30px" }}
+                    >
+                      Go back to shopping
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+
   }
 }

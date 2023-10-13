@@ -211,139 +211,140 @@ export default function ProductPage() {
   }
 
   return (
-    <div className="container">
-      <a type="button" onClick={handleGoBack} style={{ marginBottom: '30px', marginTop: '5px' }}>
-        <Button variant="dark">Back</Button>
-      </a>
-      <div className="container-fliud">
-        <div className="wrapper row">
-          <div className="preview col-md-6">
-            <div className="preview-pic tab-content">
-              <div className="tab-pane active grow" id="pic-1">
-                <img
-                  alt="..."
-                  style={{
-                    borderRadius: "10px",
-                    width: "300px",
-                    height: "300px",
+    <div>
+      <nav aria-label="breadcrumb">
+        <div className="breadcrumb" style={{ height: "80px", fontSize: "15px" }}>
+          <div className="container">
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item">
+                <a href="/home/1">Home</a>
+              </li>
+              <li className="breadcrumb-item active" aria-current="page">
+                Product
+              </li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+
+      <div className="container">
+        <a type="button" onClick={handleGoBack} style={{ marginBottom: '30px', marginTop: '5px' }}>
+          <Button variant="dark">Back</Button>
+        </a>
+        <div className="container-fliud">
+          <div className="wrapper row">
+            <div className="preview col-md-6">
+              <div className="preview-pic tab-content">
+                <div className="tab-pane active grow" id="pic-1">
+                  <img
+                    alt="..."
+                    style={{
+                      borderRadius: "10px",
+                      width: "300px",
+                      height: "300px",
+                    }}
+                    src={product[39]}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="details col-md-6">
+              <h3
+                className="product-title"
+                style={{ fontFamily: "Oswald, sans-serif" }}
+              >
+                {product[1]}
+              </h3>
+
+              <div className="rating">
+                <b>Rate the Product</b> &nbsp;
+                <Rater
+                  onRate={(noOfRate) => {
+                    rateProduct(noOfRate.rating);
                   }}
-                  src={product[39]}
+                  total={5}
+                  rating={rate}
+                  style={{ fontSize: "30px" }}
+                />
+                <br />
+                <br />
+                <span className="review-no">{product[8]} reviews</span>
+              </div>
+
+              <h4 className="price">
+                Price: <span>{parseFloat(product[2]).toFixed(2)} €</span>
+              </h4>
+
+              <h5 className="sizes">
+                Size:
+                <span className="size" data-toggle="tooltip" title="small">
+                  {product[20]}
+                </span>
+              </h5>
+              <div
+                style={{ display: "flex", alignItems: "center" }}
+                className="sizes"
+              >
+                <span style={{ marginRight: "10px" }}>Quantity: </span>
+                <input
+                  className="form-control"
+                  type="number"
+                  min="1"
+                  defaultValue="1"
+                  style={{ width: "80px" }}
+                  onChange={(e) => {
+                    setQuantity(e.target.value);
+                  }}
                 />
               </div>
-            </div>
-          </div>
-          <div className="details col-md-6">
-            <h3
-              className="product-title"
-              style={{ fontFamily: "Oswald, sans-serif" }}
-            >
-              {product[1]}
-            </h3>
 
-            <div className="rating">
-              <b>Rate the Product</b> &nbsp;
-              <Rater
-                onRate={(noOfRate) => {
-                  rateProduct(noOfRate.rating);
-                }}
-                total={5}
-                rating={rate}
-                style={{ fontSize: "30px" }}
-              />
-              <br />
-              <br />
-              <span className="review-no">{product[8]} reviews</span>
-            </div>
-
-            <h4 className="price">
-              Price: <span>{parseFloat(product[2]).toFixed(2)} €</span>
-            </h4>
-
-            <h5 className="sizes">
-              Size:
-              <span className="size" data-toggle="tooltip" title="small">
-                {product[20]}
-              </span>
-            </h5>
-            <div
-              style={{ display: "flex", alignItems: "center" }}
-              className="sizes"
-            >
-              <span style={{ marginRight: "10px" }}>Quantity: </span>
-              <input
-                className="form-control"
-                type="number"
-                min="1"
-                defaultValue="1"
-                style={{ width: "80px" }}
-                onChange={(e) => {
-                  setQuantity(e.target.value);
-                }}
-              />
-            </div>
-            {/* {priceBeforeDiscount !== null && (
-              <div>
-                <b>Price Before Discount:</b> {priceBeforeDiscount.toFixed(2)} €
+              <div className="action">
+                <button
+                  className="add-to-cart btn btn-default"
+                  type="button"
+                  onClick={addToCart}
+                  style={{ marginRight: "10px", backgroundColor: "black" }}
+                >
+                  Add to cart
+                </button>
               </div>
-            )} */}
-            {productDiscountRate !== null && (
-              <div>
-                <b>Discount Rate:</b> {productDiscountRate}%
-              </div>
-            )}
-            {priceAfterDiscount !== null && (
-              <div>
-                <b>Price After Discount:</b> {priceAfterDiscount.toFixed(2)} €
-              </div>
-            )}
-
-            <div className="action">
-              <button
-                className="add-to-cart btn btn-default"
-                type="button"
-                onClick={addToCart}
-                style={{ marginRight: "10px" }}
-              >
-                Add to cart
-              </button>
             </div>
           </div>
         </div>
+
+        <br></br>
+        <h3>
+          <b>Product comments </b>
+        </h3>
+        <br></br>
+        <Form onSubmit={submitComment}>
+          <Form.Group
+            className="mb-3"
+            controlId="exampleForm.ControlInput1"
+            style={containerStyle}
+          >
+            <Form.Control
+              type="text"
+              placeholder="Add Comments"
+              value={customerComment}
+              onChange={(e) => setCustomerComment(e.target.value)}
+            />
+            <button type="submit" style={buttonStyle}>
+              <RiSendPlane2Line />
+            </button>
+          </Form.Group>
+        </Form>
+
+        {custcomments.map((custcomments) => (
+          <div className="card" style={{ margin: '20px', maxWidth: '1000px', minHeight: '100px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', maxWidth: '1200px', height: '50px', padding: '35px', border: '1px solid rgba(255, 255, 255, .25)', borderRadius: '20px', backgroundColor: 'rgba(255, 255, 255, 0.45)', boxShadow: '0 0 10px 1px rgba(0, 0, 0, 0.25)', backdropFilter: 'blur(15px)' }}>
+            <p style={{ margin: '0' }}><strong>{custcomments.customerEmail} : </strong> {custcomments.customerComments}</p>
+          </div>
+        ))}
+
+        <br></br>
+
+
       </div>
-
-      <br></br>
-      <h2>
-        <b>Product Reviews </b>
-      </h2>
-      <br></br>
-      <Form onSubmit={submitComment}>
-        <Form.Group
-          className="mb-3"
-          controlId="exampleForm.ControlInput1"
-          style={containerStyle}
-        >
-          <Form.Control
-            type="text"
-            placeholder="Add Comments"
-            value={customerComment}
-            onChange={(e) => setCustomerComment(e.target.value)}
-          />
-          <button type="submit" style={buttonStyle}>
-            <RiSendPlane2Line />
-          </button>
-        </Form.Group>
-      </Form>
-
-      {custcomments.map((custcomments) => (
-        <div class="card-rows">
-          <div class="card bg-primary">
-            <div class="card-body text-left">
-              <p class="card-text">{custcomments.customerEmail}</p>
-              <p class="card-text">{custcomments.customerComments}</p>
-            </div>
-          </div>
-        </div>
-      ))}
     </div>
   );
 }

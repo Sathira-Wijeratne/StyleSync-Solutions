@@ -67,10 +67,24 @@ export default function PurchaseHistory() {
     getPurchasedProducts();
   }, []);
 
-  return (
+  return (<div>
+    <nav aria-label="breadcrumb">
+      <span class="breadcrumb">
+        <div className="container">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="/home/1">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Purchase History
+            </li>
+          </ol>
+        </div>
+      </span>
+    </nav>
     <div className="container">
-      <div id="product-page-heading" style={{ textAlign: "center", marginTop: '20px' }}>
-        <h1>Welcome to your transactions 💲💲💲</h1>
+      <div id="product-page-heading" style={{ textAlign: "center" }}>
+        <h1>💰 Transaction History 💰</h1>
       </div>
       <div class="col-md-12">
         <div class="card mb-4">
@@ -88,7 +102,6 @@ export default function PurchaseHistory() {
                 <a class="dropdown-item" onClick={sortByLowTotal}>Least Expensive</a>
               </div>
             </div>
-
           </div>
           {products.map((product) => (
             <>
@@ -135,10 +148,13 @@ export default function PurchaseHistory() {
                       </div>
 
                       <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                        <div className="d-flex mb-4" style={{ maxWidth: 300 }}>
+                        <div
+                          className="d-flex mb-4"
+                          style={{ maxWidth: 300 }}
+                        >
                           <div class="form-outline">
                             <label class="form-label" for="form1">
-                              <b>Quantity :</b>
+                              <b>Quantity</b>
                             </label>
                             <input
                               id="form1"
@@ -147,7 +163,7 @@ export default function PurchaseHistory() {
                               value={item.productQuantity}
                               type="number"
                               class="form-control"
-                              style={{ border: "3px solid #1691ef" }}
+                              style={{ border: "3px solid #000000" }}
                               disabled
                             />
 
@@ -164,11 +180,15 @@ export default function PurchaseHistory() {
                   </h3>
                 </center>
               </div>
-              <hr class="my-4" style={{ height: "3px", background: "black" }} />
+              <hr
+                class="my-4"
+                style={{ height: "3px", background: "black" }}
+              />
             </>
           ))}
         </div>
       </div>
     </div>
+  </div>
   );
 }
