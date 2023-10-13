@@ -59,7 +59,6 @@ export default function ShoppingCart() {
     axios
       .delete(`http://localhost:8070/cart/removeAll/${buyerEmail}`)
       .then((res) => {
-        // alert("Item removed from the cart");
         window.location.replace("/home/1");
       })
       .catch((err) => {

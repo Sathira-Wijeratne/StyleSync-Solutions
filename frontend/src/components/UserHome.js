@@ -6,11 +6,13 @@ import axios from "axios";
 import womens from "../images/womens.jpg";
 import imageTwo from "../images/imageTwo.jpg";
 import image03 from "../images/image03c.jpg";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import {
 //   faCartShopping,
 //   faClockRotateLeft,
 // } from "@fortawesome/free-solid-svg-icons";
+// import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function UserHome() {
   if (sessionStorage.getItem("sSyncSolRemotsuc") === null) {
@@ -25,9 +27,11 @@ export default function UserHome() {
   const [FeaturedProductTwo, setFeaturedProductTwo] = useState([]);
   const [FeaturedProductThree, setFeaturedProductThree] = useState([]);
   const [FeaturedProductFour, setFeaturedProductFour] = useState([]);
+  // const history = useHistory();
 
   //pagination variables
-  const [currentPage, setCurrentPage] = useState(1);
+  const { pNum } = useParams()
+  const [currentPage, setCurrentPage] = useState(pNum);
   const recordsPerPage = 18;
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
@@ -63,6 +67,8 @@ export default function UserHome() {
     e.preventDefault();
     setCurrentPage(id);
     window.scrollTo({ top: 1085 });
+    // window.history.replaceState(null, "StyleSync Summer Store", `http://localhost:3000/home/${cPage}`)
+    // history.replace(`/home/${cPage}`)
   }
 
 
@@ -283,7 +289,7 @@ export default function UserHome() {
                       className="btn btn-secondary"
                       onClick={() => {
                         window.location.replace(
-                          `http://localhost:3000/viewproduct/${FeaturedProductOne[40]}`
+                          `http://localhost:3000/viewproduct/${FeaturedProductOne[40]}/${currentPage}`
                         );
                       }}
                       style={{ backgroundColor: "black", color: "white" }}
@@ -340,7 +346,7 @@ export default function UserHome() {
                       className="btn btn-secondary"
                       onClick={() => {
                         window.location.replace(
-                          `http://localhost:3000/viewproduct/${FeaturedProductTwo[40]}`
+                          `http://localhost:3000/viewproduct/${FeaturedProductTwo[40]}/${currentPage}`
                         );
                       }}
                       style={{ backgroundColor: "black", color: "white" }}
@@ -397,7 +403,7 @@ export default function UserHome() {
                       className="btn btn-secondary"
                       onClick={() => {
                         window.location.replace(
-                          `http://localhost:3000/viewproduct/${FeaturedProductThree[40]}`
+                          `http://localhost:3000/viewproduct/${FeaturedProductThree[40]}/${currentPage}`
                         );
                       }}
                       style={{ backgroundColor: "black", color: "white" }}
@@ -454,7 +460,7 @@ export default function UserHome() {
                       className="btn btn-secondary"
                       onClick={() => {
                         window.location.replace(
-                          `http://localhost:3000/viewproduct/${FeaturedProductFour[40]}`
+                          `http://localhost:3000/viewproduct/${FeaturedProductFour[40]}/${currentPage}`
                         );
                       }}
                       style={{ backgroundColor: "black", color: "white" }}
@@ -542,7 +548,7 @@ export default function UserHome() {
                             className="btn btn-secondary"
                             onClick={() => {
                               window.location.replace(
-                                `http://localhost:3000/viewproduct/${product[40]}`
+                                `http://localhost:3000/viewproduct/${product[40]}/${currentPage}`
                               );
                             }}
                             style={{ backgroundColor: "black", color: "white" }}
