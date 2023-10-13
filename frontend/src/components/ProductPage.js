@@ -5,6 +5,7 @@ import Rater from "react-rater";
 import "react-rater/lib/react-rater.css";
 import Form from "react-bootstrap/Form";
 import { RiSendPlane2Line } from "react-icons/ri";
+import Button from "react-bootstrap/Button";
 
 export default function ProductPage() {
   if (sessionStorage.getItem("sSyncSolRemotsuc") === null) {
@@ -12,7 +13,7 @@ export default function ProductPage() {
   }
 
   const [product, setProduct] = useState([]);
-  const { id } = useParams();
+  const { id, pNum } = useParams();
   const [quantity, setQuantity] = useState(1);
   const buyerEmail = sessionStorage.getItem("customerEmail");
   const [rate, setRate] = useState(0);
@@ -104,6 +105,10 @@ export default function ProductPage() {
     }
   }
 
+  function handleGoBack() {
+    window.location.replace(`http://localhost:3000/home/${pNum}`)
+  }
+
   const buttonStyle = {
     background: "none",
     border: "none",
@@ -159,8 +164,9 @@ export default function ProductPage() {
 
   return (
     <div className="container">
-      <br></br>
-      <br></br>
+      <a type="button" onClick={handleGoBack} style={{ marginBottom: '30px', marginTop: '5px' }}>
+        <Button variant="dark">Back</Button>
+      </a>
       <div className="container-fliud">
         <div className="wrapper row">
           <div className="preview col-md-6">
