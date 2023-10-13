@@ -53,7 +53,7 @@ export default function Signup() {
   return (
     <div className="container">
       <a href="/">
-        <Button variant="dark">Back</Button>
+        <Button style={{ marginTop: '10px' }} variant="dark">Back</Button>
       </a>
 
       <form onSubmit={proceed}>
@@ -197,6 +197,24 @@ export default function Signup() {
           </div>
         </section>
       </form>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   );
 }

@@ -37,7 +37,7 @@ router.route("/add").post((req, res) => {
 router.route("/get/:buyerEmail").get(async (req, res) => {
     let buyerEmail = req.params.buyerEmail;
 
-    const retrieve = await Cart.find({ "buyerEmail": buyerEmail }).then((cart) => {
+    const retrieve = await Cart.find({ "buyerId": buyerEmail }).then((cart) => {
         res.json(cart);
     }).catch((err) => {
         res.status(500).send({ status: "Opps! Error in loading the cart items" });
@@ -48,7 +48,7 @@ router.route("/get/:buyerEmail").get(async (req, res) => {
 router.route("/remove/:buyerEmail/:productId").delete(async (req, res) => {
     let buyerEmail = req.params.buyerEmail;
     let productId = req.params.productId;
-    await Cart.findOneAndDelete({ "buyerEmail": buyerEmail, "productId": productId }).then(() => {
+    await Cart.findOneAndDelete({ "buyerId": buyerEmail, "productId": productId }).then(() => {
         res.status(200).send({ status: "Item removed from the cart" });
     }).catch((err) => {
         res.status(500).send({ status: "Opps! Error in removing the item from the cart" });
@@ -58,7 +58,7 @@ router.route("/remove/:buyerEmail/:productId").delete(async (req, res) => {
 //Remove all cart items of a buyer
 router.route("/removeAll/:buyerEmail").delete(async (req, res) => {
     let buyerEmail = req.params.buyerEmail;
-    await Cart.deleteMany({ "buyerEmail": buyerEmail }).then(() => {
+    await Cart.deleteMany({ "buyerId": buyerEmail }).then(() => {
         res.status(200).send({ status: "Items deleted" });
     }).catch((err) => {
         console.log(err.message);
@@ -71,7 +71,7 @@ router.route("/update/:buyerEmail/:productId").put(async (req, res) => {
     let buyerEmail = req.params.buyerEmail;
     let productId = req.params.productId;
     const productQuantity = req.body.productQuantity;
-    await Cart.findOneAndUpdate({ "buyerEmail": buyerEmail, "productId": productId }, { productQuantity: productQuantity }).then(() => {
+    await Cart.findOneAndUpdate({ "buyerId": buyerEmail, "productId": productId }, { productQuantity: productQuantity }).then(() => {
         res.status(200).send({ status: "Item quantity updated" });
     }).catch((err) => {
         console.log(err.message);

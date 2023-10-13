@@ -28,7 +28,7 @@ export default function AdminLogin() {
   return (
     <div className="container">
       <a href="/">
-        <Button variant="dark">Back</Button>
+        <Button variant="dark" style={{marginTop: '10px'}}>Back</Button>
       </a>
       <form onSubmit={validate}>
         <section className="vh-100 gradient-custom">

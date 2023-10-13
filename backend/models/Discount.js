@@ -9,7 +9,7 @@ const discountSchema = new Schema({
 
   discountType: {
     type: String,
-    required: true,
+    required: false,
   },
   discountRate: {
     type: Number,

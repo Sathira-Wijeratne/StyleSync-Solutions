@@ -16,6 +16,8 @@ import DeleteDiscount from "./components/DeleteDiscount";
 import DiscountsReport from "./components/DiscountsReport";
 import ProductRatingReport from "./components/ProductRatingReport";
 import SalesForecast from "./components/SalesForecast";
+import SalesForecastResult from "./components/SalesForecastResult";
+import ContactUs from "./components/ContactUs";
 
 function App() {
   return (
@@ -24,8 +26,8 @@ function App() {
       <Route path="/" exact component={Login} />
       <Route path="/signup" exact component={Signup} />
       <Route path="/adminlogin" exact component={AdminLogin} />
-      <Route path="/home" exact component={UserHome} />
-      <Route path="/viewproduct/:id" exact component={ProductPage} />
+      <Route path="/home/:pNum" exact component={UserHome} />
+      <Route path="/viewproduct/:id/:pNum" exact component={ProductPage} />
       <Route path="/cart" exact component={ShoppingCart} />
       <Route path="/purchaseHistory" exact component={PurchaseHistory} />
       <Route path="/adminhome" exact component={AdminHome} />
@@ -52,6 +54,12 @@ function App() {
         component={ProductRatingReport}
       />
       <Route path="/adminhome/salesforecast" exact component={SalesForecast} />
+      <Route
+        path="/adminhome/salesforecast/result"
+        exact
+        component={SalesForecastResult}
+      />
+      <Route path="/ContactUs" exact component={ContactUs}/>
     </Router>
   );
 }
