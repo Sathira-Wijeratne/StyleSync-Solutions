@@ -11,7 +11,8 @@ export default function ContactUs() {
   const [inqureError, setInqureError] = useState(""); // Fix the variable name
 
   const mainDivStyle = {
-    margin: "100px", // Add margin
+    marginLeft: "100px", // Add margin
+    marginRight: "100px",
   };
 
   const handleNameChange = (e) => {
@@ -88,7 +89,8 @@ export default function ContactUs() {
     };
 
     // Send a POST request to your server to add the data
-    axios.post("http://localhost:8070/ContactUs/add",formData)
+    axios
+      .post("http://localhost:8070/ContactUs/add", formData)
       .then((res) => {
         // Handle the response from the server
         alert("Inquiry Added.");
@@ -100,66 +102,83 @@ export default function ContactUs() {
   };
 
   return (
-    <div style={mainDivStyle}>
-      <center>
-        <h1>Customer Inquries</h1>
-      </center>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name</label>
-          <input
-            type="text"
-            className="form-control"
-            value={name}
-            onChange={handleNameChange}
-          />
-          {nameError && <div className="text-danger">{nameError}</div>}
-        </div>
+    <div>
+      <nav aria-label="breadcrumb">
+        <span class="breadcrumb">
+          <div className="container">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/adminhome">Admin Home</a>
+              </li>
 
-        <div className="form-group">
-          <label>Email address</label>
-          <input
-            type="text"
-            className="form-control"
-            value={email}
-            onChange={handleEmailChange}
-          />
-          {emailError && <div className="text-danger">{emailError}</div>}
-        </div>
+              <li class="breadcrumb-item active" aria-current="page">
+                Add Customer Inquiry
+              </li>
+            </ol>
+          </div>
+        </span>
+      </nav>
+      <div style={mainDivStyle}>
+        <center>
+          <h1>Customer Inquries</h1>
+        </center>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Name</label>
+            <input
+              type="text"
+              className="form-control"
+              value={name}
+              onChange={handleNameChange}
+            />
+            {nameError && <div className="text-danger">{nameError}</div>}
+          </div>
 
-        <div className="form-group">
-          <label for="exampleInputPassword1">Contact Number</label>
-          <input
-            type="text"
-            className="form-control"
-            value={phoneNumber}
-            onChange={handlePhoneNumberChange}
-          />
-          {phoneNumberError && (
-            <div className="text-danger">{phoneNumberError}</div>
-          )}
-        </div>
+          <div className="form-group">
+            <label>Email address</label>
+            <input
+              type="text"
+              className="form-control"
+              value={email}
+              onChange={handleEmailChange}
+            />
+            {emailError && <div className="text-danger">{emailError}</div>}
+          </div>
 
-        <div className="form-group">
-          <label for="exampleInputPassword1">Inquiry</label>
-          <input
-            type="text"
-            className="form-control"
-            id="exampleInputPassword1"
-            value={inqure}
-            onChange={handleInqureChange}
-          />
-          {inqureError && <div className="text-danger">{inqureError}</div>}
-        </div>
+          <div className="form-group">
+            <label for="exampleInputPassword1">Contact Number</label>
+            <input
+              type="text"
+              className="form-control"
+              value={phoneNumber}
+              onChange={handlePhoneNumberChange}
+            />
+            {phoneNumberError && (
+              <div className="text-danger">{phoneNumberError}</div>
+            )}
+          </div>
 
-        <button
-          type="submit"
-          style={{ backgroundColor: "black", color: "white" }}
-          href="/home"
-        >
-          Submit
-        </button>
-      </form>
+          <div className="form-group">
+            <label for="exampleInputPassword1">Inquiry</label>
+            <input
+              type="text"
+              className="form-control"
+              id="exampleInputPassword1"
+              value={inqure}
+              onChange={handleInqureChange}
+            />
+            {inqureError && <div className="text-danger">{inqureError}</div>}
+          </div>
+
+          <button
+            type="submit"
+            style={{ backgroundColor: "black", color: "white" }}
+            href="/home"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
