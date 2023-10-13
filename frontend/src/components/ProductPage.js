@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import Rater from "react-rater";
 import "react-rater/lib/react-rater.css";
 import Form from "react-bootstrap/Form";
+import { FaPercentage } from "react-icons/fa";
 import { RiSendPlane2Line } from "react-icons/ri";
 import Button from "react-bootstrap/Button";
 
@@ -24,6 +25,8 @@ export default function ProductPage() {
   const [rateObj, setRateObj] = useState({});
   const [hasRateObj, setHasRateObj] = useState(false);
   const [custcomments, setcustComments] = useState([]);
+  const [productDiscountRate, setProductDiscountRate] = useState(null);
+  const [priceAfterDiscount, setPriceAfterDiscount] = useState(null);
 
   useEffect(() => {
     axios
@@ -52,6 +55,51 @@ export default function ProductPage() {
             console.log(res.data);
             setcustComments(res.data);
           });
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+    // axios
+    //   .get(`http://localhost:8070/product/getDetails/${id}`)
+    //   .then((res) => {
+    //     axios.get("http://localhost:8070/discount/").then((discountRes) => {
+    //       const discounts = discountRes.data;
+    //       const matchingDiscount = discounts.find(
+    //         (discount) => discount.discountProductName === res.data[1]
+    //       );
+    //       if (matchingDiscount) {
+    //         setProductDiscountRate(matchingDiscount.discountRate);
+    //       }
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     alert(err.message);
+    //   });
+    axios
+      .get(`http://localhost:8070/product/getDetails/${id}`)
+      .then((res) => {
+        // ... (existing code)
+
+        // Fetch the list of discounts
+        axios.get("http://localhost:8070/discount/").then((discountRes) => {
+          const discounts = discountRes.data;
+
+          // Find the discount that matches the current product's name
+          const matchingDiscount = discounts.find(
+            (discount) => discount.discountProductName === res.data[1]
+          );
+
+          // If a matching discount is found, set the discount rate
+          if (matchingDiscount) {
+            setProductDiscountRate(matchingDiscount.discountRate);
+            // Calculate the price after discount
+            const originalPrice = parseFloat(res.data[2]);
+            const discountRate = parseFloat(matchingDiscount.discountRate);
+            const discountedPrice =
+              originalPrice - (originalPrice * discountRate) / 100;
+            setPriceAfterDiscount(discountedPrice);
+          }
+        });
       })
       .catch((err) => {
         alert(err.message);
@@ -233,6 +281,21 @@ export default function ProductPage() {
                 }}
               />
             </div>
+            {/* {priceBeforeDiscount !== null && (
+              <div>
+                <b>Price Before Discount:</b> {priceBeforeDiscount.toFixed(2)} €
+              </div>
+            )} */}
+            {productDiscountRate !== null && (
+              <div>
+                <b>Discount Rate:</b> {productDiscountRate}%
+              </div>
+            )}
+            {priceAfterDiscount !== null && (
+              <div>
+                <b>Price After Discount:</b> {priceAfterDiscount.toFixed(2)} €
+              </div>
+            )}
 
             <div className="action">
               <button

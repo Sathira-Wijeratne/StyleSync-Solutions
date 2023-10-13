@@ -173,28 +173,6 @@ export default function AddDiscount() {
             </div>
             <div className="col-md-6 mb-3">
               <div className="form-group">
-                <label htmlFor="discountType" className="label-bold-black">
-                  Discount Type
-                </label>
-                <input
-                  type="text"
-                  className="form-control bold-black-outline"
-                  id="discountType"
-                  required
-                  placeholder="Enter Discount Type"
-                  onChange={(e) => {
-                    setDiscountType(e.target.value);
-                    handleDiscountTypeInput(e);
-                  }}
-                />
-                <p style={{ color: "red" }}>{errorMessage}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="form-row">
-            <div className="col-md-6 mb-3">
-              <div className="form-group">
                 <label htmlFor="discountRate" className="label-bold-black">
                   Rate of Discount
                 </label>
@@ -212,6 +190,9 @@ export default function AddDiscount() {
                 <p style={{ color: "red" }}>{rateErrorMessage}</p>
               </div>
             </div>
+          </div>
+
+          <div className="form-row">
             <div className="col-md-6 mb-3">
               <div className="form-group">
                 <label htmlFor="productName" className="label-bold-black">
