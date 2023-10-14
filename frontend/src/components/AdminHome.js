@@ -40,19 +40,19 @@ export default function AdminHome() {
   };
 
   useEffect(() => {
-        axios
-          .get(`http://localhost:8070/ContactUs/`)
-          .then((res) => {
-            console.log(res.data);
-            setIinquries(res.data);
-            // setCustemail(res.data);
-            // setCustphone(res.data);
-            // setCustinquery(res.data);
-          }).catch((err) => {
-            alert(err.message);
-          });;
-      }, [])
-      
+    axios
+      .get(`http://localhost:8070/ContactUs/`)
+      .then((res) => {
+        console.log(res.data);
+        setIinquries(res.data);
+        // setCustemail(res.data);
+        // setCustphone(res.data);
+        // setCustinquery(res.data);
+      }).catch((err) => {
+        alert(err.message);
+      });;
+  }, [])
+
   return (
     <div style={containerStyle}>
       <nav style={navPanelStyle}>
@@ -76,9 +76,6 @@ export default function AdminHome() {
             View All Discounts
           </Button>
         </a>
-        <Button style={buttonStyle} variant="dark" disabled>
-          Update Discounts
-        </Button>
         <a href="/adminhome/discount/reports" style={linkStyle}>
           <Button style={buttonStyle} variant="dark">
             Reports and Analytics
@@ -90,35 +87,35 @@ export default function AdminHome() {
           <h1>Customer Inquiries</h1>
         </div>
         <div
-          // className="card"
-          // style={{
-          //   margin: "20px",
-          //   maxWidth: "1000px",
-          //   minHeight: "100px",
-          //   display: "flex",
-          //   flexDirection: "column",
-          //   justifyContent: "space-between",
-          //   maxWidth: "1200px",
-          //   height: "80vh",
-          //   padding: "20px",
-          //   border: "1px solid rgba(255, 255, 255, .25)",
-          //   borderRadius: "20px",
-          //   backgroundColor: "rgba(255, 255, 255, 0.45)",
-          //   boxShadow: "0 0 10px 1px rgba(0, 0, 0, 0.25)",
-          //   backdropFilter: "blur(15px)",
-          // }}
+        // className="card"
+        // style={{
+        //   margin: "20px",
+        //   maxWidth: "1000px",
+        //   minHeight: "100px",
+        //   display: "flex",
+        //   flexDirection: "column",
+        //   justifyContent: "space-between",
+        //   maxWidth: "1200px",
+        //   height: "80vh",
+        //   padding: "20px",
+        //   border: "1px solid rgba(255, 255, 255, .25)",
+        //   borderRadius: "20px",
+        //   backgroundColor: "rgba(255, 255, 255, 0.45)",
+        //   boxShadow: "0 0 10px 1px rgba(0, 0, 0, 0.25)",
+        //   backdropFilter: "blur(15px)",
+        // }}
         >
           {inquries.map((inquries) => (
-          <div className="card" style={{ margin: '20px', maxWidth: '1000px', minHeight: '150px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', maxWidth: '1200px', height: '100px', padding: '20px', border: '1px solid rgba(255, 255, 255, .25)', borderRadius: '20px', backgroundColor: 'rgba(255, 255, 255, 0.45)', boxShadow: '0 0 10px 1px rgba(0, 0, 0, 0.25)', backdropFilter: 'blur(15px)' }}>
-            <p style={{ margin: '0' }}>
-              <strong>Name : </strong> {inquries.name} <br></br>
-              <strong>Email : </strong> {inquries.email}<br></br>
-              <strong>Phone : </strong> {inquries.phone}<br></br>
-              <strong>Inquery : </strong> {inquries.Inquery}
-            </p>
-          </div>
-        ))}
-        
+            <div className="card" style={{ margin: '20px', maxWidth: '1000px', minHeight: '150px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', maxWidth: '1200px', height: '100px', padding: '20px', border: '1px solid rgba(255, 255, 255, .25)', borderRadius: '20px', backgroundColor: 'rgba(255, 255, 255, 0.45)', boxShadow: '0 0 10px 1px rgba(0, 0, 0, 0.25)', backdropFilter: 'blur(15px)' }}>
+              <p style={{ margin: '0' }}>
+                <strong>Name : </strong> {inquries.name} <br></br>
+                <strong>Email : </strong> {inquries.email}<br></br>
+                <strong>Phone : </strong> {inquries.phone}<br></br>
+                <strong>Inquery : </strong> {inquries.Inquery}
+              </p>
+            </div>
+          ))}
+
         </div>
       </div>
     </div>
