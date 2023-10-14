@@ -554,7 +554,7 @@ export default function UserHome() {
                             marginTop: "1rem",
                           }}
                         >
-                          <div style={{ height: "110px" }}>
+                          <div style={{ height: "150px" }}>
                             <h3
                               style={{
                                 fontSize: "1.1rem",

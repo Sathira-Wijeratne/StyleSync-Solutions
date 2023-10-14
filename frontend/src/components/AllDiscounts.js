@@ -96,7 +96,6 @@ export default function AllDiscounts() {
           <thead class="thead-dark">
             <tr>
               <th scope="col">Discount ID</th>
-              <th scope="col">Discount Type</th>
               <th scope="col">Discount Rate</th>
               <th scope="col">Product Name</th>
               <th scope="col">Description</th>
@@ -128,7 +127,7 @@ export default function AllDiscounts() {
                 </td>
                 <td>
                   <button
-                  
+
                     className="btn btn-success"
                     onClick={() => {
                       window.location.replace(
@@ -143,7 +142,7 @@ export default function AllDiscounts() {
 
                 <td>
                   <button
-                  
+
                     className="btn btn-danger"
                     onClick={() => {
                       window.location.replace(

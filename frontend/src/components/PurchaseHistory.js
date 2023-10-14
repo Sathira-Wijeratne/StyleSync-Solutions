@@ -92,7 +92,7 @@ export default function PurchaseHistory() {
             <h3 class="mb-0">Purchase History</h3>
 
             <div class="dropdown">
-              <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{backgroundColor:"black"}}>
+              <button className='btn btn-dark dropdown-toggle' type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Sort by
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
