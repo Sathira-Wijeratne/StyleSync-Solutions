@@ -62,20 +62,20 @@ export default function AddDiscount() {
     document.getElementById("discountExpirationDate").click();
   };
 
-  const containerStyle = {
-    backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundAttachment: "fixed",
-    backgroundPosition: "center",
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "white",
-    position: "relative",
-  };
+  // const containerStyle = {
+  //   backgroundImage: `url(${backgroundImage})`,
+  //   backgroundSize: "cover",
+  //   backgroundRepeat: "no-repeat",
+  //   backgroundAttachment: "fixed",
+  //   backgroundPosition: "center",
+  //   minHeight: "100vh",
+  //   display: "flex",
+  //   flexDirection: "column",
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  //   color: "white",
+  //   position: "relative",
+  // };
 
   const handleDiscountTypeInput = (e) => {
     const inputValue = e.target.value;
@@ -166,9 +166,9 @@ export default function AddDiscount() {
           </div>
         </span>
       </nav>
-      <div className="container" style={containerStyle}>
+      <div className="container">
         <form onSubmit={sendData} style={{ marginBottom: "20px" }}>
-          <h1 className="container label-bold-black">Add Discount</h1>
+          <center><h1 className="container label-bold-black">Add Discount</h1></center>
           <div className="form-row">
             <div className="col-md-6 mb-3">
               <div className="form-group">
