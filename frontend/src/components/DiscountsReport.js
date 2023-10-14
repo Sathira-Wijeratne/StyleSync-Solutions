@@ -42,14 +42,14 @@ const DiscountsReport = () => {
     return false;
   }
 
-  const containerStyle = {
-    backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundAttachment: "fixed",
-    backgroundPosition: "center",
-    minHeight: "100vh",
-  };
+  // const containerStyle = {
+  //   backgroundImage: `url(${backgroundImage})`,
+  //   backgroundSize: "cover",
+  //   backgroundRepeat: "no-repeat",
+  //   backgroundAttachment: "fixed",
+  //   backgroundPosition: "center",
+  //   minHeight: "100vh",
+  // };
 
   return (
     <div>
@@ -70,7 +70,7 @@ const DiscountsReport = () => {
           </div>
         </span>
       </nav>
-      <div style={containerStyle}>
+      <div>
         <div style={{ float: "right" }}>
           <FontAwesomeIcon
             icon={faFilter}
@@ -127,12 +127,14 @@ const DiscountsReport = () => {
             <option value="2024">2024</option>
             {/* Add options for years here */}
           </select>
-        </div>
+          <br></br>
         <div
           className="form-group"
           style={{ display: "flex", flexWrap: "nowrap" }}
         >
+          
           <button
+          style={{backgroundColor:"black"}}
             type="submit"
             className="btn btn-success"
             onClick={(e) => {
@@ -141,6 +143,7 @@ const DiscountsReport = () => {
           >
             Submit
           </button>
+        </div>
         </div>
 
         <table
