@@ -31,20 +31,20 @@ export default function AllDiscounts() {
     getDiscounts();
   }, []);
 
-  const containerStyle = {
-    backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundAttachment: "fixed",
-    backgroundPosition: "center",
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "white",
-    position: "relative",
-  };
+  // const containerStyle = {
+  //   backgroundImage: `url(${backgroundImage})`,
+  //   backgroundSize: "cover",
+  //   backgroundRepeat: "no-repeat",
+  //   backgroundAttachment: "fixed",
+  //   backgroundPosition: "center",
+  //   minHeight: "100vh",
+  //   display: "flex",
+  //   flexDirection: "column",
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  //   color: "white",
+  //   position: "relative",
+  // };
 
   return (
     <div>
@@ -62,11 +62,11 @@ export default function AllDiscounts() {
           </div>
         </span>
       </nav>
-      <div className="container" style={containerStyle}>
-        <h1 style={{ color: "black" }}>All Discounts</h1>
+      <div className="container">
+        <center><h1 style={{ color: "black" }}>All Discounts</h1></center>
         <div className="d-flex justify-content-end">
           <Button
-            variant="primary"
+            variant="dark"
             onClick={() => {
               window.location.replace(
                 `http://localhost:3000/adminhome/discount/add/`
@@ -128,6 +128,7 @@ export default function AllDiscounts() {
                 </td>
                 <td>
                   <button
+                  
                     className="btn btn-success"
                     onClick={() => {
                       window.location.replace(
@@ -142,6 +143,7 @@ export default function AllDiscounts() {
 
                 <td>
                   <button
+                  
                     className="btn btn-danger"
                     onClick={() => {
                       window.location.replace(
