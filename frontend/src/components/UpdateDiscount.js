@@ -13,6 +13,7 @@ function UpdateDiscount() {
   if (sessionStorage.getItem("sSyncSolNimda") === null) {
     window.location.replace("/");
   }
+  const today = new Date(); // Get today's date
 
   const [discountId, setDiscountId] = useState("");
   const [discountType, setDiscountType] = useState("");
@@ -319,6 +320,7 @@ function UpdateDiscount() {
                         id="discountExpirationDate"
                         required
                         placeholderText="Select expiration date"
+                        minDate={today} 
                       />
                       <div className="input-group-append">
                         <span className="input-group-text">
