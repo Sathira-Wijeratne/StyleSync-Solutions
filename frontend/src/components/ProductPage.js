@@ -95,8 +95,7 @@ export default function ProductPage() {
             // Calculate the price after discount
             const originalPrice = parseFloat(res.data[2]);
             const discountRate = parseFloat(matchingDiscount.discountRate);
-            const discountedPrice =
-              originalPrice - (originalPrice * discountRate) / 100;
+            const discountedPrice = originalPrice - (originalPrice * discountRate) / 100;
             setPriceAfterDiscount(discountedPrice);
           }
         });
@@ -107,11 +106,18 @@ export default function ProductPage() {
   }, [id, customerEmail, title_orig]);
 
   function addToCart() {
+
+    let finalPrice = product[2];
+
+    if (priceAfterDiscount !== null) {
+      finalPrice = priceAfterDiscount;
+    }
+
     const cart = {
       productId: product[40],
       productName: product[1],
       buyerId: buyerEmail,
-      productPrice: product[2],
+      productPrice: finalPrice,
       productImage: product[39],
       productSize: product[20],
       productReviewCount: product[8],
@@ -271,7 +277,7 @@ export default function ProductPage() {
                 <span className="review-no">{product[8]} reviews</span>
               </div>
 
-              <h4 className="price">
+              <h4 className="price" style={{ textDecoration: productDiscountRate != null ? 'line-through' : 'none' }}>
                 Price: <span>{parseFloat(product[2]).toFixed(2)} €</span>
               </h4>
 
@@ -297,7 +303,16 @@ export default function ProductPage() {
                   }}
                 />
               </div>
-
+              {productDiscountRate !== null && (
+                <div style={{ color: 'red' }}>
+                  <b>Discount Rate:</b> {productDiscountRate}%
+                </div>
+              )}
+              {priceAfterDiscount !== null && (
+                <div style={{ color: 'red', marginBottom: '10px' }}>
+                  <b>Price After Discount:</b> {priceAfterDiscount.toFixed(2)} €
+                </div>
+              )}
               <div className="action">
                 <button
                   className="add-to-cart btn btn-default"
@@ -345,6 +360,6 @@ export default function ProductPage() {
 
 
       </div>
-    </div>
+    </div >
   );
 }

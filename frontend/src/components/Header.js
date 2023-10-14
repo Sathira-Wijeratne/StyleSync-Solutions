@@ -72,12 +72,14 @@ export default function Header() {
                         className={`dropdown-menu ${showDropdown ? "show" : ""}`}
                         aria-labelledby="dropdownMenuButton"
                       >
-                        <a
-                          className="dropdown-item"
-                          href="/ContactUs"
-                        >
-                          Contact Us
-                        </a>
+                        {sessionStorage.getItem("customerEmail") && (
+                          <a
+                            className="dropdown-item"
+                            href="/ContactUs"
+                          >
+                            Contact Us
+                          </a>
+                        )}
                         <a
                           className="dropdown-item"
                           href="/"

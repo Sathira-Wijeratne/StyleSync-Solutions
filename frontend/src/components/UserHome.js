@@ -13,7 +13,6 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 //   faClockRotateLeft,
 // } from "@fortawesome/free-solid-svg-icons";
 
-
 export default function UserHome() {
   if (sessionStorage.getItem("sSyncSolRemotsuc") === null) {
     window.location.replace("/");
@@ -31,13 +30,13 @@ export default function UserHome() {
   const [discountData, setDiscountData] = useState({});
 
   //pagination variables
-  const { pNum } = useParams()
+  const { pNum } = useParams();
   const [currentPage, setCurrentPage] = useState(pNum);
-  const recordsPerPage = 18;
+  const recordsPerPage = 20;
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
   const records = products.slice(firstIndex, lastIndex);
-  const npage = Math.ceil(products.length / recordsPerPage)
+  const npage = Math.ceil(products.length / recordsPerPage);
   const numbers = [...Array(npage + 1).keys()].slice(1);
 
   const visiblePagesPerSection = 10;
@@ -45,7 +44,10 @@ export default function UserHome() {
   const currentSection = Math.ceil(currentPage / visiblePagesPerSection);
   const startPage = (currentSection - 1) * visiblePagesPerSection + 1;
   const endPage = Math.min(startPage + visiblePagesPerSection - 1, npage);
-  const sectionPageNumbers = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+  const sectionPageNumbers = Array.from(
+    { length: endPage - startPage + 1 },
+    (_, i) => startPage + i
+  );
 
   //pagination methods
   function prePage(e) {
@@ -69,7 +71,6 @@ export default function UserHome() {
     setCurrentPage(id);
     window.scrollTo({ top: 1085 });
   }
-
 
   useEffect(() => {
     function getProductDetails() {
@@ -521,7 +522,7 @@ export default function UserHome() {
                     style={{
                       display: "grid",
                       gridTemplateColumns:
-                        "repeat(auto-fit, minmax(200px, 1fr))",
+                        "repeat(auto-fit, minmax(250px, 1fr))",
                       gap: "1rem",
                     }}
                   >
@@ -553,53 +554,55 @@ export default function UserHome() {
                             marginTop: "1rem",
                           }}
                         >
-                          <h3
-                            style={{
-                              fontSize: "1.1rem",
-                              marginBottom: "0.5rem",
-                            }}
-                          >
-                            {product[1]}
-                          </h3>
+                          <div style={{ height: "150px" }}>
+                            <h3
+                              style={{
+                                fontSize: "1.1rem",
+                                marginBottom: "0.5rem",
+                                textAlign: "center",
+                              }}
+                            >
+                              {product[1]}
+                            </h3>
+                          </div>
                           <span
                             style={{
                               fontWeight: "bold",
                               marginBottom: "0.5rem",
+                              textDecoration: discountData[product[1]] ? 'line-through' : "none"
                             }}
                           >
                             {parseFloat(product[2]).toFixed(2)} €
                           </span>
 
-                          {discountData[product[1]] && (
-                            <div>
-                              <label>Price Before Discount:</label>
-                              <span style={{ textDecoration: "line-through" }}>
-                                {parseFloat(product[2]).toFixed(2)} €
-                              </span>
-                            </div>
-                          )}
-                          {discountData[product[1]] && (
-                            <div>
-                              <label>Discount Rate:</label>
-                              <span>
-                                {discountData[product[1]].discountRate}%
-                              </span>
-                            </div>
-                          )}
-                          {discountData[product[1]] && (
-                            <div>
-                              <label>Price After Discount:</label>
-                              <span>
-                                {(
-                                  parseFloat(product[2]) -
-                                  (parseFloat(product[2]) *
-                                    discountData[product[1]].discountRate) /
-                                  100
-                                ).toFixed(2)}{" "}
-                                €
-                              </span>
-                            </div>
-                          )}
+                          <div style={{ height: "60px" }}>
+                            {discountData[product[1]] && (
+                              <div style={{ textAlign: "center" }}>
+                                <div>
+                                  <label style={{ marginBottom: "0rem", color: 'red' }}>
+                                    Discount Rate:{" "}
+                                  </label>
+                                  <span style={{ color: 'red', fontWeight: 'bold' }}>
+                                    {discountData[product[1]].discountRate}%
+                                  </span>
+                                </div>
+                                <div>
+                                  <label style={{ marginBottom: "0rem", color: 'red' }}>
+                                    Discounted Price:{" "}
+                                  </label>
+                                  <span style={{ color: 'red', fontWeight: 'bold' }}>
+                                    {(
+                                      parseFloat(product[2]) -
+                                      (parseFloat(product[2]) *
+                                        discountData[product[1]].discountRate) /
+                                      100
+                                    ).toFixed(2)}{" "}
+                                    €
+                                  </span>
+                                </div>
+                              </div>
+                            )}
+                          </div>
                           <Rater
                             total={5}
                             rating={avgRatings[product[1]]}
@@ -613,7 +616,11 @@ export default function UserHome() {
                                 `http://localhost:3000/viewproduct/${product[40]}/${currentPage}`
                               );
                             }}
-                            style={{ backgroundColor: "black", color: "white" }}
+                            style={{
+                              backgroundColor: "black",
+                              color: "white",
+                              marginTop: "20px",
+                            }}
                           >
                             View
                           </button>
@@ -623,30 +630,41 @@ export default function UserHome() {
                   </div>
                 </div>
 
-                <nav aria-label="Page navigation example" style={{ display: 'flex', justifyContent: 'center' }}>
+                <nav
+                  aria-label="Page navigation example"
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
                   <ul class="pagination">
                     <li className="page-item">
-                      <a className="page-link"
+                      <a
+                        className="page-link"
                         onClick={prePage}
-                        href='#'>
+                        href="#"
+                        style={{ color: "black" }}
+                      >
                         Previous
                       </a>
                     </li>
-
-                    {/* {numbers.map((n, i) => (
-                      <li className="page-items">
-                        <a href='#' className="page-link" onClick={(e) => changeCPage(e, n)}> {n}</a>
-                      </li>
-                    ))} */}
-
                     {sectionPageNumbers.map((n, i) => (
-                      <li class="page-item"><a href='#' className="page-link" onClick={(e) => changeCPage(e, n)}>{n}</a></li>
+                      <li class="page-item">
+                        <a
+                          style={{ color: "black" }}
+                          href="#"
+                          className="page-link"
+                          onClick={(e) => changeCPage(e, n)}
+                        >
+                          {n}
+                        </a>
+                      </li>
                     ))}
 
                     <li className="page-item">
-                      <a className="page-link"
+                      <a
+                        className="page-link"
                         onClick={nextPage}
-                        href='#'>
+                        href="#"
+                        style={{ color: "black" }}
+                      >
                         Next
                       </a>
                     </li>
