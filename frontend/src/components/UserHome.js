@@ -33,7 +33,7 @@ export default function UserHome() {
   //pagination variables
   const { pNum } = useParams()
   const [currentPage, setCurrentPage] = useState(pNum);
-  const recordsPerPage = 18;
+  const recordsPerPage = 20;
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
   const records = products.slice(firstIndex, lastIndex);
@@ -521,7 +521,7 @@ export default function UserHome() {
                     style={{
                       display: "grid",
                       gridTemplateColumns:
-                        "repeat(auto-fit, minmax(200px, 1fr))",
+                        "repeat(auto-fit, minmax(250px, 1fr))",
                       gap: "1rem",
                     }}
                   >
@@ -553,14 +553,17 @@ export default function UserHome() {
                             marginTop: "1rem",
                           }}
                         >
-                          <h3
-                            style={{
-                              fontSize: "1.1rem",
-                              marginBottom: "0.5rem",
-                            }}
-                          >
-                            {product[1]}
-                          </h3>
+                          <div style={{ height: '110px' }}>
+                            <h3
+                              style={{
+                                fontSize: "1.1rem",
+                                marginBottom: "0.5rem",
+                                textAlign: "center",
+                              }}
+                            >
+                              {product[1]}
+                            </h3>
+                          </div>
                           <span
                             style={{
                               fontWeight: "bold",
@@ -570,36 +573,29 @@ export default function UserHome() {
                             {parseFloat(product[2]).toFixed(2)} €
                           </span>
 
-                          {discountData[product[1]] && (
-                            <div>
-                              <label>Price Before Discount:</label>
-                              <span style={{ textDecoration: "line-through" }}>
-                                {parseFloat(product[2]).toFixed(2)} €
-                              </span>
-                            </div>
-                          )}
-                          {discountData[product[1]] && (
-                            <div>
-                              <label>Discount Rate:</label>
-                              <span>
-                                {discountData[product[1]].discountRate}%
-                              </span>
-                            </div>
-                          )}
-                          {discountData[product[1]] && (
-                            <div>
-                              <label>Price After Discount:</label>
-                              <span>
-                                {(
-                                  parseFloat(product[2]) -
-                                  (parseFloat(product[2]) *
-                                    discountData[product[1]].discountRate) /
-                                  100
-                                ).toFixed(2)}{" "}
-                                €
-                              </span>
-                            </div>
-                          )}
+                          <div style={{ height: '85px' }}>
+                            {discountData[product[1]] && (
+                              <div style={{ textAlign: 'center' }}>
+                                <label style={{ marginBottom: "0rem" }}>Price Before Discount:</label>
+                                <span style={{ textDecoration: "line-through" }}>
+                                  {parseFloat(product[2]).toFixed(2)} €
+                                </span>
+
+                                <label style={{ marginBottom: "0rem" }}>Discount Rate:</label>
+                                <span>{discountData[product[1]].discountRate}%</span>
+
+                                <label style={{ marginBottom: "0rem" }}>Price After Discount:</label>
+                                <span>
+                                  {(
+                                    parseFloat(product[2]) -
+                                    (parseFloat(product[2]) * discountData[product[1]].discountRate) / 100
+                                  ).toFixed(2)}{" "}
+                                  €
+                                </span>
+                              </div>
+
+                            )}
+                          </div>
                           <Rater
                             total={5}
                             rating={avgRatings[product[1]]}
@@ -613,7 +609,7 @@ export default function UserHome() {
                                 `http://localhost:3000/viewproduct/${product[40]}/${currentPage}`
                               );
                             }}
-                            style={{ backgroundColor: "black", color: "white" }}
+                            style={{ backgroundColor: "black", color: "white", marginTop: '20px' }}
                           >
                             View
                           </button>
@@ -628,25 +624,21 @@ export default function UserHome() {
                     <li className="page-item">
                       <a className="page-link"
                         onClick={prePage}
-                        href='#'>
+                        href='#'
+                        style={{ color: 'black' }}>
                         Previous
                       </a>
                     </li>
-
-                    {/* {numbers.map((n, i) => (
-                      <li className="page-items">
-                        <a href='#' className="page-link" onClick={(e) => changeCPage(e, n)}> {n}</a>
-                      </li>
-                    ))} */}
-
                     {sectionPageNumbers.map((n, i) => (
-                      <li class="page-item"><a href='#' className="page-link" onClick={(e) => changeCPage(e, n)}>{n}</a></li>
+                      <li class="page-item"><a style={{ color: 'black' }} href='#' className="page-link" onClick={(e) => changeCPage(e, n)}>{n}</a></li>
                     ))}
 
                     <li className="page-item">
                       <a className="page-link"
                         onClick={nextPage}
-                        href='#'>
+                        href='#'
+                        style={{ color: 'black' }}
+                      >
                         Next
                       </a>
                     </li>
