@@ -569,40 +569,33 @@ export default function UserHome() {
                             style={{
                               fontWeight: "bold",
                               marginBottom: "0.5rem",
+                              textDecoration: discountData[product[1]] ? 'line-through' : "none"
                             }}
                           >
                             {parseFloat(product[2]).toFixed(2)} €
                           </span>
 
-                          <div style={{ height: "85px" }}>
+                          <div style={{ height: "60px" }}>
                             {discountData[product[1]] && (
                               <div style={{ textAlign: "center" }}>
-                                <label style={{ marginBottom: "0rem" }}>
-                                  Price Before Discount:{" "}
-                                </label>
-                                <span
-                                  style={{ textDecoration: "line-through" }}
-                                >
-                                  {parseFloat(product[2]).toFixed(2)} €
-                                </span>
                                 <div>
-                                  <label style={{ marginBottom: "0rem" }}>
+                                  <label style={{ marginBottom: "0rem", color: 'red' }}>
                                     Discount Rate:{" "}
                                   </label>
-                                  <span>
+                                  <span style={{ color: 'red', fontWeight: 'bold' }}>
                                     {discountData[product[1]].discountRate}%
                                   </span>
                                 </div>
                                 <div>
-                                  <label style={{ marginBottom: "0rem" }}>
-                                    Price After Discount:{" "}
+                                  <label style={{ marginBottom: "0rem", color: 'red' }}>
+                                    Discounted Price:{" "}
                                   </label>
-                                  <span>
+                                  <span style={{ color: 'red', fontWeight: 'bold' }}>
                                     {(
                                       parseFloat(product[2]) -
                                       (parseFloat(product[2]) *
                                         discountData[product[1]].discountRate) /
-                                        100
+                                      100
                                     ).toFixed(2)}{" "}
                                     €
                                   </span>
