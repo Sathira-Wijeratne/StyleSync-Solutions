@@ -128,18 +128,36 @@ export default function AddDiscount() {
     }
   };
 
+  // const handleDiscountRateInput = (e) => {
+  //   const inputValue = e.target.value;
+
+  //   // Check if the input value is not a valid number
+  //   if (isNaN(inputValue) || inputValue === "") {
+  //     setDiscountRate("");
+  //     setRateErrorMessage(
+  //       "Please enter a valid numeric value for Discount Rate."
+  //     );
+  //   } else {
+  //     setDiscountRate(parseFloat(inputValue)); // Convert to a numeric value
+  //     setRateErrorMessage("");
+  //   }
+  // };
+
   const handleDiscountRateInput = (e) => {
     const inputValue = e.target.value;
 
-    // Check if the input value is not a valid number
-    if (isNaN(inputValue) || inputValue === "") {
-      setDiscountRate("");
-      setRateErrorMessage(
-        "Please enter a valid numeric value for Discount Rate."
-      );
+    // Regular expression to match only valid numeric input
+    const numericRegex = /^[0-9]*$/;
+
+    if (!numericRegex.test(inputValue)) {
+      setRateErrorMessage("Please enter a valid numeric value.");
+      setDiscountRate(""); // Clear the input value if it's not numeric
+    } else if (inputValue < 0) {
+      setRateErrorMessage("Discount rate cannot be negative.");
+      setDiscountRate(""); // Clear the input value if it's negative
     } else {
-      setDiscountRate(parseFloat(inputValue)); // Convert to a numeric value
-      setRateErrorMessage("");
+      setRateErrorMessage(""); // Clear the error message if the input is valid
+      setDiscountRate(inputValue);
     }
   };
 
@@ -219,17 +237,17 @@ export default function AddDiscount() {
                   Rate of Discount
                 </label>
                 <input
-                  type="number"
+                  type="text" // Change the input type to text to prevent non-numeric characters
                   className="form-control bold-black-outline"
                   required
-                  id="dsicountRate"
+                  id="discountRate"
                   placeholder="Enter Rate of Discount"
-                  onChange={(e) => {
-                    setDiscountRate(e.target.value);
-                    handleDiscountRateInput(e);
-                  }}
+                  onChange={handleDiscountRateInput}
+                  value={discountRate}
                 />
-                <p style={{ color: "red" }}>{rateErrorMessage}</p>
+                {rateErrorMessage && (
+                  <p style={{ color: "red" }}>{rateErrorMessage}</p>
+                )}
               </div>
             </div>
           </div>
