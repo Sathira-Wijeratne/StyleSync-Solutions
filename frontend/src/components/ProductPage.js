@@ -297,7 +297,16 @@ export default function ProductPage() {
                   }}
                 />
               </div>
-
+              {productDiscountRate !== null && (
+                <div>
+                  <b>Discount Rate:</b> {productDiscountRate}%
+                </div>
+              )}
+              {priceAfterDiscount !== null && (
+                <div>
+                  <b>Price After Discount:</b> {priceAfterDiscount.toFixed(2)} €
+                </div>
+              )}
               <div className="action">
                 <button
                   className="add-to-cart btn btn-default"
