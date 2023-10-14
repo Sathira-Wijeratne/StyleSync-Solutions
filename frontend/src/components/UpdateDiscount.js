@@ -289,6 +289,7 @@ function UpdateDiscount() {
                         id="discountStartDate"
                         required
                         placeholderText="Select start date"
+                        disabled
                       />
                       <div className="input-group-append">
                         <span className="input-group-text">
