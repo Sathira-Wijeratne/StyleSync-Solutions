@@ -48,6 +48,22 @@ export default function DeleteDiscount() {
       .catch((err) => {
         alert(err);
       });
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this discount?"
+    );
+
+    if (confirmDelete) {
+      // If user confirms, proceed with deletion
+      axios
+        .delete(`http://localhost:8070/discount/delete/${id}`)
+        .then(() => {
+          alert("Discount Deleted");
+          window.location.replace("http://localhost:3000/adminhome/discount");
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    }
   }
 
   const containerStyle = {
@@ -84,26 +100,45 @@ export default function DeleteDiscount() {
           </div>
         </span>
       </nav>
-      <div className="container" style={containerStyle}>
-        <h1 className="label-bold-black">Delete Discount</h1>
-        <form onSubmit={deleteData}>
-          <div className="row">
-            <div className="col-md-6">
-              <div className="form-group">
-                <label className="label-bold-black" htmlFor="discountId">
-                  Discount Id
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="discountId"
-                  value={discountId}
-                  placeholder="Enter Discount ID"
-                  disabled
-                />
+      {/* <div className="container" style={containerStyle}> */}
+      <div
+        className="container"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <div
+          style={{
+            background: "black",
+            padding: "20px",
+            borderRadius: "10px",
+            width: "80%",
+          }}
+        >
+          <h1 className="label-bold-black" style={{ color: "white" }}>
+            Delete Discount
+          </h1>
+          <form onSubmit={deleteData}>
+            <div className="row">
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label style={{ color: "white" }} htmlFor="discountId">
+                    Discount Id
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="discountId"
+                    value={discountId}
+                    placeholder="Enter Discount ID"
+                    disabled
+                  />
+                </div>
               </div>
-            </div>
-            {/* <div className="col-md-6">
+              {/* <div className="col-md-6">
             <div className="form-group">
               <label className="label-bold-black" htmlFor="discountType">
                 Discount Type
@@ -118,103 +153,104 @@ export default function DeleteDiscount() {
               />
             </div>
           </div> */}
-          </div>
-          <div className="row">
-            <div className="col-md-6">
-              <div className="form-group">
-                <label className="label-bold-black" htmlFor="discountRate">
-                  Discount Rate
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="discountRate"
-                  value={discountRate}
-                  placeholder="Enter Discount Rate"
-                  disabled
-                />
+            </div>
+            <div className="row">
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label style={{ color: "white" }} htmlFor="discountRate">
+                    Discount Rate
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="discountRate"
+                    value={discountRate}
+                    placeholder="Enter Discount Rate"
+                    disabled
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label
+                    style={{ color: "white" }}
+                    htmlFor="discountProductName"
+                  >
+                    Discount Product Name
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="discountProductName"
+                    value={discountProductName}
+                    disabled
+                  />
+                </div>
               </div>
             </div>
-            <div className="col-md-6">
-              <div className="form-group">
-                <label
-                  className="label-bold-black"
-                  htmlFor="discountProductName"
-                >
-                  Discount Product Name
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="discountProductName"
-                  value={discountProductName}
-                  disabled
-                />
+            <div className="form-group">
+              <label style={{ color: "white" }} htmlFor="discountDescription">
+                Discount Description
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="discountDescription"
+                value={discountDescription}
+                disabled
+              />
+            </div>
+            <div className="row">
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label style={{ color: "white" }} htmlFor="discountStartDate">
+                    Discount Start Date
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="date"
+                    value={discountStartDate}
+                    disabled
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label
+                    style={{ color: "white" }}
+                    htmlFor="discountExpirationDate"
+                  >
+                    Discount Expiration Date
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="discountExpirationDate"
+                    value={discountExpirationDate}
+                    disabled
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div className="form-group">
-            <label className="label-bold-black" htmlFor="discountDescription">
-              Discount Description
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="discountDescription"
-              value={discountDescription}
-              disabled
-            />
-          </div>
-          <div className="row">
-            <div className="col-md-6">
-              <div className="form-group">
-                <label className="label-bold-black" htmlFor="discountStartDate">
-                  Discount Start Date
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="date"
-                  value={discountStartDate}
-                  disabled
-                />
-              </div>
+            <div style={{ display: "flex", flexWrap: "nowrap" }}>
+              <button
+                type="submit"
+                className="btn btn-danger col-md-6"
+                style={{ marginRight: "10px" }}
+              >
+                Delete
+              </button>
+              <a
+                type="button"
+                href="/adminhome/discount"
+                className="btn btn-secondary col-md-6"
+              >
+                Back
+              </a>
             </div>
-            <div className="col-md-6">
-              <div className="form-group">
-                <label
-                  className="label-bold-black"
-                  htmlFor="discountExpirationDate"
-                >
-                  Discount Expiration Date
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="discountExpirationDate"
-                  value={discountExpirationDate}
-                  disabled
-                />
-              </div>
-            </div>
-          </div>
-          <div style={{ display: "flex", flexWrap: "nowrap" }}>
-            <button
-              type="submit"
-              className="btn btn-danger col-md-6"
-              style={{ marginRight: "10px" }}
-            >
-              Delete
-            </button>
-            <a
-              type="button"
-              href="/adminhome/discount"
-              className="btn btn-secondary col-md-6"
-            >
-              Back
-            </a>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );
