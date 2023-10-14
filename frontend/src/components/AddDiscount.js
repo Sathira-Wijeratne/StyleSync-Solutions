@@ -27,6 +27,9 @@ export default function AddDiscount() {
   const [descriptionErrorMessage, setDescriptionErrorMessage] = useState("");
   const [productNameErrorMessage, setProductNameErrorMessage] = useState("");
   const [rateErrorMessage, setRateErrorMessage] = useState("");
+  const [showWarning, setShowWarning] = useState(false);
+  const [showExpirationDateWarning, setShowExpirationDateWarning] =
+    useState(false);
 
   useEffect(() => {
     axios
@@ -42,6 +45,28 @@ export default function AddDiscount() {
         alert(err.message);
       });
   }, []);
+
+  const handleStartDateChange = (date) => {
+    const currentDate = new Date();
+
+    if (date >= currentDate) {
+      setDiscountStartDate(date);
+      setShowWarning(false); // Hide the warning when a valid date is selected
+    } else {
+      setShowWarning(true); // Show the warning for invalid dates
+    }
+  };
+
+  const handleExpirationDateChange = (date) => {
+    const currentDate = new Date();
+
+    if (date >= currentDate) {
+      setDiscountExpirationDate(date);
+      setShowExpirationDateWarning(false); // Hide the warning for valid dates
+    } else {
+      setShowExpirationDateWarning(true); // Show the warning for invalid dates
+    }
+  };
 
   const loadOptions = (inputValue, callback) => {
     setTimeout(() => {
@@ -262,7 +287,7 @@ export default function AddDiscount() {
                 >
                   <DatePicker
                     selected={discountStartDate}
-                    onChange={(date) => setDiscountStartDate(date)}
+                    onChange={handleStartDateChange}
                     className="form-control bold-black-outline"
                     id="discountStartDate"
                     required
@@ -274,6 +299,12 @@ export default function AddDiscount() {
                     </span>
                   </div>
                 </div>
+                {showWarning && (
+                  <div className="alert alert-danger mt-2">
+                    The selected date is invalid. Please choose a date equal to
+                    or later than the current date.
+                  </div>
+                )}
               </div>
             </div>
             <div className="col-md-6 mb-3">
@@ -290,7 +321,7 @@ export default function AddDiscount() {
                 >
                   <DatePicker
                     selected={discountExpirationDate}
-                    onChange={(date) => setDiscountExpirationDate(date)}
+                    onChange={handleExpirationDateChange}
                     className="form-control bold-black-outline"
                     id="discountExpirationDate"
                     required
@@ -302,6 +333,12 @@ export default function AddDiscount() {
                     </span>
                   </div>
                 </div>
+                {showExpirationDateWarning && (
+                  <div className="alert alert-danger mt-2">
+                    The selected expiration date is invalid. Please choose a
+                    date equal to or later than the current date.
+                  </div>
+                )}
               </div>
             </div>
           </div>
