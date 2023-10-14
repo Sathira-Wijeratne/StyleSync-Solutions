@@ -12,7 +12,7 @@ export default function AddDiscount() {
   if (sessionStorage.getItem("sSyncSolNimda") === null) {
     window.location.replace("/");
   }
-
+  const today = new Date(); // Get today's date
   const [discountId, setDiscountId] = useState("");
   const [discountType, setDiscountType] = useState("");
   const [discountRate, setDiscountRate] = useState();
@@ -332,6 +332,7 @@ export default function AddDiscount() {
                       id="discountStartDate"
                       required
                       placeholderText="Select start date"
+                      minDate={today} 
                     />
                     <div className="input-group-append">
                       <span className="input-group-text">
@@ -366,6 +367,7 @@ export default function AddDiscount() {
                       id="discountExpirationDate"
                       required
                       placeholderText="Select expiration date"
+                      minDate={today} 
                     />
                     <div className="input-group-append">
                       <span className="input-group-text">
