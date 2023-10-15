@@ -49,7 +49,7 @@ export default function ContactUs() {
     const value = e.target.value;
     setPhoneNumber(value);
 
-    const phoneNumberPattern = /^[\d\- ]*$/;
+    const phoneNumberPattern = /^[\+]?[\d\- ]*$/;
 
     if (!value) {
       setPhoneNumberError("Contact Number cannot be empty.");
